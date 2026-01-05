@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="800" height="520" rx="20" fill="#FFFFFF"/>
+  <rect x="28" y="28" width="744" height="464" rx="18" fill="#F6F7F9" stroke="#E6E8EC" stroke-width="4"/>
+
+  <!-- simplified face -->
+  <g>
+    <circle cx="400" cy="250" r="140" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="8"/>
+    <path d="M340 220 C360 200, 440 200, 460 220" stroke="#111114" stroke-opacity="0.55" stroke-width="10" stroke-linecap="round"/>
+    <path d="M350 260 C372 270, 428 270, 450 260" stroke="#111114" stroke-opacity="0.55" stroke-width="10" stroke-linecap="round"/>
+    <path d="M310 250 C322 238, 332 238, 344 250" stroke="#111114" stroke-opacity="0.45" stroke-width="8" stroke-linecap="round"/>
+    <path d="M456 250 C468 238, 478 238, 490 250" stroke="#111114" stroke-opacity="0.45" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- pouch indicator -->
+    <path d="M450 252 C474 248, 498 258, 512 276" stroke="#D11F2A" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="525" cy="292" r="12" fill="#D11F2A"/>
+  </g>
+
+  <text x="400" y="468" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="24" font-weight="900" fill="#111114" opacity="0.85">Place it behind your upper lip</text>
+</svg>
+
+

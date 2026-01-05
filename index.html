@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SNUZ.NG</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css?v=2" />
+    <meta name="description" content="SNUZ.NG — nicotine pouches" />
+  </head>
+  <body>
+    <!-- Age Gate Modal -->
+    <div id="ageGateOverlay" class="agegate-overlay" hidden>
+      <div
+        class="agegate-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ageGateTitle"
+        aria-describedby="ageGateDesc"
+        tabindex="-1"
+      >
+        <div class="agegate-brand">
+          <img
+            class="agegate-logo"
+            src="./assets/snuz-logo.svg"
+            alt="SNUZ"
+            width="260"
+            height="120"
+          />
+          <div class="agegate-site" id="ageGateTitle">SNUZ.NG</div>
+        </div>
+
+        <div class="agegate-question" id="ageGateDesc">Are you over 18 years of age?</div>
+
+        <div class="agegate-actions">
+          <button id="ageGateNo" class="btn btn-ghost" type="button">No</button>
+          <button id="ageGateYes" class="btn btn-primary" type="button">Yes</button>
+        </div>
+
+        <label class="agegate-remember">
+          <input id="ageGateRemember" type="checkbox" />
+          <span>Remember me</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Announcement -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <span class="topbar__dot" aria-hidden="true"></span>
+        <p class="topbar__text">
+          The site is intended for adults 18+ and for existing nicotine users only. Products
+          contain nicotine and are not for minors.
+        </p>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <a class="brand" href="./index.html" aria-label="SNUZ.NG home">
+          <img class="brand__logo" src="./assets/snuz-logo.svg" alt="SNUZ" width="140" height="58" />
+        </a>
+
+        <form class="search" role="search" aria-label="Search products" onsubmit="return false;">
+          <input class="search__input" type="search" placeholder="Search..." aria-label="Search" />
+          <button class="search__btn" type="submit" aria-label="Search">
+            <span aria-hidden="true">⌕</span>
+          </button>
+        </form>
+
+        <nav class="header-actions" aria-label="Account actions">
+          <a class="header-actions__item" href="#account">
+            <span class="header-actions__icon" aria-hidden="true">👤</span>
+            <span class="header-actions__label">My Account</span>
+          </a>
+          <a class="header-actions__item" href="#wishlist">
+            <span class="header-actions__icon" aria-hidden="true">♡</span>
+            <span class="header-actions__label">My Wishlist</span>
+          </a>
+          <a class="header-actions__item header-actions__cart" href="#cart" aria-label="Cart">
+            <span class="header-actions__icon" aria-hidden="true">🛒</span>
+            <span class="header-actions__label">Cart</span>
+            <span class="pill" aria-label="Items in cart">0</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="nav">
+        <div class="container nav__inner">
+          <nav class="navlinks" aria-label="Primary">
+            <a class="navlinks__link is-active" href="./index.html">Home</a>
+            <a class="navlinks__link" href="#products">Products</a>
+            <a class="navlinks__link" href="#snus">Snus</a>
+            <a class="navlinks__link" href="#nicotine-pouches">Nicotine pouches</a>
+            <a class="navlinks__link" href="#about">About</a>
+            <a class="navlinks__link" href="#faq">FAQ</a>
+            <a class="navlinks__link" href="#contact">Contact</a>
+          </nav>
+
+          <div class="nav__meta">
+            <span class="nav__phone">+234 803 000 0000</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" aria-label="Promotion">
+        <div class="container hero__inner">
+          <div class="hero__copy">
+            <p class="hero__kicker">Various bonuses and promotions!</p>
+            <h1 class="hero__title">Rational prices — <span class="hero__accent">70% OFF</span></h1>
+            <p class="hero__sub">See for yourself. Limited-time bundles across select flavors.</p>
+            <div class="hero__cta">
+              <a class="btn btn-solid" href="#products">Shop now</a>
+              <a class="btn btn-outline" href="#featured">See featured</a>
+            </div>
+          </div>
+          <div class="hero__art" aria-hidden="true">
+            <img
+              class="hero__img"
+              src="./assets/hero-banner.svg"
+              alt=""
+              width="720"
+              height="360"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- What is Snus -->
+      <section class="section" id="snus">
+        <div class="container">
+          <h2 class="h2">What is Snus?</h2>
+          <p class="lead">
+            Snus is a smokeless tobacco product placed under the upper lip. Modern nicotine pouches
+            are tobacco-free and deliver nicotine with flavor and moisture — without smoke.
+          </p>
+        </div>
+      </section>
+
+      <!-- Featured products -->
+      <section class="section section--muted" id="featured">
+        <div class="container">
+          <div class="section__head">
+            <h2 class="h2">Featured products</h2>
+            <a class="link" href="#products">View all</a>
+          </div>
+
+          <div class="grid grid--4">
+            <article class="card product" data-category="mint">
+              <div class="product__badge">HOT</div>
+              <img class="product__img" src="./assets/pouch-1.svg" alt="SNUZ Fresh Mint" width="220" height="220" />
+              <h3 class="product__name">SNUZ Fresh Mint</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">14 mg</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+
+            <article class="card product" data-category="berry">
+              <div class="product__badge product__badge--alt">NEW</div>
+              <img class="product__img" src="./assets/pouch-2.svg" alt="SNUZ Blueberry" width="220" height="220" />
+              <h3 class="product__name">SNUZ Blueberry</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">12 mg</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+
+            <article class="card product" data-category="citrus">
+              <div class="product__badge">HOT</div>
+              <img class="product__img" src="./assets/pouch-3.svg" alt="SNUZ Citrus" width="220" height="220" />
+              <h3 class="product__name">SNUZ Citrus</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">10 mg</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+
+            <article class="card product" data-category="coffee">
+              <div class="product__badge product__badge--alt">NEW</div>
+              <img class="product__img" src="./assets/pouch-4.svg" alt="SNUZ Coffee" width="220" height="220" />
+              <h3 class="product__name">SNUZ Coffee</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">12 mg</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Info sections -->
+      <section class="section" id="about">
+        <div class="container">
+          <div class="split">
+            <div>
+              <h2 class="h2">Can I buy snus in Europe, the US, or England?</h2>
+              <p class="lead">
+                Rules vary by country. Some regions restrict traditional snus, while nicotine
+                pouches may be permitted. Always check local regulations before ordering.
+              </p>
+            </div>
+            <div class="panel">
+              <h3 class="h3">Main features of snus</h3>
+              <ul class="list">
+                <li>Discreet, smoke-free experience</li>
+                <li>Measured nicotine per pouch</li>
+                <li>Wide range of flavors and strengths</li>
+                <li>No ash, no smoke, no lingering odor</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--muted" id="nicotine-pouches">
+        <div class="container">
+          <h2 class="h2">What are snus and nicotine pouches?</h2>
+          <p class="lead">
+            Traditional snus contains tobacco. Nicotine pouches are tobacco-free and use nicotine,
+            plant fibers, sweeteners, and flavorings. They’re placed under the lip and do not
+            require spitting.
+          </p>
+
+          <div class="features">
+            <div class="feature">
+              <div class="feature__rating">★★★★★</div>
+              <div class="feature__title">Great service</div>
+              <div class="feature__text">Fast delivery and careful packaging.</div>
+            </div>
+            <div class="feature">
+              <div class="feature__rating">★★★★★</div>
+              <div class="feature__title">Best prices</div>
+              <div class="feature__text">Solid bundles across popular flavors.</div>
+            </div>
+            <div class="feature">
+              <div class="feature__rating">★★★★★</div>
+              <div class="feature__title">Quality selection</div>
+              <div class="feature__text">From mint to fruit to coffee.</div>
+            </div>
+            <div class="feature">
+              <div class="feature__rating">★★★★★</div>
+              <div class="feature__title">Happy customers</div>
+              <div class="feature__text">Easy checkout and responsive support.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products tabs -->
+      <section class="section" id="products">
+        <div class="container">
+          <div class="section__head">
+            <h2 class="h2">All products</h2>
+            <div class="tabs" role="tablist" aria-label="Product categories">
+              <button class="tab is-active" type="button" role="tab" aria-selected="true" data-tab="all">
+                Show all
+              </button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="mint">Mint</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="berry">Berry</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="citrus">Citrus</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="coffee">Coffee</button>
+            </div>
+          </div>
+
+          <div class="grid grid--4" id="productsGrid">
+            <article class="card product" data-category="mint">
+              <div class="product__badge">HOT</div>
+              <img class="product__img" src="./assets/pouch-1.svg" alt="SNUZ Fresh Mint" width="220" height="220" />
+              <h3 class="product__name">SNUZ Fresh Mint</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">14 mg</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+
+            <article class="card product" data-category="mint">
+              <div class="product__badge product__badge--alt">NEW</div>
+              <img class="product__img" src="./assets/pouch-5.svg" alt="SNUZ Arctic Mint" width="220" height="220" />
+              <h3 class="product__name">SNUZ Arctic Mint</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">16 mg</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+
+            <article class="card product" data-category="berry">
+              <div class="product__badge">HOT</div>
+              <img class="product__img" src="./assets/pouch-2.svg" alt="SNUZ Blueberry" width="220" height="220" />
+              <h3 class="product__name">SNUZ Blueberry</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">12 mg</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+
+            <article class="card product" data-category="berry">
+              <div class="product__badge product__badge--alt">NEW</div>
+              <img class="product__img" src="./assets/pouch-6.svg" alt="SNUZ Raspberry" width="220" height="220" />
+              <h3 class="product__name">SNUZ Raspberry</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">10 mg</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+
+            <article class="card product" data-category="citrus">
+              <div class="product__badge">HOT</div>
+              <img class="product__img" src="./assets/pouch-3.svg" alt="SNUZ Citrus" width="220" height="220" />
+              <h3 class="product__name">SNUZ Citrus</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">10 mg</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+
+            <article class="card product" data-category="citrus">
+              <div class="product__badge product__badge--alt">NEW</div>
+              <img class="product__img" src="./assets/pouch-7.svg" alt="SNUZ Lemon" width="220" height="220" />
+              <h3 class="product__name">SNUZ Lemon</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">8 mg</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+
+            <article class="card product" data-category="coffee">
+              <div class="product__badge">HOT</div>
+              <img class="product__img" src="./assets/pouch-4.svg" alt="SNUZ Coffee" width="220" height="220" />
+              <h3 class="product__name">SNUZ Coffee</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">12 mg</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+
+            <article class="card product" data-category="coffee">
+              <div class="product__badge product__badge--alt">NEW</div>
+              <img class="product__img" src="./assets/pouch-8.svg" alt="SNUZ Vanilla Latte" width="220" height="220" />
+              <h3 class="product__name">SNUZ Vanilla Latte</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">10 mg</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- How it works -->
+      <section class="section section--muted" aria-label="How it works">
+        <div class="container">
+          <h2 class="h2">How does Snus work?</h2>
+          <div class="how">
+            <div class="how__item">
+              <img class="how__img" src="./assets/how-1.svg" alt="Take a pouch" width="260" height="180" />
+              <div class="how__title">Take a pouch</div>
+            </div>
+            <div class="how__item">
+              <img class="how__img" src="./assets/how-2.svg" alt="Place it behind your upper lip" width="260" height="180" />
+              <div class="how__title">Place it behind your upper lip</div>
+            </div>
+            <div class="how__item">
+              <img class="how__img" src="./assets/how-3.svg" alt="Enjoy" width="260" height="180" />
+              <div class="how__title">Enjoy</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section" id="faq">
+        <div class="container">
+          <h2 class="h2">Do you have any questions about our Snus?</h2>
+
+          <div class="faq" role="list">
+            <div class="faq__item" role="listitem">
+              <button class="faq__q" type="button" aria-expanded="false">
+                What is SNUZ?
+                <span class="faq__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="faq__a" hidden>
+                SNUZ is a nicotine pouch brand offering a range of flavors and strengths. Nicotine
+                pouches are tobacco-free and designed for discreet use.
+              </div>
+            </div>
+
+            <div class="faq__item" role="listitem">
+              <button class="faq__q" type="button" aria-expanded="false">
+                How will I be notified of new SNUZ products?
+                <span class="faq__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="faq__a" hidden>
+                Subscribe to our updates and follow our social channels. We announce new releases
+                and promotions regularly.
+              </div>
+            </div>
+
+            <div class="faq__item" role="listitem">
+              <button class="faq__q" type="button" aria-expanded="false">
+                How is it made?
+                <span class="faq__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="faq__a" hidden>
+                Nicotine pouches typically use nicotine, plant fibers, flavorings, and moisture
+                regulators, packed into small pouches for consistent delivery.
+              </div>
+            </div>
+
+            <div class="faq__item" role="listitem">
+              <button class="faq__q" type="button" aria-expanded="false">
+                What strength should I start with?
+                <span class="faq__chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="faq__a" hidden>
+                If you’re new, start low and adjust gradually. If you already use nicotine, choose
+                a strength that matches your current intake.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer" id="contact">
+        <div class="container footer__inner">
+          <div class="footer__brand">
+            <img class="footer__logo" src="./assets/snuz-logo.svg" alt="SNUZ" width="160" height="70" />
+            <p class="footer__text">
+              SNUZ.NG provides nicotine pouches for adult nicotine users. Please use responsibly.
+            </p>
+          </div>
+
+          <div class="footer__cols">
+            <div class="footer__col">
+              <div class="footer__title">Contact info</div>
+              <div class="footer__link">Email: support@snuz.ng</div>
+              <div class="footer__link">Phone: +234 803 000 0000</div>
+              <div class="footer__link">Working hours: Mon–Sat 9:00–18:00</div>
+            </div>
+            <div class="footer__col">
+              <div class="footer__title">Categories</div>
+              <a class="footer__a" href="#products">Products</a>
+              <a class="footer__a" href="#snus">Snus</a>
+              <a class="footer__a" href="#nicotine-pouches">Nicotine pouches</a>
+              <a class="footer__a" href="#faq">FAQ</a>
+            </div>
+            <div class="footer__col">
+              <div class="footer__title">Legal</div>
+              <a class="footer__a" href="#top">Terms</a>
+              <a class="footer__a" href="#top">Privacy</a>
+              <a class="footer__a" href="#top">Shipping</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <div class="container footer__bottom-inner">
+            <span>© <span id="year"></span> SNUZ.NG. All rights reserved.</span>
+            <span class="footer__pay">VISA · MasterCard · Verve</span>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Fixed widgets -->
+    <a class="float float--msg" href="mailto:support@snuz.ng" aria-label="Message us">
+      <span aria-hidden="true">✉</span>
+    </a>
+    <button id="backToTop" class="float float--top" type="button" aria-label="Back to top" hidden>
+      <span aria-hidden="true">↑</span>
+    </button>
+
+    <script src="./script.js?v=2" defer></script>
+  </body>
+</html>
+
+

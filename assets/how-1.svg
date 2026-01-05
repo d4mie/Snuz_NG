@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="800" height="520" rx="20" fill="#FFFFFF"/>
+  <rect x="28" y="28" width="744" height="464" rx="18" fill="#F6F7F9" stroke="#E6E8EC" stroke-width="4"/>
+  <g>
+    <circle cx="400" cy="250" r="150" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="8"/>
+    <circle cx="400" cy="250" r="105" fill="#111114" opacity="0.06"/>
+    <text x="400" y="270" text-anchor="middle" font-family="Impact, Haettenschweiler, 'Arial Black', sans-serif" font-size="80" font-weight="900" fill="#D11F2A" stroke="#111114" stroke-width="8" paint-order="stroke fill">SNUZ</text>
+    <path d="M520 330 C560 330, 592 360, 592 398 C592 436, 560 466, 520 466" stroke="#111114" stroke-opacity="0.28" stroke-width="10" stroke-linecap="round"/>
+    <path d="M280 330 C240 330, 208 360, 208 398 C208 436, 240 466, 280 466" stroke="#111114" stroke-opacity="0.28" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <text x="400" y="468" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="28" font-weight="900" fill="#111114" opacity="0.85">Take a pouch</text>
+</svg>
+
+
