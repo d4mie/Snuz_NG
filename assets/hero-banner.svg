@@ -19,9 +19,9 @@
       cy="0"
       r="1"
       gradientUnits="userSpaceOnUse"
-      gradientTransform="translate(820 230) rotate(90) scale(270 450)"
+      gradientTransform="translate(900 260) rotate(90) scale(300 520)"
     >
-      <stop stop-color="#16A34A" stop-opacity="0.20" />
+      <stop stop-color="#16A34A" stop-opacity="0.18" />
       <stop offset="1" stop-color="#16A34A" stop-opacity="0" />
     </radialGradient>
 
@@ -33,53 +33,22 @@
       <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000000" flood-opacity="0.10" />
     </filter>
 
-    <clipPath id="clipPablo">
-      <circle cx="0" cy="0" r="88" />
-    </clipPath>
-    <clipPath id="clipZafari">
-      <circle cx="0" cy="0" r="78" />
-    </clipPath>
-    <clipPath id="clipZyn">
-      <circle cx="0" cy="0" r="70" />
-    </clipPath>
+    <!-- Can clips -->
+    <clipPath id="clipPablo"><circle cx="0" cy="0" r="92" /></clipPath>
+    <clipPath id="clipZafari"><circle cx="0" cy="0" r="82" /></clipPath>
+    <clipPath id="clipZyn"><circle cx="0" cy="0" r="74" /></clipPath>
 
-    <!-- Thumbnail clips for flavor wall -->
-    <clipPath id="thumb1" clipPathUnits="userSpaceOnUse"><circle cx="130" cy="300" r="22" /></clipPath>
-    <clipPath id="thumb2" clipPathUnits="userSpaceOnUse"><circle cx="184" cy="300" r="22" /></clipPath>
-    <clipPath id="thumb3" clipPathUnits="userSpaceOnUse"><circle cx="238" cy="300" r="22" /></clipPath>
-    <clipPath id="thumb4" clipPathUnits="userSpaceOnUse"><circle cx="292" cy="300" r="22" /></clipPath>
-    <clipPath id="thumb5" clipPathUnits="userSpaceOnUse"><circle cx="346" cy="300" r="22" /></clipPath>
-    <clipPath id="thumb6" clipPathUnits="userSpaceOnUse"><circle cx="400" cy="300" r="22" /></clipPath>
-    <clipPath id="thumb7" clipPathUnits="userSpaceOnUse"><circle cx="454" cy="300" r="22" /></clipPath>
-    <clipPath id="thumb8" clipPathUnits="userSpaceOnUse"><circle cx="508" cy="300" r="22" /></clipPath>
-    <clipPath id="thumb9" clipPathUnits="userSpaceOnUse"><circle cx="562" cy="300" r="22" /></clipPath>
-
-    <clipPath id="thumb10" clipPathUnits="userSpaceOnUse"><circle cx="130" cy="354" r="22" /></clipPath>
-    <clipPath id="thumb11" clipPathUnits="userSpaceOnUse"><circle cx="184" cy="354" r="22" /></clipPath>
-    <clipPath id="thumb12" clipPathUnits="userSpaceOnUse"><circle cx="238" cy="354" r="22" /></clipPath>
-    <clipPath id="thumb13" clipPathUnits="userSpaceOnUse"><circle cx="292" cy="354" r="22" /></clipPath>
-    <clipPath id="thumb14" clipPathUnits="userSpaceOnUse"><circle cx="346" cy="354" r="22" /></clipPath>
-    <clipPath id="thumb15" clipPathUnits="userSpaceOnUse"><circle cx="400" cy="354" r="22" /></clipPath>
-    <clipPath id="thumb16" clipPathUnits="userSpaceOnUse"><circle cx="454" cy="354" r="22" /></clipPath>
-    <clipPath id="thumb17" clipPathUnits="userSpaceOnUse"><circle cx="508" cy="354" r="22" /></clipPath>
-    <clipPath id="thumb18" clipPathUnits="userSpaceOnUse"><circle cx="562" cy="354" r="22" /></clipPath>
-
-    <clipPath id="thumb19" clipPathUnits="userSpaceOnUse"><circle cx="130" cy="408" r="22" /></clipPath>
-    <clipPath id="thumb20" clipPathUnits="userSpaceOnUse"><circle cx="184" cy="408" r="22" /></clipPath>
-    <clipPath id="thumb21" clipPathUnits="userSpaceOnUse"><circle cx="238" cy="408" r="22" /></clipPath>
-    <clipPath id="thumb22" clipPathUnits="userSpaceOnUse"><circle cx="292" cy="408" r="22" /></clipPath>
-    <clipPath id="thumb23" clipPathUnits="userSpaceOnUse"><circle cx="346" cy="408" r="22" /></clipPath>
-    <clipPath id="thumb24" clipPathUnits="userSpaceOnUse"><circle cx="400" cy="408" r="22" /></clipPath>
-    <clipPath id="thumb25" clipPathUnits="userSpaceOnUse"><circle cx="454" cy="408" r="22" /></clipPath>
-    <clipPath id="thumb26" clipPathUnits="userSpaceOnUse"><circle cx="508" cy="408" r="22" /></clipPath>
-    <clipPath id="thumb27" clipPathUnits="userSpaceOnUse"><circle cx="562" cy="408" r="22" /></clipPath>
+    <!-- Thumb clips -->
+    <clipPath id="thumbPablo"><circle cx="0" cy="0" r="26" /></clipPath>
+    <clipPath id="thumbZafari"><circle cx="0" cy="0" r="26" /></clipPath>
+    <clipPath id="thumbZyn"><circle cx="0" cy="0" r="26" /></clipPath>
   </defs>
 
   <rect x="0" y="0" width="1200" height="600" rx="24" fill="url(#bg)" />
-  <ellipse cx="860" cy="240" rx="420" ry="250" fill="url(#glow)" />
+  <ellipse cx="920" cy="260" rx="480" ry="290" fill="url(#glow)" />
 
-  <!-- Brand chips -->
-  <g transform="translate(84 120)">
+  <!-- Left content -->
+  <g transform="translate(84 132)">
     <text
       x="0"
       y="0"
@@ -93,39 +62,55 @@
       AVAILABLE BRANDS
     </text>
 
-    <g transform="translate(0 22)">
+    <!-- Brand chips -->
+    <g transform="translate(0 24)">
       <g transform="translate(0 18)" filter="url(#soft)">
         <rect x="0" y="0" rx="999" ry="999" width="116" height="38" fill="#111114" />
-        <text x="58" y="26" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="14" font-weight="900" fill="#FFFFFF">Pablo</text>
+        <text
+          x="58"
+          y="26"
+          text-anchor="middle"
+          font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
+          font-size="14"
+          font-weight="900"
+          fill="#FFFFFF"
+        >
+          Pablo
+        </text>
       </g>
       <g transform="translate(128 18)" filter="url(#soft)">
         <rect x="0" y="0" rx="999" ry="999" width="116" height="38" fill="#16A34A" />
-        <text x="58" y="26" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="14" font-weight="900" fill="#FFFFFF">Zafari</text>
+        <text
+          x="58"
+          y="26"
+          text-anchor="middle"
+          font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
+          font-size="14"
+          font-weight="900"
+          fill="#FFFFFF"
+        >
+          Zafari
+        </text>
       </g>
       <g transform="translate(256 18)" filter="url(#soft)">
         <rect x="0" y="0" rx="999" ry="999" width="92" height="38" fill="#111114" opacity="0.92" />
-        <text x="46" y="26" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="14" font-weight="900" fill="#FFFFFF">Zyn</text>
-      </g>
-      <g transform="translate(0 66)" filter="url(#soft)">
-        <rect x="0" y="0" rx="999" ry="999" width="126" height="38" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2" />
-        <text x="63" y="26" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="14" font-weight="900" fill="#111114">Iceberg</text>
-      </g>
-      <g transform="translate(140 66)" filter="url(#soft)">
-        <rect x="0" y="0" rx="999" ry="999" width="106" height="38" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2" />
-        <text x="53" y="26" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="14" font-weight="900" fill="#111114">Velo</text>
-      </g>
-      <g transform="translate(258 66)" filter="url(#soft)">
-        <rect x="0" y="0" rx="999" ry="999" width="118" height="38" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2" />
-        <text x="59" y="26" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="14" font-weight="900" fill="#111114">Maggie</text>
+        <text
+          x="46"
+          y="26"
+          text-anchor="middle"
+          font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
+          font-size="14"
+          font-weight="900"
+          fill="#FFFFFF"
+        >
+          Zyn
+        </text>
       </g>
     </g>
-  </g>
 
-  <!-- Flavor wall: all brand images from assets/ -->
-  <g filter="url(#soft)">
     <text
-      x="108"
-      y="275"
+      x="0"
+      y="136"
       font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
       font-size="14"
       font-weight="900"
@@ -133,117 +118,188 @@
       opacity="0.68"
       letter-spacing="0.04em"
     >
-      FLAVOURS
+      FEATURED FLAVOURS
     </text>
 
-    <!-- Row 1 -->
-    <g clip-path="url(#thumb1)"><image x="108" y="278" width="44" height="44" href="pablo-bluemint.jpg" xlink:href="pablo-bluemint.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb2)"><image x="162" y="278" width="44" height="44" href="pablo-bubblegum.jpg" xlink:href="pablo-bubblegum.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb3)"><image x="216" y="278" width="44" height="44" href="pablo-darkcherry.jpg" xlink:href="pablo-darkcherry.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb4)"><image x="270" y="278" width="44" height="44" href="pablo-frostedmint.jpg" xlink:href="pablo-frostedmint.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb5)"><image x="324" y="278" width="44" height="44" href="pablo-greenmint.jpg" xlink:href="pablo-greenmint.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb6)"><image x="378" y="278" width="44" height="44" href="pablo-liquorice.jpg" xlink:href="pablo-liquorice.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb7)"><image x="432" y="278" width="44" height="44" href="pablo-orangeexclusive.jpg" xlink:href="pablo-orangeexclusive.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb8)"><image x="486" y="278" width="44" height="44" href="pablo-passionfruit.jpg" xlink:href="pablo-passionfruit.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb9)"><image x="540" y="278" width="44" height="44" href="zafari-coolmint.jpg" xlink:href="zafari-coolmint.jpg" preserveAspectRatio="xMidYMid slice" /></g>
+    <!-- Thumbnails -->
+    <g transform="translate(0 160)" filter="url(#soft)">
+      <g transform="translate(0 0)">
+        <circle cx="0" cy="0" r="30" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2" />
+        <g clip-path="url(#thumbPablo)">
+          <image
+            x="-30"
+            y="-30"
+            width="60"
+            height="60"
+            href="pablo-bubblegum.jpg"
+            xlink:href="pablo-bubblegum.jpg"
+            preserveAspectRatio="xMidYMid slice"
+          />
+        </g>
+        <text
+          x="0"
+          y="54"
+          text-anchor="middle"
+          font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
+          font-size="12"
+          font-weight="900"
+          fill="#111114"
+          opacity="0.84"
+        >
+          Bubblegum
+        </text>
+      </g>
 
-    <!-- Row 2 -->
-    <g clip-path="url(#thumb10)"><image x="108" y="332" width="44" height="44" href="zafari-grapefruit.jpg" xlink:href="zafari-grapefruit.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb11)"><image x="162" y="332" width="44" height="44" href="zafari-jalapenolime.jpg" xlink:href="zafari-jalapenolime.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb12)"><image x="216" y="332" width="44" height="44" href="zafari-mango.jpg" xlink:href="zafari-mango.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb13)"><image x="270" y="332" width="44" height="44" href="zafari-mint.jpg" xlink:href="zafari-mint.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb14)"><image x="324" y="332" width="44" height="44" href="zafari-passionfruit.jpg" xlink:href="zafari-passionfruit.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb15)"><image x="378" y="332" width="44" height="44" href="zyn-coolblueberry.jpg" xlink:href="zyn-coolblueberry.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb16)"><image x="432" y="332" width="44" height="44" href="zyn-coolwatermelon.jpg" xlink:href="zyn-coolwatermelon.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb17)"><image x="486" y="332" width="44" height="44" href="zyn-freshmint.jpg" xlink:href="zyn-freshmint.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb18)"><image x="540" y="332" width="44" height="44" href="iceberg-cherry.jpg" xlink:href="iceberg-cherry.jpg" preserveAspectRatio="xMidYMid slice" /></g>
+      <g transform="translate(118 0)">
+        <circle cx="0" cy="0" r="30" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2" />
+        <g clip-path="url(#thumbZafari)">
+          <image
+            x="-30"
+            y="-30"
+            width="60"
+            height="60"
+            href="zafari-grapefruit.jpg"
+            xlink:href="zafari-grapefruit.jpg"
+            preserveAspectRatio="xMidYMid slice"
+          />
+        </g>
+        <text
+          x="0"
+          y="54"
+          text-anchor="middle"
+          font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
+          font-size="12"
+          font-weight="900"
+          fill="#111114"
+          opacity="0.84"
+        >
+          Grapefruit
+        </text>
+      </g>
 
-    <!-- Row 3 -->
-    <g clip-path="url(#thumb19)"><image x="108" y="386" width="44" height="44" href="iceberg-cola.jpg" xlink:href="iceberg-cola.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb20)"><image x="162" y="386" width="44" height="44" href="iceberg-emerald.jpg" xlink:href="iceberg-emerald.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb21)"><image x="216" y="386" width="44" height="44" href="iceberg-kiwistrawberry.jpg" xlink:href="iceberg-kiwistrawberry.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb22)"><image x="270" y="386" width="44" height="44" href="iceberg-mango-banana.jpg" xlink:href="iceberg-mango-banana.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb23)"><image x="324" y="386" width="44" height="44" href="iceberg-watermelon.jpg" xlink:href="iceberg-watermelon.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb24)"><image x="378" y="386" width="44" height="44" href="velo-brightspearmint.jpg" xlink:href="velo-brightspearmint.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb25)"><image x="432" y="386" width="44" height="44" href="velo-crispypeppermint.jpg" xlink:href="velo-crispypeppermint.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb26)"><image x="486" y="386" width="44" height="44" href="velo-strawberryice.jpg" xlink:href="velo-strawberryice.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-    <g clip-path="url(#thumb27)"><image x="540" y="386" width="44" height="44" href="maggie-cherrytonic.jpg" xlink:href="maggie-cherrytonic.jpg" preserveAspectRatio="xMidYMid slice" /></g>
-
-    <!-- Rings -->
-    <g fill="none" stroke="#E6E8EC" stroke-width="2">
-      <circle cx="130" cy="300" r="22" /><circle cx="184" cy="300" r="22" /><circle cx="238" cy="300" r="22" />
-      <circle cx="292" cy="300" r="22" /><circle cx="346" cy="300" r="22" /><circle cx="400" cy="300" r="22" />
-      <circle cx="454" cy="300" r="22" /><circle cx="508" cy="300" r="22" /><circle cx="562" cy="300" r="22" />
-
-      <circle cx="130" cy="354" r="22" /><circle cx="184" cy="354" r="22" /><circle cx="238" cy="354" r="22" />
-      <circle cx="292" cy="354" r="22" /><circle cx="346" cy="354" r="22" /><circle cx="400" cy="354" r="22" />
-      <circle cx="454" cy="354" r="22" /><circle cx="508" cy="354" r="22" /><circle cx="562" cy="354" r="22" />
-
-      <circle cx="130" cy="408" r="22" /><circle cx="184" cy="408" r="22" /><circle cx="238" cy="408" r="22" />
-      <circle cx="292" cy="408" r="22" /><circle cx="346" cy="408" r="22" /><circle cx="400" cy="408" r="22" />
-      <circle cx="454" cy="408" r="22" /><circle cx="508" cy="408" r="22" /><circle cx="562" cy="408" r="22" />
+      <g transform="translate(236 0)">
+        <circle cx="0" cy="0" r="30" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2" />
+        <g clip-path="url(#thumbZyn)">
+          <image
+            x="-30"
+            y="-30"
+            width="60"
+            height="60"
+            href="zyn-coolblueberry.jpg"
+            xlink:href="zyn-coolblueberry.jpg"
+            preserveAspectRatio="xMidYMid slice"
+          />
+        </g>
+        <text
+          x="0"
+          y="54"
+          text-anchor="middle"
+          font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
+          font-size="12"
+          font-weight="900"
+          fill="#111114"
+          opacity="0.84"
+        >
+          Blueberry
+        </text>
+      </g>
     </g>
   </g>
 
-  <!-- Product “cans” using real brand images (clipped) -->
+  <!-- Featured cans -->
   <g filter="url(#shadow)">
     <!-- Pablo -->
-    <g transform="translate(740 210) rotate(-14)">
-      <circle cx="0" cy="0" r="110" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="4" />
+    <g transform="translate(760 215) rotate(-14)">
+      <circle cx="0" cy="0" r="118" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="4" />
       <g clip-path="url(#clipPablo)">
         <image
-          x="-98"
-          y="-98"
-          width="196"
-          height="196"
+          x="-105"
+          y="-105"
+          width="210"
+          height="210"
           href="pablo-bubblegum.jpg"
           xlink:href="pablo-bubblegum.jpg"
           preserveAspectRatio="xMidYMid slice"
         />
       </g>
-      <rect x="-64" y="-104" width="128" height="26" rx="999" fill="#111114" opacity="0.92" />
-      <text x="0" y="-86" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="12" font-weight="900" fill="#FFFFFF">PABLO</text>
+      <rect x="-68" y="-110" width="136" height="26" rx="999" fill="#111114" opacity="0.92" />
+      <text
+        x="0"
+        y="-92"
+        text-anchor="middle"
+        font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
+        font-size="12"
+        font-weight="900"
+        fill="#FFFFFF"
+      >
+        PABLO
+      </text>
     </g>
 
     <!-- Zafari -->
-    <g transform="translate(900 270) rotate(10)">
-      <circle cx="0" cy="0" r="98" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="4" />
+    <g transform="translate(940 285) rotate(10)">
+      <circle cx="0" cy="0" r="104" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="4" />
       <g clip-path="url(#clipZafari)">
         <image
-          x="-90"
-          y="-90"
-          width="180"
-          height="180"
-          href="zafari-passionfruit.jpg"
-          xlink:href="zafari-passionfruit.jpg"
+          x="-95"
+          y="-95"
+          width="190"
+          height="190"
+          href="zafari-grapefruit.jpg"
+          xlink:href="zafari-grapefruit.jpg"
           preserveAspectRatio="xMidYMid slice"
         />
       </g>
-      <rect x="-62" y="-92" width="124" height="24" rx="999" fill="#16A34A" />
-      <text x="0" y="-75" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="12" font-weight="900" fill="#FFFFFF">ZAFARI</text>
+      <rect x="-62" y="-96" width="124" height="24" rx="999" fill="#16A34A" />
+      <text
+        x="0"
+        y="-79"
+        text-anchor="middle"
+        font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
+        font-size="12"
+        font-weight="900"
+        fill="#FFFFFF"
+      >
+        ZAFARI
+      </text>
     </g>
 
     <!-- Zyn -->
-    <g transform="translate(1040 330) rotate(22)">
-      <circle cx="0" cy="0" r="86" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="4" />
+    <g transform="translate(1080 360) rotate(22)">
+      <circle cx="0" cy="0" r="92" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="4" />
       <g clip-path="url(#clipZyn)">
         <image
-          x="-82"
-          y="-82"
-          width="164"
-          height="164"
+          x="-86"
+          y="-86"
+          width="172"
+          height="172"
           href="zyn-coolblueberry.jpg"
           xlink:href="zyn-coolblueberry.jpg"
           preserveAspectRatio="xMidYMid slice"
         />
       </g>
-      <rect x="-44" y="-78" width="88" height="22" rx="999" fill="#111114" opacity="0.92" />
-      <text x="0" y="-62" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="12" font-weight="900" fill="#FFFFFF">ZYN</text>
+      <rect x="-44" y="-82" width="88" height="22" rx="999" fill="#111114" opacity="0.92" />
+      <text
+        x="0"
+        y="-66"
+        text-anchor="middle"
+        font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
+        font-size="12"
+        font-weight="900"
+        fill="#FFFFFF"
+      >
+        ZYN
+      </text>
     </g>
   </g>
 
   <!-- subtle floor line -->
-  <path d="M140 470H1060" stroke="#111114" stroke-opacity="0.08" stroke-width="6" stroke-linecap="round" />
+  <path
+    d="M140 470H1060"
+    stroke="#111114"
+    stroke-opacity="0.08"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
 </svg>
-
 

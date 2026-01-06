@@ -258,31 +258,12 @@ const PRODUCT_CATALOG = {
   maggie: [{ name: "Maggie Cherry Tonic", image: "./assets/maggie-cherrytonic.jpg" }],
 };
 
-const CART_COUNT_KEY = "snuz.ng:cart_count_v1";
 const CART_ITEMS_KEY = "snuz.ng:cart_items_v1";
 const PRODUCT_QTY_MIN = 1;
 const PRODUCT_QTY_MAX = 99;
 const DEFAULT_UNIT_PRICE_NGN = 9500;
 const DEFAULT_VAT_RATE = 0.075;
 const DEFAULT_SHIPPING_NGN = 0;
-
-function readCartCount() {
-  try {
-    const raw = localStorage.getItem(CART_COUNT_KEY);
-    const n = parseInt(String(raw ?? "0"), 10);
-    return Number.isFinite(n) && n >= 0 ? n : 0;
-  } catch {
-    return 0;
-  }
-}
-
-function writeCartCount(count) {
-  try {
-    localStorage.setItem(CART_COUNT_KEY, String(count));
-  } catch {
-    // ignore
-  }
-}
 
 function readCartItems() {
   try {
@@ -317,18 +298,18 @@ function cartCountFromItems(items) {
   return items.reduce((sum, it) => sum + (Number(it.qty) || 0), 0);
 }
 
-function setCartPills(count) {
-  const pills = Array.from(document.querySelectorAll(".header-actions__cart .pill"));
-  for (const pill of pills) {
-    pill.textContent = String(count);
-    pill.setAttribute("aria-label", `Items in cart: ${count}`);
+function setCartBadges(count) {
+  const badges = Array.from(document.querySelectorAll(".header-actions__cart .cart-badge"));
+  for (const badge of badges) {
+    badge.textContent = String(count);
+    badge.hidden = !(Number(count) > 0);
+    badge.setAttribute("aria-label", `Items in cart: ${count}`);
   }
 }
 
 function syncCartCountFromItems(items) {
   const count = cartCountFromItems(items);
-  writeCartCount(count);
-  setCartPills(count);
+  setCartBadges(count);
 }
 
 function slugifyId(input) {
@@ -396,13 +377,8 @@ function ensureQuantityControls() {
 }
 
 function wireCart() {
-  // Initial sync (prefer items if present)
-  const items = readCartItems();
-  if (items.length) {
-    syncCartCountFromItems(items);
-  } else {
-    setCartPills(readCartCount());
-  }
+  // Initial sync (based on items in storage)
+  syncCartCountFromItems(readCartItems());
 
   // Quantity +/- and ADD TO CART (home + brand pages)
   document.addEventListener("click", (e) => {
