@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping cart | SNUZ.NG</title>
+    <meta name="description" content="View your shopping cart on SNUZ.NG." />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css?v=3" />
+  </head>
+  <body>
+    <!-- Age Gate Modal -->
+    <div id="ageGateOverlay" class="agegate-overlay" hidden>
+      <div
+        class="agegate-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ageGateTitle"
+        aria-describedby="ageGateDesc"
+        tabindex="-1"
+      >
+        <div class="agegate-brand">
+          <a href="./index.html" aria-label="SNUZ.NG home">
+            <img class="agegate-logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="260" height="120" />
+          </a>
+          <div class="agegate-site" id="ageGateTitle">SNUZ.NG</div>
+        </div>
+
+        <div class="agegate-question" id="ageGateDesc">Are you over 18 years of age?</div>
+
+        <div class="agegate-actions">
+          <button id="ageGateNo" class="btn btn-ghost" type="button">No</button>
+          <button id="ageGateYes" class="btn btn-primary" type="button">Yes</button>
+        </div>
+
+        <label class="agegate-remember">
+          <input id="ageGateRemember" type="checkbox" />
+          <span>Remember me</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Announcement -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <span class="topbar__dot" aria-hidden="true"></span>
+        <p class="topbar__text">
+          The site is intended for adults 18+ and for existing nicotine users only. Products contain nicotine and
+          are not for minors.
+        </p>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <a class="brand" href="./index.html" aria-label="SNUZ.NG home">
+          <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="140" height="58" />
+        </a>
+
+        <form class="search" role="search" aria-label="Search products" onsubmit="return false;">
+          <input class="search__input" type="search" placeholder="Search..." aria-label="Search" />
+          <button class="search__btn" type="submit" aria-label="Search">
+            <span aria-hidden="true">⌕</span>
+          </button>
+        </form>
+
+        <nav class="header-actions" aria-label="Account actions">
+          <a class="header-actions__item" href="#account">
+            <span class="header-actions__icon" aria-hidden="true">👤</span>
+            <span class="header-actions__label">My Account</span>
+          </a>
+          <a class="header-actions__item" href="#wishlist">
+            <span class="header-actions__icon" aria-hidden="true">♡</span>
+            <span class="header-actions__label">My Wishlist</span>
+          </a>
+          <a class="header-actions__item header-actions__cart" href="./cart.html" aria-label="Cart">
+            <span class="header-actions__icon" aria-hidden="true">🛒</span>
+            <span class="header-actions__label">Cart</span>
+            <span class="pill" aria-label="Items in cart">0</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="nav">
+        <div class="container nav__inner">
+          <nav class="navlinks" aria-label="Primary">
+            <a class="navlinks__link" href="./index.html">Home</a>
+            <a class="navlinks__link" href="./index.html#products">Products</a>
+            <a class="navlinks__link" href="./index.html#snus">Snus</a>
+            <div class="navlinks__item navlinks__item--dropdown">
+              <a class="navlinks__link navlinks__link--dropdown" href="./index.html#nicotine-pouches">
+                Nicotine pouches <span class="navlinks__chev" aria-hidden="true">▾</span>
+              </a>
+              <div class="dropdown" role="menu" aria-label="Nicotine pouch brands">
+                <a class="dropdown__item" role="menuitem" href="./pablo.html">Pablo</a>
+                <a class="dropdown__item" role="menuitem" href="./zafari.html">Zafari</a>
+                <a class="dropdown__item" role="menuitem" href="./zyn.html">Zyn</a>
+                <a class="dropdown__item" role="menuitem" href="./iceberg.html">Iceberg</a>
+                <a class="dropdown__item" role="menuitem" href="./velo.html">Velo</a>
+                <a class="dropdown__item" role="menuitem" href="./maggie.html">Maggie</a>
+              </div>
+            </div>
+            <a class="navlinks__link" href="./index.html#faq">FAQ</a>
+            <a class="navlinks__link" href="./index.html#contact">Contact</a>
+          </nav>
+
+          <div class="nav__meta">
+            <span class="nav__phone">+234 803 000 0000</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section cart-page">
+        <div class="container">
+          <div class="cart-crumbs" aria-label="Breadcrumb">
+            <span class="cart-crumbs__item is-active">Shopping Cart</span>
+            <span class="cart-crumbs__sep" aria-hidden="true">›</span>
+            <span class="cart-crumbs__item">Checkout</span>
+            <span class="cart-crumbs__sep" aria-hidden="true">›</span>
+            <span class="cart-crumbs__item">Order Complete</span>
+          </div>
+
+          <div class="cart">
+            <section class="cart__main" aria-label="Cart items">
+              <div class="cart-table card">
+                <div class="cart-table__head">
+                  <div class="cart-table__col cart-table__col--product">PRODUCT</div>
+                  <div class="cart-table__col cart-table__col--price">PRICE</div>
+                  <div class="cart-table__col cart-table__col--qty">QUANTITY</div>
+                  <div class="cart-table__col cart-table__col--subtotal">SUBTOTAL</div>
+                </div>
+
+                <div id="cartItems" class="cart-table__body" data-cart-items></div>
+              </div>
+
+              <div class="cart-coupon card">
+                <input class="cart-coupon__input" type="text" placeholder="Coupon code" aria-label="Coupon code" />
+                <button class="btn btn-solid cart-coupon__btn" type="button">Apply coupon</button>
+              </div>
+            </section>
+
+            <aside class="cart__side" aria-label="Cart totals">
+              <div class="cart-totals card">
+                <div class="cart-totals__title">CART TOTALS</div>
+
+                <div class="cart-totals__row">
+                  <span>Subtotal</span>
+                  <span id="cartSubtotal">₦0</span>
+                </div>
+
+                <div class="cart-totals__divider"></div>
+
+                <div class="cart-totals__subtitle">Shipping</div>
+                <div class="cart-totals__muted">
+                  Standard delivery: <span id="cartShipping">₦0</span><br />
+                  up to 1 week delivery
+                </div>
+
+                <div class="cart-totals__muted">Shipping options will be updated during checkout.</div>
+
+                <label class="cart-totals__field">
+                  <span class="cart-totals__label">Country</span>
+                  <select class="cart-totals__select" aria-label="Country">
+                    <option>Nigeria</option>
+                    <option>Ghana</option>
+                    <option>South Africa</option>
+                  </select>
+                </label>
+                <label class="cart-totals__field">
+                  <span class="cart-totals__label">Town / City</span>
+                  <input class="cart-totals__input" type="text" placeholder="Town / City" />
+                </label>
+                <label class="cart-totals__field">
+                  <span class="cart-totals__label">Postcode / ZIP</span>
+                  <input class="cart-totals__input" type="text" placeholder="Postcode / ZIP" />
+                </label>
+
+                <button class="btn btn-outline cart-totals__update" type="button">Update totals</button>
+
+                <div class="cart-totals__divider"></div>
+
+                <div class="cart-totals__row">
+                  <span>VAT</span>
+                  <span id="cartVat">₦0</span>
+                </div>
+
+                <div class="cart-totals__row cart-totals__row--total">
+                  <span>Total</span>
+                  <span id="cartTotal">₦0</span>
+                </div>
+
+                <div class="cart-totals__pay">
+                  <span class="cart-totals__paychip">VISA</span>
+                  <span class="cart-totals__paychip">MasterCard</span>
+                  <span class="cart-totals__paychip">G Pay</span>
+                </div>
+
+                <a class="btn btn-solid cart-totals__checkout" href="./checkout.html">Proceed to checkout</a>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <button id="backToTop" class="float float--top" type="button" aria-label="Back to top" hidden>
+      <span aria-hidden="true">↑</span>
+    </button>
+
+    <script src="./script.js?v=9" defer></script>
+  </body>
+</html>
+
+

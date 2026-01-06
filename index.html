@@ -8,7 +8,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="./styles.css?v=2" />
+    <link rel="stylesheet" href="./styles.css?v=3" />
     <meta name="description" content="SNUZ.NG — nicotine pouches" />
   </head>
   <body>
@@ -23,13 +23,15 @@
         tabindex="-1"
       >
         <div class="agegate-brand">
+          <a href="./index.html" aria-label="SNUZ.NG home">
           <img
             class="agegate-logo"
-            src="./assets/snuz-logo.svg"
-            alt="SNUZ"
+              src="./assets/snuz-logo.jpg"
+              alt="SNUZ.NG"
             width="260"
             height="120"
           />
+          </a>
           <div class="agegate-site" id="ageGateTitle">SNUZ.NG</div>
         </div>
 
@@ -62,7 +64,7 @@
     <header class="header" id="top">
       <div class="container header__inner">
         <a class="brand" href="./index.html" aria-label="SNUZ.NG home">
-          <img class="brand__logo" src="./assets/snuz-logo.svg" alt="SNUZ" width="140" height="58" />
+          <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="140" height="58" />
         </a>
 
         <form class="search" role="search" aria-label="Search products" onsubmit="return false;">
@@ -81,7 +83,7 @@
             <span class="header-actions__icon" aria-hidden="true">♡</span>
             <span class="header-actions__label">My Wishlist</span>
           </a>
-          <a class="header-actions__item header-actions__cart" href="#cart" aria-label="Cart">
+          <a class="header-actions__item header-actions__cart" href="./cart.html" aria-label="Cart">
             <span class="header-actions__icon" aria-hidden="true">🛒</span>
             <span class="header-actions__label">Cart</span>
             <span class="pill" aria-label="Items in cart">0</span>
@@ -95,7 +97,19 @@
             <a class="navlinks__link is-active" href="./index.html">Home</a>
             <a class="navlinks__link" href="#products">Products</a>
             <a class="navlinks__link" href="#snus">Snus</a>
-            <a class="navlinks__link" href="#nicotine-pouches">Nicotine pouches</a>
+            <div class="navlinks__item navlinks__item--dropdown">
+              <a class="navlinks__link navlinks__link--dropdown" href="#nicotine-pouches">
+                Nicotine pouches <span class="navlinks__chev" aria-hidden="true">▾</span>
+              </a>
+              <div class="dropdown" role="menu" aria-label="Nicotine pouch brands">
+                <a class="dropdown__item" role="menuitem" href="./pablo.html">Pablo</a>
+                <a class="dropdown__item" role="menuitem" href="./zafari.html">Zafari</a>
+                <a class="dropdown__item" role="menuitem" href="./zyn.html">Zyn</a>
+                <a class="dropdown__item" role="menuitem" href="./iceberg.html">Iceberg</a>
+                <a class="dropdown__item" role="menuitem" href="./velo.html">Velo</a>
+                <a class="dropdown__item" role="menuitem" href="./maggie.html">Maggie</a>
+              </div>
+            </div>
             <a class="navlinks__link" href="#about">About</a>
             <a class="navlinks__link" href="#faq">FAQ</a>
             <a class="navlinks__link" href="#contact">Contact</a>
@@ -154,46 +168,116 @@
           </div>
 
           <div class="grid grid--4">
-            <article class="card product" data-category="mint">
-              <div class="product__badge">HOT</div>
-              <img class="product__img" src="./assets/pouch-1.svg" alt="SNUZ Fresh Mint" width="220" height="220" />
-              <h3 class="product__name">SNUZ Fresh Mint</h3>
+            <article class="card product" data-category="pablo">
+              <div class="product__badge">PABLO</div>
+              <img
+                class="product__img"
+                src="./assets/pablo-bluemint.jpg"
+                alt="Pablo Blue Mint nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Pablo Blue Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
-                <span class="product__strength">14 mg</span>
+                <span class="product__strength">Varies</span>
               </div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
 
-            <article class="card product" data-category="berry">
-              <div class="product__badge product__badge--alt">NEW</div>
-              <img class="product__img" src="./assets/pouch-2.svg" alt="SNUZ Blueberry" width="220" height="220" />
-              <h3 class="product__name">SNUZ Blueberry</h3>
+            <article class="card product" data-category="zafari">
+              <div class="product__badge product__badge--alt">ZAFARI</div>
+              <img
+                class="product__img"
+                src="./assets/zafari-coolmint.jpg"
+                alt="Zafari Cool Mint nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Zafari Cool Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
-                <span class="product__strength">12 mg</span>
+                <span class="product__strength">Varies</span>
               </div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
 
-            <article class="card product" data-category="citrus">
-              <div class="product__badge">HOT</div>
-              <img class="product__img" src="./assets/pouch-3.svg" alt="SNUZ Citrus" width="220" height="220" />
-              <h3 class="product__name">SNUZ Citrus</h3>
+            <article class="card product" data-category="zyn">
+              <div class="product__badge">ZYN</div>
+              <img
+                class="product__img"
+                src="./assets/zyn-freshmint.jpg"
+                alt="Zyn Fresh Mint nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Zyn Fresh Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
-                <span class="product__strength">10 mg</span>
+                <span class="product__strength">Varies</span>
               </div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
 
-            <article class="card product" data-category="coffee">
-              <div class="product__badge product__badge--alt">NEW</div>
-              <img class="product__img" src="./assets/pouch-4.svg" alt="SNUZ Coffee" width="220" height="220" />
-              <h3 class="product__name">SNUZ Coffee</h3>
+            <article class="card product" data-category="iceberg">
+              <div class="product__badge product__badge--alt">ICEBERG</div>
+              <img
+                class="product__img"
+                src="./assets/iceberg-watermelon.jpg"
+                alt="Iceberg Watermelon nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Iceberg Watermelon</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
-                <span class="product__strength">12 mg</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+
+            <article class="card product" data-category="velo">
+              <div class="product__badge">VELO</div>
+              <img
+                class="product__img"
+                src="./assets/velo-brightspearmint.jpg"
+                alt="Velo Bright Spearmint nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Velo Bright Spearmint</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+
+            <article class="card product" data-category="maggie">
+              <div class="product__badge product__badge--alt">MAGGIE</div>
+              <img
+                class="product__img"
+                src="./assets/maggie-cherrytonic.jpg"
+                alt="Maggie Cherry Tonic nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Maggie Cherry Tonic</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
               </div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
@@ -264,102 +348,514 @@
         <div class="container">
           <div class="section__head">
             <h2 class="h2">All products</h2>
-            <div class="tabs" role="tablist" aria-label="Product categories">
+            <div class="tabs" role="tablist" aria-label="Product brands">
               <button class="tab is-active" type="button" role="tab" aria-selected="true" data-tab="all">
                 Show all
               </button>
-              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="mint">Mint</button>
-              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="berry">Berry</button>
-              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="citrus">Citrus</button>
-              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="coffee">Coffee</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="pablo">Pablo</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="zafari">Zafari</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="zyn">Zyn</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="iceberg">Iceberg</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="velo">Velo</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="maggie">Maggie</button>
             </div>
           </div>
 
           <div class="grid grid--4" id="productsGrid">
-            <article class="card product" data-category="mint">
-              <div class="product__badge">HOT</div>
-              <img class="product__img" src="./assets/pouch-1.svg" alt="SNUZ Fresh Mint" width="220" height="220" />
-              <h3 class="product__name">SNUZ Fresh Mint</h3>
+            <!-- Pablo -->
+            <article class="card product" data-category="pablo">
+              <div class="product__badge">PABLO</div>
+              <img
+                class="product__img"
+                src="./assets/pablo-bluemint.jpg"
+                alt="Pablo Blue Mint nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Pablo Blue Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
-                <span class="product__strength">14 mg</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="pablo">
+              <div class="product__badge product__badge--alt">PABLO</div>
+              <img
+                class="product__img"
+                src="./assets/pablo-bubblegum.jpg"
+                alt="Pablo Bubblegum nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Pablo Bubblegum</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="pablo">
+              <div class="product__badge">PABLO</div>
+              <img
+                class="product__img"
+                src="./assets/pablo-darkcherry.jpg"
+                alt="Pablo Dark Cherry nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Pablo Dark Cherry</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="pablo">
+              <div class="product__badge product__badge--alt">PABLO</div>
+              <img
+                class="product__img"
+                src="./assets/pablo-frostedmint.jpg"
+                alt="Pablo Frosted Mint nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Pablo Frosted Mint</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="pablo">
+              <div class="product__badge">PABLO</div>
+              <img
+                class="product__img"
+                src="./assets/pablo-greenmint.jpg"
+                alt="Pablo Green Mint nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Pablo Green Mint</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="pablo">
+              <div class="product__badge product__badge--alt">PABLO</div>
+              <img
+                class="product__img"
+                src="./assets/pablo-liquorice.jpg"
+                alt="Pablo Liquorice nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Pablo Liquorice</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="pablo">
+              <div class="product__badge">PABLO</div>
+              <img
+                class="product__img"
+                src="./assets/pablo-orangeexclusive.jpg"
+                alt="Pablo Orange Exclusive nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Pablo Orange Exclusive</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="pablo">
+              <div class="product__badge product__badge--alt">PABLO</div>
+              <img
+                class="product__img"
+                src="./assets/pablo-passionfruit.jpg"
+                alt="Pablo Passionfruit nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Pablo Passionfruit</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
               </div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
 
-            <article class="card product" data-category="mint">
-              <div class="product__badge product__badge--alt">NEW</div>
-              <img class="product__img" src="./assets/pouch-5.svg" alt="SNUZ Arctic Mint" width="220" height="220" />
-              <h3 class="product__name">SNUZ Arctic Mint</h3>
+            <!-- Zafari -->
+            <article class="card product" data-category="zafari">
+              <div class="product__badge">ZAFARI</div>
+              <img
+                class="product__img"
+                src="./assets/zafari-coolmint.jpg"
+                alt="Zafari Cool Mint nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Zafari Cool Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
-                <span class="product__strength">16 mg</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="zafari">
+              <div class="product__badge product__badge--alt">ZAFARI</div>
+              <img
+                class="product__img"
+                src="./assets/zafari-grapefruit.jpg"
+                alt="Zafari Grapefruit nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Zafari Grapefruit</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="zafari">
+              <div class="product__badge">ZAFARI</div>
+              <img
+                class="product__img"
+                src="./assets/zafari-jalapenolime.jpg"
+                alt="Zafari Jalapeño Lime nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Zafari Jalapeño Lime</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="zafari">
+              <div class="product__badge product__badge--alt">ZAFARI</div>
+              <img
+                class="product__img"
+                src="./assets/zafari-mango.jpg"
+                alt="Zafari Mango nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Zafari Mango</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="zafari">
+              <div class="product__badge">ZAFARI</div>
+              <img
+                class="product__img"
+                src="./assets/zafari-mint.jpg"
+                alt="Zafari Mint nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Zafari Mint</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="zafari">
+              <div class="product__badge product__badge--alt">ZAFARI</div>
+              <img
+                class="product__img"
+                src="./assets/zafari-passionfruit.jpg"
+                alt="Zafari Passionfruit nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Zafari Passionfruit</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
               </div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
 
-            <article class="card product" data-category="berry">
-              <div class="product__badge">HOT</div>
-              <img class="product__img" src="./assets/pouch-2.svg" alt="SNUZ Blueberry" width="220" height="220" />
-              <h3 class="product__name">SNUZ Blueberry</h3>
+            <!-- Zyn -->
+            <article class="card product" data-category="zyn">
+              <div class="product__badge">ZYN</div>
+              <img
+                class="product__img"
+                src="./assets/zyn-coolblueberry.jpg"
+                alt="Zyn Cool Blueberry nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Zyn Cool Blueberry</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
-                <span class="product__strength">12 mg</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="zyn">
+              <div class="product__badge product__badge--alt">ZYN</div>
+              <img
+                class="product__img"
+                src="./assets/zyn-coolwatermelon.jpg"
+                alt="Zyn Cool Watermelon nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Zyn Cool Watermelon</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="zyn">
+              <div class="product__badge">ZYN</div>
+              <img
+                class="product__img"
+                src="./assets/zyn-freshmint.jpg"
+                alt="Zyn Fresh Mint nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Zyn Fresh Mint</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
               </div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
 
-            <article class="card product" data-category="berry">
-              <div class="product__badge product__badge--alt">NEW</div>
-              <img class="product__img" src="./assets/pouch-6.svg" alt="SNUZ Raspberry" width="220" height="220" />
-              <h3 class="product__name">SNUZ Raspberry</h3>
+            <!-- Iceberg -->
+            <article class="card product" data-category="iceberg">
+              <div class="product__badge">ICEBERG</div>
+              <img
+                class="product__img"
+                src="./assets/iceberg-cherry.jpg"
+                alt="Iceberg Cherry nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Iceberg Cherry</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
-                <span class="product__strength">10 mg</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="iceberg">
+              <div class="product__badge product__badge--alt">ICEBERG</div>
+              <img
+                class="product__img"
+                src="./assets/iceberg-cola.jpg"
+                alt="Iceberg Cola nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Iceberg Cola</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="iceberg">
+              <div class="product__badge">ICEBERG</div>
+              <img
+                class="product__img"
+                src="./assets/iceberg-emerald.jpg"
+                alt="Iceberg Emerald nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Iceberg Emerald</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="iceberg">
+              <div class="product__badge product__badge--alt">ICEBERG</div>
+              <img
+                class="product__img"
+                src="./assets/iceberg-kiwistrawberry.jpg"
+                alt="Iceberg Kiwi Strawberry nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Iceberg Kiwi Strawberry</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="iceberg">
+              <div class="product__badge">ICEBERG</div>
+              <img
+                class="product__img"
+                src="./assets/iceberg-mango-banana.jpg"
+                alt="Iceberg Mango Banana nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Iceberg Mango Banana</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="iceberg">
+              <div class="product__badge product__badge--alt">ICEBERG</div>
+              <img
+                class="product__img"
+                src="./assets/iceberg-watermelon.jpg"
+                alt="Iceberg Watermelon nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Iceberg Watermelon</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
               </div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
 
-            <article class="card product" data-category="citrus">
-              <div class="product__badge">HOT</div>
-              <img class="product__img" src="./assets/pouch-3.svg" alt="SNUZ Citrus" width="220" height="220" />
-              <h3 class="product__name">SNUZ Citrus</h3>
+            <!-- Velo -->
+            <article class="card product" data-category="velo">
+              <div class="product__badge">VELO</div>
+              <img
+                class="product__img"
+                src="./assets/velo-brightspearmint.jpg"
+                alt="Velo Bright Spearmint nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Velo Bright Spearmint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
-                <span class="product__strength">10 mg</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="velo">
+              <div class="product__badge product__badge--alt">VELO</div>
+              <img
+                class="product__img"
+                src="./assets/velo-crispypeppermint.jpg"
+                alt="Velo Crispy Peppermint nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Velo Crispy Peppermint</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
+              </div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product" data-category="velo">
+              <div class="product__badge">VELO</div>
+              <img
+                class="product__img"
+                src="./assets/velo-strawberryice.jpg"
+                alt="Velo Strawberry Ice nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Velo Strawberry Ice</h3>
+              <div class="product__meta">
+                <span class="product__price">₦9,500</span>
+                <span class="product__strength">Varies</span>
               </div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
 
-            <article class="card product" data-category="citrus">
-              <div class="product__badge product__badge--alt">NEW</div>
-              <img class="product__img" src="./assets/pouch-7.svg" alt="SNUZ Lemon" width="220" height="220" />
-              <h3 class="product__name">SNUZ Lemon</h3>
+            <!-- Maggie -->
+            <article class="card product" data-category="maggie">
+              <div class="product__badge product__badge--alt">MAGGIE</div>
+              <img
+                class="product__img"
+                src="./assets/maggie-cherrytonic.jpg"
+                alt="Maggie Cherry Tonic nicotine pouch"
+                width="220"
+                height="220"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3 class="product__name">Maggie Cherry Tonic</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
-                <span class="product__strength">8 mg</span>
-              </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
-            </article>
-
-            <article class="card product" data-category="coffee">
-              <div class="product__badge">HOT</div>
-              <img class="product__img" src="./assets/pouch-4.svg" alt="SNUZ Coffee" width="220" height="220" />
-              <h3 class="product__name">SNUZ Coffee</h3>
-              <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">12 mg</span>
-              </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
-            </article>
-
-            <article class="card product" data-category="coffee">
-              <div class="product__badge product__badge--alt">NEW</div>
-              <img class="product__img" src="./assets/pouch-8.svg" alt="SNUZ Vanilla Latte" width="220" height="220" />
-              <h3 class="product__name">SNUZ Vanilla Latte</h3>
-              <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">10 mg</span>
+                <span class="product__strength">Varies</span>
               </div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
@@ -445,7 +941,9 @@
       <footer class="footer" id="contact">
         <div class="container footer__inner">
           <div class="footer__brand">
-            <img class="footer__logo" src="./assets/snuz-logo.svg" alt="SNUZ" width="160" height="70" />
+            <a href="./index.html" aria-label="SNUZ.NG home">
+              <img class="footer__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="160" height="70" />
+            </a>
             <p class="footer__text">
               SNUZ.NG provides nicotine pouches for adult nicotine users. Please use responsibly.
             </p>
@@ -491,7 +989,7 @@
       <span aria-hidden="true">↑</span>
     </button>
 
-    <script src="./script.js?v=2" defer></script>
+    <script src="./script.js?v=9" defer></script>
   </body>
 </html>
 

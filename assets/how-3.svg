@@ -1,17 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="800" height="520" rx="20" fill="#FFFFFF"/>
-  <rect x="28" y="28" width="744" height="464" rx="18" fill="#F6F7F9" stroke="#E6E8EC" stroke-width="4"/>
+<svg
+  width="800"
+  height="520"
+  viewBox="0 0 800 520"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000000" flood-opacity="0.10" />
+    </filter>
+    <clipPath id="b1"><circle cx="0" cy="0" r="36" /></clipPath>
+    <clipPath id="b2"><circle cx="0" cy="0" r="36" /></clipPath>
+    <clipPath id="b3"><circle cx="0" cy="0" r="36" /></clipPath>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="520" rx="20" fill="#FFFFFF" />
+  <rect x="28" y="28" width="744" height="464" rx="18" fill="#F6F7F9" stroke="#E6E8EC" stroke-width="4" />
 
   <!-- smiley face -->
-  <g>
-    <circle cx="400" cy="250" r="140" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="8"/>
-    <path d="M340 220 C360 200, 440 200, 460 220" stroke="#111114" stroke-opacity="0.55" stroke-width="10" stroke-linecap="round"/>
-    <path d="M320 270 C350 310, 450 310, 480 270" stroke="#D11F2A" stroke-width="12" stroke-linecap="round"/>
-    <path d="M310 250 C322 238, 332 238, 344 250" stroke="#111114" stroke-opacity="0.45" stroke-width="8" stroke-linecap="round"/>
-    <path d="M456 250 C468 238, 478 238, 490 250" stroke="#111114" stroke-opacity="0.45" stroke-width="8" stroke-linecap="round"/>
+  <g filter="url(#shadow)">
+    <circle cx="400" cy="245" r="140" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="8" />
+    <path d="M340 215 C360 195, 440 195, 460 215" stroke="#111114" stroke-opacity="0.55" stroke-width="10" stroke-linecap="round" />
+    <path d="M320 265 C350 305, 450 305, 480 265" stroke="#16A34A" stroke-width="12" stroke-linecap="round" />
+    <path d="M310 245 C322 233, 332 233, 344 245" stroke="#111114" stroke-opacity="0.45" stroke-width="8" stroke-linecap="round" />
+    <path d="M456 245 C468 233, 478 233, 490 245" stroke="#111114" stroke-opacity="0.45" stroke-width="8" stroke-linecap="round" />
+    <path d="M250 355 C300 405, 500 405, 550 355" stroke="#111114" stroke-opacity="0.16" stroke-width="10" stroke-linecap="round" />
+  </g>
 
-    <path d="M250 360 C300 410, 500 410, 550 360" stroke="#111114" stroke-opacity="0.18" stroke-width="10" stroke-linecap="round"/>
+  <!-- celebratory brand bubbles -->
+  <g filter="url(#shadow)">
+    <g transform="translate(240 150)">
+      <circle cx="0" cy="0" r="44" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="3" />
+      <g clip-path="url(#b1)">
+        <image x="-44" y="-44" width="88" height="88" href="iceberg-cherry.jpg" xlink:href="iceberg-cherry.jpg" preserveAspectRatio="xMidYMid slice" />
+      </g>
+      <rect x="-32" y="28" width="64" height="16" rx="999" fill="#111114" opacity="0.12" />
+      <text x="0" y="40" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="8" font-weight="900" fill="#111114">ICEBERG</text>
+    </g>
+
+    <g transform="translate(560 140)">
+      <circle cx="0" cy="0" r="44" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="3" />
+      <g clip-path="url(#b2)">
+        <image x="-44" y="-44" width="88" height="88" href="velo-brightspearmint.jpg" xlink:href="velo-brightspearmint.jpg" preserveAspectRatio="xMidYMid slice" />
+      </g>
+      <rect x="-22" y="28" width="44" height="16" rx="999" fill="#111114" opacity="0.12" />
+      <text x="0" y="40" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="8" font-weight="900" fill="#111114">VELO</text>
+    </g>
+
+    <g transform="translate(610 290)">
+      <circle cx="0" cy="0" r="44" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="3" />
+      <g clip-path="url(#b3)">
+        <image x="-44" y="-44" width="88" height="88" href="maggie-cherrytonic.jpg" xlink:href="maggie-cherrytonic.jpg" preserveAspectRatio="xMidYMid slice" />
+      </g>
+      <rect x="-28" y="28" width="56" height="16" rx="999" fill="#111114" opacity="0.12" />
+      <text x="0" y="40" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="8" font-weight="900" fill="#111114">MAGGIE</text>
+    </g>
+  </g>
+
+  <!-- confetti -->
+  <g opacity="0.75">
+    <circle cx="180" cy="110" r="6" fill="#16A34A" />
+    <circle cx="650" cy="95" r="5" fill="#111114" opacity="0.35" />
+    <circle cx="705" cy="210" r="6" fill="#16A34A" />
+    <circle cx="120" cy="250" r="5" fill="#111114" opacity="0.25" />
+    <path d="M140 155 L152 135" stroke="#16A34A" stroke-width="6" stroke-linecap="round" />
+    <path d="M680 170 L694 152" stroke="#16A34A" stroke-width="6" stroke-linecap="round" />
   </g>
 
   <text x="400" y="468" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="28" font-weight="900" fill="#111114" opacity="0.85">Enjoy</text>

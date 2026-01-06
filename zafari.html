@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zafari — Nicotine pouches | SNUZ.NG</title>
+    <meta name="description" content="Shop Zafari nicotine pouches on SNUZ.NG." />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css?v=3" />
+  </head>
+  <body>
+    <!-- Age Gate Modal -->
+    <div id="ageGateOverlay" class="agegate-overlay" hidden>
+      <div
+        class="agegate-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ageGateTitle"
+        aria-describedby="ageGateDesc"
+        tabindex="-1"
+      >
+        <div class="agegate-brand">
+          <a href="./index.html" aria-label="SNUZ.NG home">
+            <img class="agegate-logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="260" height="120" />
+          </a>
+          <div class="agegate-site" id="ageGateTitle">SNUZ.NG</div>
+        </div>
+
+        <div class="agegate-question" id="ageGateDesc">Are you over 18 years of age?</div>
+
+        <div class="agegate-actions">
+          <button id="ageGateNo" class="btn btn-ghost" type="button">No</button>
+          <button id="ageGateYes" class="btn btn-primary" type="button">Yes</button>
+        </div>
+
+        <label class="agegate-remember">
+          <input id="ageGateRemember" type="checkbox" />
+          <span>Remember me</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Announcement -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <span class="topbar__dot" aria-hidden="true"></span>
+        <p class="topbar__text">
+          The site is intended for adults 18+ and for existing nicotine users only. Products contain nicotine and
+          are not for minors.
+        </p>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <a class="brand" href="./index.html" aria-label="SNUZ.NG home">
+          <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="140" height="58" />
+        </a>
+
+        <form class="search" role="search" aria-label="Search products" onsubmit="return false;">
+          <input class="search__input" type="search" placeholder="Search..." aria-label="Search" />
+          <button class="search__btn" type="submit" aria-label="Search">
+            <span aria-hidden="true">⌕</span>
+          </button>
+        </form>
+
+        <nav class="header-actions" aria-label="Account actions">
+          <a class="header-actions__item" href="#account">
+            <span class="header-actions__icon" aria-hidden="true">👤</span>
+            <span class="header-actions__label">My Account</span>
+          </a>
+          <a class="header-actions__item" href="#wishlist">
+            <span class="header-actions__icon" aria-hidden="true">♡</span>
+            <span class="header-actions__label">My Wishlist</span>
+          </a>
+          <a class="header-actions__item header-actions__cart" href="./cart.html" aria-label="Cart">
+            <span class="header-actions__icon" aria-hidden="true">🛒</span>
+            <span class="header-actions__label">Cart</span>
+            <span class="pill" aria-label="Items in cart">0</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="nav">
+        <div class="container nav__inner">
+          <nav class="navlinks" aria-label="Primary">
+            <a class="navlinks__link" href="./index.html">Home</a>
+            <a class="navlinks__link is-active" href="./zafari.html">Zafari</a>
+            <div class="navlinks__item navlinks__item--dropdown">
+              <a class="navlinks__link navlinks__link--dropdown" href="./index.html#products">
+                Nicotine pouches <span class="navlinks__chev" aria-hidden="true">▾</span>
+              </a>
+              <div class="dropdown" role="menu" aria-label="Nicotine pouch brands">
+                <a class="dropdown__item" role="menuitem" href="./pablo.html">Pablo</a>
+                <a class="dropdown__item" role="menuitem" href="./zafari.html">Zafari</a>
+                <a class="dropdown__item" role="menuitem" href="./zyn.html">Zyn</a>
+                <a class="dropdown__item" role="menuitem" href="./iceberg.html">Iceberg</a>
+                <a class="dropdown__item" role="menuitem" href="./velo.html">Velo</a>
+                <a class="dropdown__item" role="menuitem" href="./maggie.html">Maggie</a>
+              </div>
+            </div>
+            <a class="navlinks__link" href="./index.html#faq">FAQ</a>
+            <a class="navlinks__link" href="./index.html#contact">Contact</a>
+          </nav>
+
+          <div class="nav__meta">
+            <span class="nav__phone">+234 803 000 0000</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <div class="section__head">
+            <h1 class="h2">Zafari</h1>
+            <a class="link" href="./index.html#products">Back to all products</a>
+          </div>
+          <p class="lead">Browse all available Zafari nicotine pouches.</p>
+        </div>
+      </section>
+
+      <section class="section section--muted" id="products">
+        <div class="container">
+          <div class="grid grid--4" id="brandProductsGrid" data-brand-page="zafari">
+            <article class="card product">
+              <img class="product__img" src="./assets/zafari-coolmint.jpg" alt="Zafari Cool Mint nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <h3 class="product__name">Zafari Cool Mint</h3>
+              <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product">
+              <img class="product__img" src="./assets/zafari-grapefruit.jpg" alt="Zafari Grapefruit nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <h3 class="product__name">Zafari Grapefruit</h3>
+              <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product">
+              <img class="product__img" src="./assets/zafari-jalapenolime.jpg" alt="Zafari Jalapeño Lime nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <h3 class="product__name">Zafari Jalapeño Lime</h3>
+              <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product">
+              <img class="product__img" src="./assets/zafari-mango.jpg" alt="Zafari Mango nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <h3 class="product__name">Zafari Mango</h3>
+              <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product">
+              <img class="product__img" src="./assets/zafari-mint.jpg" alt="Zafari Mint nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <h3 class="product__name">Zafari Mint</h3>
+              <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+            <article class="card product">
+              <img class="product__img" src="./assets/zafari-passionfruit.jpg" alt="Zafari Passionfruit nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <h3 class="product__name">Zafari Passionfruit</h3>
+              <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
+              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Fixed widgets -->
+    <button id="backToTop" class="float float--top" type="button" aria-label="Back to top" hidden>
+      <span aria-hidden="true">↑</span>
+    </button>
+
+    <script src="./script.js?v=9" defer></script>
+  </body>
+</html>
+
+
