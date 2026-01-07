@@ -258,6 +258,80 @@ const PRODUCT_CATALOG = {
   maggie: [{ name: "Maggie Cherry Tonic", image: "./assets/maggie-cherrytonic.jpg" }],
 };
 
+// --- Product strengths (replace "Varies") ---
+const PRODUCT_STRENGTHS = {
+  // ICEBERG
+  "iceberg kiwi strawberry": "Medium 20mg",
+  "iceberg cherry": "20mg",
+  "iceberg cola": "Medium 20mg",
+  "iceberg watermelon": "Medium 20mg",
+  "iceberg mango banana": "Medium 20mg",
+  "iceberg emerald": "Ultra 50mg",
+
+  // MAGGIE
+  "maggie cherry tonic": "60mg",
+
+  // PABLO
+  "pablo orange exclusive": "50mg",
+  "pablo bubblegum": "50mg",
+  "pablo blue mint": "50mg",
+  "pablo green mint": "50mg",
+  "pablo frosted mint": "50mg",
+  "pablo dark cherry": "50mg",
+  "pablo passion fruit": "50mg",
+  "pablo passionfruit": "50mg",
+  "pablo liquorice": "50mg",
+
+  // KILLA (not currently in catalog, but reserved)
+  "killa orange": "13.2mg",
+
+  // ZYN
+  "zyn cool blueberry": "Strong 11mg",
+  "zyn cool watermelon": "Strong 11mg",
+  "zyn fresh mint": "Strong 11mg",
+
+  // VELO
+  "velo bright spearmint": "Low 6mg",
+  "velo strawberry ice": "Medium 10mg",
+  "velo crispy peppermint": "Medium 10mg",
+};
+
+function normalizeProductKey(input) {
+  return String(input || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "") // strip diacritics (e.g. ñ)
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .replace(/\s+/g, " ");
+}
+
+function strengthForProductName(name) {
+  const key = normalizeProductKey(name);
+  return PRODUCT_STRENGTHS[key] || "";
+}
+
+function applyStrengthLabels(root = document) {
+  const cards = Array.from(root.querySelectorAll(".product"));
+  for (const card of cards) {
+    const name = (card.querySelector(".product__name")?.textContent || "").trim();
+    const strengthEl = card.querySelector(".product__strength");
+    if (!strengthEl) continue;
+
+    const label = strengthForProductName(name);
+    if (label) {
+      strengthEl.textContent = label;
+      strengthEl.hidden = false;
+    } else if (strengthEl.textContent.trim().toLowerCase() === "varies") {
+      // No data provided: hide instead of guessing.
+      strengthEl.textContent = "";
+      strengthEl.hidden = true;
+    }
+  }
+}
+
 const CART_ITEMS_KEY = "snuz.ng:cart_items_v1";
 const PRODUCT_QTY_MIN = 1;
 const PRODUCT_QTY_MAX = 99;
@@ -310,6 +384,112 @@ function setCartBadges(count) {
 function syncCartCountFromItems(items) {
   const count = cartCountFromItems(items);
   setCartBadges(count);
+}
+
+// --- Account (My Account) modal ---
+let accountLastActiveEl = null;
+
+function ensureAccountModal() {
+  if (document.getElementById("accountOverlay")) return;
+
+  const overlay = document.createElement("div");
+  overlay.id = "accountOverlay";
+  overlay.className = "account-overlay";
+  overlay.hidden = true;
+
+  overlay.innerHTML = `
+    <div
+      class="account-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="accountTitle"
+      aria-describedby="accountDesc"
+      tabindex="-1"
+    >
+      <button class="account-close" type="button" aria-label="Close">×</button>
+      <h2 class="account-title" id="accountTitle">Login</h2>
+      <p class="sr-only" id="accountDesc">Login form</p>
+
+      <form class="account-form" autocomplete="on" novalidate>
+        <div class="field">
+          <label class="account-label" for="accountUser">
+            Username or email address <span class="account-label__req">*</span>
+          </label>
+          <input class="account-input" id="accountUser" name="username" autocomplete="username" required />
+        </div>
+
+        <div class="field">
+          <label class="account-label" for="accountPass">
+            Password <span class="account-label__req">*</span>
+          </label>
+          <input
+            class="account-input"
+            id="accountPass"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+
+        <!-- Visual-only placeholder to match the screenshot -->
+        <div class="account-captcha" aria-label="Captcha placeholder">
+          <div class="account-captcha__box" aria-hidden="true"></div>
+          <div class="account-captcha__text">Verify you are human</div>
+        </div>
+
+        <div class="account-row">
+          <label class="account-remember">
+            <input type="checkbox" name="remember" />
+            <span>Remember me</span>
+          </label>
+          <a class="account-link" href="#forgot">Forgot Password?</a>
+        </div>
+
+        <button class="account-submit" type="submit">LOGIN</button>
+
+        <div class="account-register">
+          <a class="account-link" href="#register">Register Now!</a>
+        </div>
+      </form>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  overlay.querySelector(".account-close")?.addEventListener("click", closeAccountModal);
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeAccountModal();
+  });
+
+  overlay.querySelector("form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
+}
+
+function openAccountModal() {
+  ensureAccountModal();
+  const overlay = document.getElementById("accountOverlay");
+  if (!overlay) return;
+
+  accountLastActiveEl = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+  overlay.hidden = false;
+  document.body.classList.add("modal-open");
+
+  const user = overlay.querySelector("#accountUser");
+  if (user instanceof HTMLElement) user.focus();
+}
+
+function closeAccountModal() {
+  const overlay = document.getElementById("accountOverlay");
+  if (!overlay) return;
+  overlay.hidden = true;
+  document.body.classList.remove("modal-open");
+
+  if (accountLastActiveEl && typeof accountLastActiveEl.focus === "function") {
+    accountLastActiveEl.focus();
+  }
+  accountLastActiveEl = null;
 }
 
 function slugifyId(input) {
@@ -804,13 +984,14 @@ async function wireOrderCompleteVerify() {
 function renderProductCard({ name, image }) {
   const safeName = String(name || "Product");
   const safeImage = String(image || "");
+  const strength = strengthForProductName(safeName);
   return `
     <article class="card product">
       <img class="product__img" src="${safeImage}" alt="${safeName} nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
       <h3 class="product__name">${safeName}</h3>
       <div class="product__meta">
         <span class="product__price">₦9,500</span>
-        <span class="product__strength">Varies</span>
+        <span class="product__strength"${strength ? "" : " hidden"}>${strength}</span>
       </div>
       <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
     </article>
@@ -829,6 +1010,7 @@ function wireBrandPage() {
 
   const products = PRODUCT_CATALOG[brand] || [];
   grid.innerHTML = products.map(renderProductCard).join("");
+  applyStrengthLabels(grid);
 }
 
 function wireBrandDropdown() {
@@ -860,6 +1042,22 @@ function wireBrandDropdown() {
   }
 }
 
+function wireAccountModal() {
+  document.addEventListener("click", (e) => {
+    const target = e.target instanceof Element ? e.target : null;
+    const accountLink = target?.closest?.('a.header-actions__item[href="#account"]');
+    if (!accountLink) return;
+    e.preventDefault();
+    openAccountModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const overlay = document.getElementById("accountOverlay");
+    if (overlay && !overlay.hidden) closeAccountModal();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   wireAgeGate();
   if (!isRememberedVerified() && !isSessionVerified() && !isCookieVerified() && !isWindowNameVerified()) {
@@ -867,7 +1065,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   ensureQuantityControls();
+  applyStrengthLabels();
   wireCart();
+  wireAccountModal();
   renderCartPage();
   wireCartPage();
   renderCheckoutPage();
