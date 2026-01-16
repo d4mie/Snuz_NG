@@ -1,16 +1,30 @@
+// @ts-check
+
 const STORAGE_KEY = "snuz.ng:age_verified_v1";
 const SESSION_KEY = "snuz.ng:age_verified_session_v1";
 const COOKIE_KEY = "snuz_age_verified";
 const WINDOW_NAME_TOKEN = "snuz_age_verified:true";
 
+/**
+ * Shared DOM references for the page shell.
+ * @returns {{
+ *   overlay: HTMLElement | null,
+ *   modal: HTMLElement | null,
+ *   yes: HTMLButtonElement | null,
+ *   no: HTMLButtonElement | null,
+ *   remember: HTMLInputElement | null,
+ *   backToTop: HTMLButtonElement | null,
+ *   year: HTMLElement | null,
+ * }}
+ */
 function getEls() {
   return {
     overlay: document.getElementById("ageGateOverlay"),
-    modal: document.querySelector(".agegate-modal"),
-    yes: document.getElementById("ageGateYes"),
-    no: document.getElementById("ageGateNo"),
-    remember: document.getElementById("ageGateRemember"),
-    backToTop: document.getElementById("backToTop"),
+    modal: /** @type {HTMLElement | null} */ (document.querySelector(".agegate-modal")),
+    yes: /** @type {HTMLButtonElement | null} */ (document.getElementById("ageGateYes")),
+    no: /** @type {HTMLButtonElement | null} */ (document.getElementById("ageGateNo")),
+    remember: /** @type {HTMLInputElement | null} */ (document.getElementById("ageGateRemember")),
+    backToTop: /** @type {HTMLButtonElement | null} */ (document.getElementById("backToTop")),
     year: document.getElementById("year"),
   };
 }
@@ -24,8 +38,14 @@ function readCookie(name) {
   return "";
 }
 
-function writeCookie(name, value, { maxAgeSeconds } = {}) {
+/**
+ * @param {string} name
+ * @param {string} value
+ * @param {{ maxAgeSeconds?: number }=} options
+ */
+function writeCookie(name, value, options = {}) {
   // Lax by default to avoid cross-site issues; secure only when https.
+  const { maxAgeSeconds } = options;
   const secure = window.location.protocol === "https:" ? "; Secure" : "";
   const maxAge = typeof maxAgeSeconds === "number" ? `; Max-Age=${maxAgeSeconds}` : "";
   document.cookie = `${name}=${encodeURIComponent(value)}; Path=/${maxAge}; SameSite=Lax${secure}`;
@@ -171,7 +191,7 @@ function wireBackToTop() {
 function wireTabs() {
   const tabs = Array.from(document.querySelectorAll(".tabs .tab"));
   const grid = document.getElementById("productsGrid");
-  const products = grid ? Array.from(grid.querySelectorAll(".product")) : [];
+  const products = grid ? /** @type {HTMLElement[]} */ (Array.from(grid.querySelectorAll(".product"))) : [];
   if (!tabs.length || !products.length) return;
 
   const setActive = (tab) => {
@@ -201,7 +221,7 @@ function wireFaq() {
   for (const item of items) {
     const q = item.querySelector(".faq__q");
     const a = item.querySelector(".faq__a");
-    if (!q || !a) continue;
+    if (!(q instanceof HTMLElement) || !(a instanceof HTMLElement)) continue;
 
     q.addEventListener("click", () => {
       const open = !item.classList.contains("is-open");
@@ -313,12 +333,15 @@ function strengthForProductName(name) {
   return PRODUCT_STRENGTHS[key] || "";
 }
 
+/**
+ * @param {Document | Element} [root=document]
+ */
 function applyStrengthLabels(root = document) {
   const cards = Array.from(root.querySelectorAll(".product"));
   for (const card of cards) {
     const name = (card.querySelector(".product__name")?.textContent || "").trim();
     const strengthEl = card.querySelector(".product__strength");
-    if (!strengthEl) continue;
+    if (!(strengthEl instanceof HTMLElement)) continue;
 
     const label = strengthForProductName(name);
     if (label) {
@@ -375,6 +398,7 @@ function cartCountFromItems(items) {
 function setCartBadges(count) {
   const badges = Array.from(document.querySelectorAll(".header-actions__cart .cart-badge"));
   for (const badge of badges) {
+    if (!(badge instanceof HTMLElement)) continue;
     badge.textContent = String(count);
     badge.hidden = !(Number(count) > 0);
     badge.setAttribute("aria-label", `Items in cart: ${count}`);
@@ -601,6 +625,24 @@ function wireCart() {
   });
 }
 
+/**
+ * Build AVIF/WebP fallbacks for a `.jpg`/`.jpeg` URL.
+ * @param {string} src
+ * @returns {{ avif: string, webp: string, fallback: string } | null}
+ */
+function modernImageSources(src) {
+  const raw = String(src || "");
+  const [pathPart, query = ""] = raw.split("?");
+  const m = pathPart.match(/^(.*)\.(jpe?g)$/i);
+  if (!m) return null;
+  const suffix = query ? `?${query}` : "";
+  return {
+    avif: `${m[1]}.avif${suffix}`,
+    webp: `${m[1]}.webp${suffix}`,
+    fallback: raw,
+  };
+}
+
 function formatNgn(amount) {
   const n = Number(amount) || 0;
   return `₦${Math.round(n).toLocaleString()}`;
@@ -632,11 +674,24 @@ function renderCartPage() {
     container.innerHTML = items
       .map((it) => {
         const line = (Number(it.price) || 0) * (Number(it.qty) || 0);
+        const img = (() => {
+          const srcs = modernImageSources(it.image);
+          if (!srcs) {
+            return `<img class="cart-row__img" src="${it.image}" alt="${it.name}" width="56" height="56" loading="lazy" decoding="async" />`;
+          }
+          return `
+            <picture>
+              <source srcset="${srcs.avif}" type="image/avif" />
+              <source srcset="${srcs.webp}" type="image/webp" />
+              <img class="cart-row__img" src="${srcs.fallback}" alt="${it.name}" width="56" height="56" loading="lazy" decoding="async" />
+            </picture>
+          `.trim();
+        })();
         return `
           <div class="cart-row" data-cart-id="${it.id}">
             <div class="cart-row__product">
               <button class="cart-row__remove" type="button" aria-label="Remove item">×</button>
-              <img class="cart-row__img" src="${it.image}" alt="${it.name}" width="56" height="56" loading="lazy" decoding="async" />
+              ${img}
               <div class="cart-row__name">${it.name}</div>
             </div>
             <div class="cart-row__price">${formatNgn(it.price)}</div>
@@ -728,9 +783,22 @@ function renderCheckoutPage() {
     container.innerHTML = items
       .map((it) => {
         const line = (Number(it.price) || 0) * (Number(it.qty) || 0);
+        const img = (() => {
+          const srcs = modernImageSources(it.image);
+          if (!srcs) {
+            return `<img class="order-item__img" src="${it.image}" alt="${it.name}" width="44" height="44" loading="lazy" decoding="async" />`;
+          }
+          return `
+            <picture>
+              <source srcset="${srcs.avif}" type="image/avif" />
+              <source srcset="${srcs.webp}" type="image/webp" />
+              <img class="order-item__img" src="${srcs.fallback}" alt="${it.name}" width="44" height="44" loading="lazy" decoding="async" />
+            </picture>
+          `.trim();
+        })();
         return `
           <div class="order-item" data-cart-id="${it.id}">
-            <img class="order-item__img" src="${it.image}" alt="${it.name}" width="44" height="44" loading="lazy" decoding="async" />
+            ${img}
             <div class="order-item__body">
               <div class="order-item__top">
                 <div class="order-item__name">${it.name}</div>
@@ -808,7 +876,7 @@ function wireCheckoutPage() {
 
 function wirePlaceOrder() {
   const btn = document.getElementById("placeOrder");
-  if (!btn) return;
+  if (!(btn instanceof HTMLButtonElement)) return;
 
   btn.addEventListener("click", async () => {
     const form = document.getElementById("checkoutForm");
@@ -985,9 +1053,19 @@ function renderProductCard({ name, image }) {
   const safeName = String(name || "Product");
   const safeImage = String(image || "");
   const strength = strengthForProductName(safeName);
+  const srcs = modernImageSources(safeImage);
+  const img = srcs
+    ? `
+        <picture>
+          <source srcset="${srcs.avif}" type="image/avif" />
+          <source srcset="${srcs.webp}" type="image/webp" />
+          <img class="product__img" src="${srcs.fallback}" alt="${safeName} nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+        </picture>
+      `.trim()
+    : `<img class="product__img" src="${safeImage}" alt="${safeName} nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />`;
   return `
     <article class="card product">
-      <img class="product__img" src="${safeImage}" alt="${safeName} nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+      ${img}
       <h3 class="product__name">${safeName}</h3>
       <div class="product__meta">
         <span class="product__price">₦9,500</span>
@@ -1018,6 +1096,7 @@ function wireBrandDropdown() {
   if (!links.length) return;
 
   for (const link of links) {
+    if (!(link instanceof HTMLAnchorElement)) continue;
     link.addEventListener("click", (e) => {
       // Let users open in new tab/window normally.
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;

@@ -21,7 +21,19 @@
       >
         <div class="agegate-brand">
           <a href="./index.html" aria-label="SNUZ.NG home">
-            <img class="agegate-logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="260" height="120" />
+            <picture>
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img
+                class="agegate-logo"
+                src="./assets/snuz-logo.jpg"
+                alt="SNUZ.NG"
+                width="260"
+                height="120"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
           </a>
           <div class="agegate-site" id="ageGateTitle">SNUZ.NG</div>
         </div>
@@ -55,7 +67,11 @@
     <header class="header" id="top">
       <div class="container header__inner">
         <a class="brand" href="./index.html" aria-label="SNUZ.NG home">
-          <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="140" height="58" />
+          <picture>
+            <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+            <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+            <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="140" height="58" />
+          </picture>
         </a>
 
         <form class="search" role="search" aria-label="Search products" onsubmit="return false;">
@@ -124,49 +140,81 @@
         <div class="container">
           <div class="grid grid--4" id="brandProductsGrid" data-brand-page="pablo">
             <article class="card product">
-              <img class="product__img" src="./assets/pablo-bluemint.jpg" alt="Pablo Blue Mint nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="./assets/pablo-bluemint.avif" type="image/avif" />
+                <source srcset="./assets/pablo-bluemint.webp" type="image/webp" />
+                <img class="product__img" src="./assets/pablo-bluemint.jpg" alt="Pablo Blue Mint nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              </picture>
               <h3 class="product__name">Pablo Blue Mint</h3>
               <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
             <article class="card product">
-              <img class="product__img" src="./assets/pablo-bubblegum.jpg" alt="Pablo Bubblegum nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="./assets/pablo-bubblegum.avif" type="image/avif" />
+                <source srcset="./assets/pablo-bubblegum.webp" type="image/webp" />
+                <img class="product__img" src="./assets/pablo-bubblegum.jpg" alt="Pablo Bubblegum nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              </picture>
               <h3 class="product__name">Pablo Bubblegum</h3>
               <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
             <article class="card product">
-              <img class="product__img" src="./assets/pablo-darkcherry.jpg" alt="Pablo Dark Cherry nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="./assets/pablo-darkcherry.avif" type="image/avif" />
+                <source srcset="./assets/pablo-darkcherry.webp" type="image/webp" />
+                <img class="product__img" src="./assets/pablo-darkcherry.jpg" alt="Pablo Dark Cherry nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              </picture>
               <h3 class="product__name">Pablo Dark Cherry</h3>
               <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
             <article class="card product">
-              <img class="product__img" src="./assets/pablo-frostedmint.jpg" alt="Pablo Frosted Mint nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="./assets/pablo-frostedmint.avif" type="image/avif" />
+                <source srcset="./assets/pablo-frostedmint.webp" type="image/webp" />
+                <img class="product__img" src="./assets/pablo-frostedmint.jpg" alt="Pablo Frosted Mint nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              </picture>
               <h3 class="product__name">Pablo Frosted Mint</h3>
               <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
             <article class="card product">
-              <img class="product__img" src="./assets/pablo-greenmint.jpg" alt="Pablo Green Mint nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="./assets/pablo-greenmint.avif" type="image/avif" />
+                <source srcset="./assets/pablo-greenmint.webp" type="image/webp" />
+                <img class="product__img" src="./assets/pablo-greenmint.jpg" alt="Pablo Green Mint nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              </picture>
               <h3 class="product__name">Pablo Green Mint</h3>
               <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
             <article class="card product">
-              <img class="product__img" src="./assets/pablo-liquorice.jpg" alt="Pablo Liquorice nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="./assets/pablo-liquorice.avif" type="image/avif" />
+                <source srcset="./assets/pablo-liquorice.webp" type="image/webp" />
+                <img class="product__img" src="./assets/pablo-liquorice.jpg" alt="Pablo Liquorice nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              </picture>
               <h3 class="product__name">Pablo Liquorice</h3>
               <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
             <article class="card product">
-              <img class="product__img" src="./assets/pablo-orangeexclusive.jpg" alt="Pablo Orange Exclusive nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="./assets/pablo-orangeexclusive.avif" type="image/avif" />
+                <source srcset="./assets/pablo-orangeexclusive.webp" type="image/webp" />
+                <img class="product__img" src="./assets/pablo-orangeexclusive.jpg" alt="Pablo Orange Exclusive nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              </picture>
               <h3 class="product__name">Pablo Orange Exclusive</h3>
               <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
             </article>
             <article class="card product">
-              <img class="product__img" src="./assets/pablo-passionfruit.jpg" alt="Pablo Passionfruit nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="./assets/pablo-passionfruit.avif" type="image/avif" />
+                <source srcset="./assets/pablo-passionfruit.webp" type="image/webp" />
+                <img class="product__img" src="./assets/pablo-passionfruit.jpg" alt="Pablo Passionfruit nicotine pouch" width="220" height="220" loading="lazy" decoding="async" />
+              </picture>
               <h3 class="product__name">Pablo Passionfruit</h3>
               <div class="product__meta"><span class="product__price">₦9,500</span><span class="product__strength">Varies</span></div>
               <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
@@ -181,7 +229,11 @@
       <div class="container footer__inner">
         <div class="footer__brand">
           <a href="./index.html" aria-label="SNUZ.NG home">
-            <img class="footer__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="160" height="70" />
+            <picture>
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img class="footer__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="160" height="70" />
+            </picture>
           </a>
           <p class="footer__text">
             SNUZ.NG provides nicotine pouches for adult nicotine users. Please use responsibly.

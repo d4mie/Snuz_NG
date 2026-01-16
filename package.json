@@ -1,0 +1,12 @@
+{
+  "name": "snuz-ng",
+  "private": true,
+  "scripts": {
+    "optimize:images": "node optimize-images.mjs",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5",
+    "typescript": "^5.9.3"
+  }
+}

@@ -21,7 +21,19 @@
       >
         <div class="agegate-brand">
           <a href="./index.html" aria-label="SNUZ.NG home">
-            <img class="agegate-logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="260" height="120" />
+            <picture>
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img
+                class="agegate-logo"
+                src="./assets/snuz-logo.jpg"
+                alt="SNUZ.NG"
+                width="260"
+                height="120"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
           </a>
           <div class="agegate-site" id="ageGateTitle">SNUZ.NG</div>
         </div>
@@ -55,7 +67,11 @@
     <header class="header" id="top">
       <div class="container header__inner">
         <a class="brand" href="./index.html" aria-label="SNUZ.NG home">
-          <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="140" height="58" />
+          <picture>
+            <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+            <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+            <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="140" height="58" />
+          </picture>
         </a>
 
         <form class="search" role="search" aria-label="Search products" onsubmit="return false;">
@@ -209,7 +225,11 @@
       <div class="container footer__inner">
         <div class="footer__brand">
           <a href="./index.html" aria-label="SNUZ.NG home">
-            <img class="footer__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="160" height="70" />
+            <picture>
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img class="footer__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="160" height="70" />
+            </picture>
           </a>
           <p class="footer__text">
             SNUZ.NG provides nicotine pouches for adult nicotine users. Please use responsibly.

@@ -24,13 +24,19 @@
       >
         <div class="agegate-brand">
           <a href="./index.html" aria-label="SNUZ.NG home">
-          <img
-            class="agegate-logo"
-              src="./assets/snuz-logo.jpg"
-              alt="SNUZ.NG"
-            width="260"
-            height="120"
-          />
+            <picture>
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img
+                class="agegate-logo"
+                src="./assets/snuz-logo.jpg"
+                alt="SNUZ.NG"
+                width="260"
+                height="120"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
           </a>
           <div class="agegate-site" id="ageGateTitle">SNUZ.NG</div>
         </div>
@@ -64,7 +70,11 @@
     <header class="header" id="top">
       <div class="container header__inner">
         <a class="brand" href="./index.html" aria-label="SNUZ.NG home">
-          <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="140" height="58" />
+          <picture>
+            <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+            <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+            <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="140" height="58" />
+          </picture>
         </a>
 
         <form class="search" role="search" aria-label="Search products" onsubmit="return false;">
@@ -125,34 +135,50 @@
       <section class="hero" aria-label="FAQ highlights">
         <div class="container hero__inner">
           <div class="hero__grid">
-            <img
-              class="hero__img"
-              src="./assets/IMG_0777.jpg"
-              alt="FAQ: Is snus legal in Nigeria?"
-              loading="eager"
-              decoding="async"
-            />
-            <img
-              class="hero__img"
-              src="./assets/IMG_0778.jpg"
-              alt="FAQ: Is there THC in snus?"
-              loading="eager"
-              decoding="async"
-            />
-            <img
-              class="hero__img"
-              src="./assets/IMG_0779.jpg"
-              alt="FAQ: Can I use snus to quit smoking?"
-              loading="eager"
-              decoding="async"
-            />
-            <img
-              class="hero__img"
-              src="./assets/IMG_0780.jpg"
-              alt="FAQ: What exactly is snus?"
-              loading="eager"
-              decoding="async"
-            />
+            <picture>
+              <source srcset="./assets/IMG_0777.avif" type="image/avif" />
+              <source srcset="./assets/IMG_0777.webp" type="image/webp" />
+              <img
+                class="hero__img"
+                src="./assets/IMG_0777.jpg"
+                alt="FAQ: Is snus legal in Nigeria?"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
+            <picture>
+              <source srcset="./assets/IMG_0778.avif" type="image/avif" />
+              <source srcset="./assets/IMG_0778.webp" type="image/webp" />
+              <img
+                class="hero__img"
+                src="./assets/IMG_0778.jpg"
+                alt="FAQ: Is there THC in snus?"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
+            <picture>
+              <source srcset="./assets/IMG_0779.avif" type="image/avif" />
+              <source srcset="./assets/IMG_0779.webp" type="image/webp" />
+              <img
+                class="hero__img"
+                src="./assets/IMG_0779.jpg"
+                alt="FAQ: Can I use snus to quit smoking?"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
+            <picture>
+              <source srcset="./assets/IMG_0780.avif" type="image/avif" />
+              <source srcset="./assets/IMG_0780.webp" type="image/webp" />
+              <img
+                class="hero__img"
+                src="./assets/IMG_0780.jpg"
+                alt="FAQ: What exactly is snus?"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
       </section>
@@ -168,15 +194,19 @@
           <div class="grid grid--4">
             <article class="card product" data-category="pablo">
               <div class="product__badge">PABLO</div>
-              <img
-                class="product__img"
-                src="./assets/pablo-bluemint.jpg"
-                alt="Pablo Blue Mint nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/pablo-bluemint.avif" type="image/avif" />
+                <source srcset="./assets/pablo-bluemint.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/pablo-bluemint.jpg"
+                  alt="Pablo Blue Mint nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Pablo Blue Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -187,15 +217,19 @@
 
             <article class="card product" data-category="zafari">
               <div class="product__badge product__badge--alt">ZAFARI</div>
-              <img
-                class="product__img"
-                src="./assets/zafari-coolmint.jpg"
-                alt="Zafari Cool Mint nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/zafari-coolmint.avif" type="image/avif" />
+                <source srcset="./assets/zafari-coolmint.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/zafari-coolmint.jpg"
+                  alt="Zafari Cool Mint nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Zafari Cool Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -206,15 +240,19 @@
 
             <article class="card product" data-category="zyn">
               <div class="product__badge">ZYN</div>
-              <img
-                class="product__img"
-                src="./assets/zyn-freshmint.jpg"
-                alt="Zyn Fresh Mint nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/zyn-freshmint.avif" type="image/avif" />
+                <source srcset="./assets/zyn-freshmint.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/zyn-freshmint.jpg"
+                  alt="Zyn Fresh Mint nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Zyn Fresh Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -225,15 +263,19 @@
 
             <article class="card product" data-category="iceberg">
               <div class="product__badge product__badge--alt">ICEBERG</div>
-              <img
-                class="product__img"
-                src="./assets/iceberg-watermelon.jpg"
-                alt="Iceberg Watermelon nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/iceberg-watermelon.avif" type="image/avif" />
+                <source srcset="./assets/iceberg-watermelon.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/iceberg-watermelon.jpg"
+                  alt="Iceberg Watermelon nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Iceberg Watermelon</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -244,15 +286,19 @@
 
             <article class="card product" data-category="velo">
               <div class="product__badge">VELO</div>
-              <img
-                class="product__img"
-                src="./assets/velo-brightspearmint.jpg"
-                alt="Velo Bright Spearmint nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/velo-brightspearmint.avif" type="image/avif" />
+                <source srcset="./assets/velo-brightspearmint.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/velo-brightspearmint.jpg"
+                  alt="Velo Bright Spearmint nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Velo Bright Spearmint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -263,15 +309,19 @@
 
             <article class="card product" data-category="maggie">
               <div class="product__badge product__badge--alt">MAGGIE</div>
-              <img
-                class="product__img"
-                src="./assets/maggie-cherrytonic.jpg"
-                alt="Maggie Cherry Tonic nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/maggie-cherrytonic.avif" type="image/avif" />
+                <source srcset="./assets/maggie-cherrytonic.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/maggie-cherrytonic.jpg"
+                  alt="Maggie Cherry Tonic nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Maggie Cherry Tonic</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -354,15 +404,19 @@
             <!-- Pablo -->
             <article class="card product" data-category="pablo">
               <div class="product__badge">PABLO</div>
-              <img
-                class="product__img"
-                src="./assets/pablo-bluemint.jpg"
-                alt="Pablo Blue Mint nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/pablo-bluemint.avif" type="image/avif" />
+                <source srcset="./assets/pablo-bluemint.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/pablo-bluemint.jpg"
+                  alt="Pablo Blue Mint nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Pablo Blue Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -372,15 +426,19 @@
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge product__badge--alt">PABLO</div>
-              <img
-                class="product__img"
-                src="./assets/pablo-bubblegum.jpg"
-                alt="Pablo Bubblegum nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/pablo-bubblegum.avif" type="image/avif" />
+                <source srcset="./assets/pablo-bubblegum.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/pablo-bubblegum.jpg"
+                  alt="Pablo Bubblegum nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Pablo Bubblegum</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -390,15 +448,19 @@
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge">PABLO</div>
-              <img
-                class="product__img"
-                src="./assets/pablo-darkcherry.jpg"
-                alt="Pablo Dark Cherry nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/pablo-darkcherry.avif" type="image/avif" />
+                <source srcset="./assets/pablo-darkcherry.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/pablo-darkcherry.jpg"
+                  alt="Pablo Dark Cherry nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Pablo Dark Cherry</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -408,15 +470,19 @@
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge product__badge--alt">PABLO</div>
-              <img
-                class="product__img"
-                src="./assets/pablo-frostedmint.jpg"
-                alt="Pablo Frosted Mint nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/pablo-frostedmint.avif" type="image/avif" />
+                <source srcset="./assets/pablo-frostedmint.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/pablo-frostedmint.jpg"
+                  alt="Pablo Frosted Mint nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Pablo Frosted Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -426,15 +492,19 @@
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge">PABLO</div>
-              <img
-                class="product__img"
-                src="./assets/pablo-greenmint.jpg"
-                alt="Pablo Green Mint nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/pablo-greenmint.avif" type="image/avif" />
+                <source srcset="./assets/pablo-greenmint.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/pablo-greenmint.jpg"
+                  alt="Pablo Green Mint nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Pablo Green Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -444,15 +514,19 @@
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge product__badge--alt">PABLO</div>
-              <img
-                class="product__img"
-                src="./assets/pablo-liquorice.jpg"
-                alt="Pablo Liquorice nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/pablo-liquorice.avif" type="image/avif" />
+                <source srcset="./assets/pablo-liquorice.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/pablo-liquorice.jpg"
+                  alt="Pablo Liquorice nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Pablo Liquorice</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -462,15 +536,19 @@
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge">PABLO</div>
-              <img
-                class="product__img"
-                src="./assets/pablo-orangeexclusive.jpg"
-                alt="Pablo Orange Exclusive nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/pablo-orangeexclusive.avif" type="image/avif" />
+                <source srcset="./assets/pablo-orangeexclusive.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/pablo-orangeexclusive.jpg"
+                  alt="Pablo Orange Exclusive nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Pablo Orange Exclusive</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -480,15 +558,19 @@
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge product__badge--alt">PABLO</div>
-              <img
-                class="product__img"
-                src="./assets/pablo-passionfruit.jpg"
-                alt="Pablo Passionfruit nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/pablo-passionfruit.avif" type="image/avif" />
+                <source srcset="./assets/pablo-passionfruit.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/pablo-passionfruit.jpg"
+                  alt="Pablo Passionfruit nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Pablo Passionfruit</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -500,15 +582,19 @@
             <!-- Zafari -->
             <article class="card product" data-category="zafari">
               <div class="product__badge">ZAFARI</div>
-              <img
-                class="product__img"
-                src="./assets/zafari-coolmint.jpg"
-                alt="Zafari Cool Mint nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/zafari-coolmint.avif" type="image/avif" />
+                <source srcset="./assets/zafari-coolmint.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/zafari-coolmint.jpg"
+                  alt="Zafari Cool Mint nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Zafari Cool Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -518,15 +604,19 @@
             </article>
             <article class="card product" data-category="zafari">
               <div class="product__badge product__badge--alt">ZAFARI</div>
-              <img
-                class="product__img"
-                src="./assets/zafari-grapefruit.jpg"
-                alt="Zafari Grapefruit nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/zafari-grapefruit.avif" type="image/avif" />
+                <source srcset="./assets/zafari-grapefruit.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/zafari-grapefruit.jpg"
+                  alt="Zafari Grapefruit nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Zafari Grapefruit</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -536,15 +626,19 @@
             </article>
             <article class="card product" data-category="zafari">
               <div class="product__badge">ZAFARI</div>
-              <img
-                class="product__img"
-                src="./assets/zafari-jalapenolime.jpg"
-                alt="Zafari Jalapeño Lime nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/zafari-jalapenolime.avif" type="image/avif" />
+                <source srcset="./assets/zafari-jalapenolime.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/zafari-jalapenolime.jpg"
+                  alt="Zafari Jalapeño Lime nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Zafari Jalapeño Lime</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -554,15 +648,19 @@
             </article>
             <article class="card product" data-category="zafari">
               <div class="product__badge product__badge--alt">ZAFARI</div>
-              <img
-                class="product__img"
-                src="./assets/zafari-mango.jpg"
-                alt="Zafari Mango nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/zafari-mango.avif" type="image/avif" />
+                <source srcset="./assets/zafari-mango.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/zafari-mango.jpg"
+                  alt="Zafari Mango nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Zafari Mango</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -572,15 +670,19 @@
             </article>
             <article class="card product" data-category="zafari">
               <div class="product__badge">ZAFARI</div>
-              <img
-                class="product__img"
-                src="./assets/zafari-mint.jpg"
-                alt="Zafari Mint nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/zafari-mint.avif" type="image/avif" />
+                <source srcset="./assets/zafari-mint.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/zafari-mint.jpg"
+                  alt="Zafari Mint nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Zafari Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -590,15 +692,19 @@
             </article>
             <article class="card product" data-category="zafari">
               <div class="product__badge product__badge--alt">ZAFARI</div>
-              <img
-                class="product__img"
-                src="./assets/zafari-passionfruit.jpg"
-                alt="Zafari Passionfruit nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/zafari-passionfruit.avif" type="image/avif" />
+                <source srcset="./assets/zafari-passionfruit.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/zafari-passionfruit.jpg"
+                  alt="Zafari Passionfruit nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Zafari Passionfruit</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -610,15 +716,19 @@
             <!-- Zyn -->
             <article class="card product" data-category="zyn">
               <div class="product__badge">ZYN</div>
-              <img
-                class="product__img"
-                src="./assets/zyn-coolblueberry.jpg"
-                alt="Zyn Cool Blueberry nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/zyn-coolblueberry.avif" type="image/avif" />
+                <source srcset="./assets/zyn-coolblueberry.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/zyn-coolblueberry.jpg"
+                  alt="Zyn Cool Blueberry nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Zyn Cool Blueberry</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -628,15 +738,19 @@
             </article>
             <article class="card product" data-category="zyn">
               <div class="product__badge product__badge--alt">ZYN</div>
-              <img
-                class="product__img"
-                src="./assets/zyn-coolwatermelon.jpg"
-                alt="Zyn Cool Watermelon nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/zyn-coolwatermelon.avif" type="image/avif" />
+                <source srcset="./assets/zyn-coolwatermelon.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/zyn-coolwatermelon.jpg"
+                  alt="Zyn Cool Watermelon nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Zyn Cool Watermelon</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -646,15 +760,19 @@
             </article>
             <article class="card product" data-category="zyn">
               <div class="product__badge">ZYN</div>
-              <img
-                class="product__img"
-                src="./assets/zyn-freshmint.jpg"
-                alt="Zyn Fresh Mint nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/zyn-freshmint.avif" type="image/avif" />
+                <source srcset="./assets/zyn-freshmint.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/zyn-freshmint.jpg"
+                  alt="Zyn Fresh Mint nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Zyn Fresh Mint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -666,15 +784,19 @@
             <!-- Iceberg -->
             <article class="card product" data-category="iceberg">
               <div class="product__badge">ICEBERG</div>
-              <img
-                class="product__img"
-                src="./assets/iceberg-cherry.jpg"
-                alt="Iceberg Cherry nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/iceberg-cherry.avif" type="image/avif" />
+                <source srcset="./assets/iceberg-cherry.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/iceberg-cherry.jpg"
+                  alt="Iceberg Cherry nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Iceberg Cherry</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -684,15 +806,19 @@
             </article>
             <article class="card product" data-category="iceberg">
               <div class="product__badge product__badge--alt">ICEBERG</div>
-              <img
-                class="product__img"
-                src="./assets/iceberg-cola.jpg"
-                alt="Iceberg Cola nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/iceberg-cola.avif" type="image/avif" />
+                <source srcset="./assets/iceberg-cola.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/iceberg-cola.jpg"
+                  alt="Iceberg Cola nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Iceberg Cola</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -702,15 +828,19 @@
             </article>
             <article class="card product" data-category="iceberg">
               <div class="product__badge">ICEBERG</div>
-              <img
-                class="product__img"
-                src="./assets/iceberg-emerald.jpg"
-                alt="Iceberg Emerald nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/iceberg-emerald.avif" type="image/avif" />
+                <source srcset="./assets/iceberg-emerald.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/iceberg-emerald.jpg"
+                  alt="Iceberg Emerald nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Iceberg Emerald</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -720,15 +850,19 @@
             </article>
             <article class="card product" data-category="iceberg">
               <div class="product__badge product__badge--alt">ICEBERG</div>
-              <img
-                class="product__img"
-                src="./assets/iceberg-kiwistrawberry.jpg"
-                alt="Iceberg Kiwi Strawberry nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/iceberg-kiwistrawberry.avif" type="image/avif" />
+                <source srcset="./assets/iceberg-kiwistrawberry.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/iceberg-kiwistrawberry.jpg"
+                  alt="Iceberg Kiwi Strawberry nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Iceberg Kiwi Strawberry</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -738,15 +872,19 @@
             </article>
             <article class="card product" data-category="iceberg">
               <div class="product__badge">ICEBERG</div>
-              <img
-                class="product__img"
-                src="./assets/iceberg-mango-banana.jpg"
-                alt="Iceberg Mango Banana nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/iceberg-mango-banana.avif" type="image/avif" />
+                <source srcset="./assets/iceberg-mango-banana.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/iceberg-mango-banana.jpg"
+                  alt="Iceberg Mango Banana nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Iceberg Mango Banana</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -756,15 +894,19 @@
             </article>
             <article class="card product" data-category="iceberg">
               <div class="product__badge product__badge--alt">ICEBERG</div>
-              <img
-                class="product__img"
-                src="./assets/iceberg-watermelon.jpg"
-                alt="Iceberg Watermelon nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/iceberg-watermelon.avif" type="image/avif" />
+                <source srcset="./assets/iceberg-watermelon.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/iceberg-watermelon.jpg"
+                  alt="Iceberg Watermelon nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Iceberg Watermelon</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -776,15 +918,19 @@
             <!-- Velo -->
             <article class="card product" data-category="velo">
               <div class="product__badge">VELO</div>
-              <img
-                class="product__img"
-                src="./assets/velo-brightspearmint.jpg"
-                alt="Velo Bright Spearmint nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/velo-brightspearmint.avif" type="image/avif" />
+                <source srcset="./assets/velo-brightspearmint.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/velo-brightspearmint.jpg"
+                  alt="Velo Bright Spearmint nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Velo Bright Spearmint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -794,15 +940,19 @@
             </article>
             <article class="card product" data-category="velo">
               <div class="product__badge product__badge--alt">VELO</div>
-              <img
-                class="product__img"
-                src="./assets/velo-crispypeppermint.jpg"
-                alt="Velo Crispy Peppermint nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/velo-crispypeppermint.avif" type="image/avif" />
+                <source srcset="./assets/velo-crispypeppermint.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/velo-crispypeppermint.jpg"
+                  alt="Velo Crispy Peppermint nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Velo Crispy Peppermint</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -812,15 +962,19 @@
             </article>
             <article class="card product" data-category="velo">
               <div class="product__badge">VELO</div>
-              <img
-                class="product__img"
-                src="./assets/velo-strawberryice.jpg"
-                alt="Velo Strawberry Ice nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/velo-strawberryice.avif" type="image/avif" />
+                <source srcset="./assets/velo-strawberryice.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/velo-strawberryice.jpg"
+                  alt="Velo Strawberry Ice nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Velo Strawberry Ice</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -832,15 +986,19 @@
             <!-- Maggie -->
             <article class="card product" data-category="maggie">
               <div class="product__badge product__badge--alt">MAGGIE</div>
-              <img
-                class="product__img"
-                src="./assets/maggie-cherrytonic.jpg"
-                alt="Maggie Cherry Tonic nicotine pouch"
-                width="220"
-                height="220"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./assets/maggie-cherrytonic.avif" type="image/avif" />
+                <source srcset="./assets/maggie-cherrytonic.webp" type="image/webp" />
+                <img
+                  class="product__img"
+                  src="./assets/maggie-cherrytonic.jpg"
+                  alt="Maggie Cherry Tonic nicotine pouch"
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3 class="product__name">Maggie Cherry Tonic</h3>
               <div class="product__meta">
                 <span class="product__price">₦9,500</span>
@@ -931,7 +1089,11 @@
         <div class="container footer__inner">
           <div class="footer__brand">
             <a href="./index.html" aria-label="SNUZ.NG home">
-              <img class="footer__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="160" height="70" />
+              <picture>
+                <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+                <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+                <img class="footer__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="160" height="70" />
+              </picture>
             </a>
             <p class="footer__text">
               SNUZ.NG provides nicotine pouches for adult nicotine users. Please use responsibly.
