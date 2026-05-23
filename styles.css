@@ -664,21 +664,45 @@ a:hover{opacity:.92}
 .section--locations .kicker{color:#fff}
 .section--locations .kicker strong{color:var(--accent)}
 .locations__title{max-width:18ch}
-.locations__media{
+.locations__grid{
   margin-top:20px;
-  width:min(280px, 72vw);
+  display:grid;
+  gap:14px;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+}
+.locations__card{
+  margin:0;
   border-radius:var(--radius);
   overflow:hidden;
   border:1px solid rgba(255,255,255,.14);
   background:rgba(0,0,0,.35);
   box-shadow:0 12px 32px rgba(0,0,0,.28);
 }
-.locations__video{
+.locations__img{
   display:block;
   width:100%;
-  height:auto;
-  vertical-align:middle;
+  aspect-ratio:3/4;
+  object-fit:cover;
   background:#000;
+}
+.locations__caption{
+  padding:12px 12px;
+  font-size:.95rem;
+  line-height:1.35;
+}
+.locations__address{
+  color:var(--accent);
+  font-weight:900;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.locations__address:hover{opacity:.95}
+
+@media (max-width: 980px){
+  .locations__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width: 560px){
+  .locations__grid{grid-template-columns:1fr}
 }
 
 .panels{
