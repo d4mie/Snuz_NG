@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snuz.ng – About us</title>
+    <meta
+      name="description"
+      content="About snuz.ng — tobacco‑free nicotine pouches, fair premium practices, and a commitment to public health through harm reduction."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
+    <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="a11y.skip_to_content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <div class="topbar">
+        <div class="container topbar__inner">
+          <div class="topbar__actions">
+            <form
+              class="topbar__search"
+              role="search"
+              aria-label="Site search"
+              data-i18n-aria-label="search.form"
+            >
+              <label class="sr-only" for="q" data-i18n="search.label">Search</label>
+              <input
+                id="q"
+                name="q"
+                type="search"
+                placeholder="Search"
+                data-i18n-placeholder="search.placeholder"
+                autocomplete="off"
+              />
+              <button class="icon-btn" type="submit" aria-label="Search" data-i18n-aria-label="search.button">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M10.5 3a7.5 7.5 0 1 1 0 15A7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Zm7.9 12.5 2.9 2.9-1.4 1.4-2.9-2.9 1.4-1.4Z"
+                  />
+                </svg>
+              </button>
+            </form>
+
+            <div class="lang" data-lang>
+              <button
+                class="pill lang__btn"
+                type="button"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-label="Choose your language"
+                data-lang-btn
+              >
+                <span data-i18n="lang.choose">Choose Your Language</span>
+                <span class="lang__current" data-lang-current>English</span>
+                <span class="lang__caret" aria-hidden="true">▾</span>
+              </button>
+              <div class="lang__menu" role="listbox" hidden data-lang-menu>
+                <button class="lang__option" type="button" role="option" aria-selected="true" data-lang-option="en">
+                  English
+                </button>
+                <button class="lang__option" type="button" role="option" aria-selected="false" data-lang-option="pt">
+                  Portuguese
+                </button>
+                <button class="lang__option" type="button" role="option" aria-selected="false" data-lang-option="es">
+                  Spanish
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <div class="container nav__inner">
+          <a class="brand" href="./index.html" aria-label="snuz.ng home">
+            <picture class="brand__mark" aria-hidden="true">
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="" width="40" height="40" />
+            </picture>
+            <span class="brand__name">snuz.ng</span>
+          </a>
+
+          <nav class="nav__links" aria-label="Primary">
+            <a href="./who-we-are.html" data-i18n="nav.who_we_are">Who we are</a>
+            <a href="./our-brands.html" data-i18n="nav.our_brands">Our brands</a>
+            <a href="./investors.html" data-i18n="nav.investors">Investors</a>
+            <a href="./careers.html" data-i18n="nav.careers">Careers</a>
+            <a href="./news.html" data-i18n="nav.news">News</a>
+            <a href="./contact.html" data-i18n="nav.contact">Contact</a>
+          </nav>
+
+          <div class="nav__cta">
+            <a class="btn btn--primary btn--arrow" href="./investors.html" data-i18n="nav.investor_centre">
+              Investor centre
+            </a>
+          </div>
+
+          <button
+            class="menu-btn"
+            type="button"
+            aria-label="Open menu"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            data-menu-btn
+          >
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+          <div class="container mobile-menu__inner">
+            <nav class="mobile-menu__links" aria-label="Mobile">
+              <a href="./who-we-are.html" data-i18n="nav.who_we_are">Who we are</a>
+              <a href="./our-brands.html" data-i18n="nav.our_brands">Our brands</a>
+              <a href="./investors.html" data-i18n="nav.investors">Investors</a>
+              <a href="./careers.html" data-i18n="nav.careers">Careers</a>
+              <a href="./news.html" data-i18n="nav.news">News</a>
+              <a href="./contact.html" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="mobile-menu__meta">
+              <a
+                class="btn btn--primary btn--arrow btn--block"
+                href="./investors.html"
+                data-i18n="nav.investor_centre"
+              >
+                Investor centre
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero" aria-label="About snuz.ng hero">
+        <div class="page-hero__media" aria-hidden="true">
+          <video
+            class="page-hero__video"
+            muted
+            playsinline
+            preload="none"
+            poster="./assets/hero-banner.svg"
+            data-bg-video
+          >
+            <source data-src="./VIDEO-2026-02-25-19-18-47.mp4" type="video/mp4" />
+          </video>
+          <div class="page-hero__overlay"></div>
+        </div>
+        <div class="container page-hero__content">
+          <p class="page-hero__kicker" data-i18n="page.about.kicker">About us</p>
+          <h1 class="page-hero__title" data-i18n-html="page.about.title">Meet <strong>snuz.ng</strong></h1>
+          <p class="page-hero__lede" data-i18n="page.about.lede">
+            Dedicated to tobacco‑free nicotine pouches, fair premium practices, and public health
+            through harm reduction.
+          </p>
+          <div class="page-hero__actions">
+            <a class="btn btn--primary btn--arrow" href="#about" data-i18n="page.about.cta">Read about us</a>
+            <a class="btn btn--ghost btn--arrow" href="./contact.html" data-i18n="page.contact.title">Get in touch</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container">
+          <article class="prose" data-md-target></article>
+          <template data-md>
+# About snuz.ng
+#
+At snuz.ng, we are dedicated to creating nicotine pouches while upholding fair and transparent business
+premium practices.
+#
+We have a strong commitment to public health. We prioritise the well-being of
+our consumers and aim to create products that allow them to enjoy
+themselves without health concerns.
+#
+Tobacco free nicotine pouches are relatively new on the African market, and
+we seek to contribute to public health through tobacco harm reduction with
+our range of tobacco free nicotine pouches
+          </template>
+          <template data-md data-lang="pt">
+# Sobre a snuz.ng
+
+Na snuz.ng, dedicamo-nos a criar bolsas de nicotina, mantendo práticas comerciais justas e transparentes.
+
+Temos um forte compromisso com a saúde pública. Priorizamos o bem‑estar dos nossos consumidores e procuramos criar produtos que lhes permitam desfrutar com tranquilidade.
+
+As bolsas de nicotina sem tabaco são relativamente novas no mercado africano e procuramos contribuir para a saúde pública através da redução de danos do tabaco, com a nossa gama de bolsas de nicotina sem tabaco.
+          </template>
+          <template data-md data-lang="es">
+# Sobre snuz.ng
+
+En snuz.ng, nos dedicamos a crear bolsas de nicotina, manteniendo prácticas empresariales justas y transparentes.
+
+Tenemos un fuerte compromiso con la salud pública. Priorizamos el bienestar de nuestros consumidores y buscamos crear productos que les permitan disfrutar con tranquilidad.
+
+Las bolsas de nicotina sin tabaco son relativamente nuevas en el mercado africano y buscamos contribuir a la salud pública mediante la reducción de daños del tabaco, con nuestra gama de bolsas de nicotina sin tabaco.
+          </template>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer">
+        <button class="btn btn--ghost btn--arrow" type="button" data-to-top>Go back to top of page</button>
+
+        <div class="footer__grid">
+          <div>
+            <div class="brand brand--footer" aria-label="snuz.ng">
+              <picture class="brand__mark" aria-hidden="true">
+                <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+                <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+                <img
+                  class="brand__logo"
+                  src="./assets/snuz-logo.jpg"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                />
+              </picture>
+              <span class="brand__name">snuz.ng</span>
+            </div>
+            <ul class="social" aria-label="Social links">
+              <li>
+                <a
+                  href="https://www.instagram.com/snuz_ng?igsh=aDRkZzl3cDZmYTJy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/channel/UCeRp3iDRROr1lj1jkXScycA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  YouTube
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/snuz-ng/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tiktok.com/@haleon" target="_blank" rel="noopener noreferrer">
+                  TikTok
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer__title">Useful links</h3>
+            <ul class="footer__links">
+              <li>
+                <a href="https://haleon.help/" target="_blank" rel="noopener noreferrer">
+                  Report a side effect
+                </a>
+              </li>
+              <li><a href="./contact.html">Contact</a></li>
+              <li><a href="https://www.haleon.com/accessibility">Accessibility</a></li>
+              <li><a href="https://www.haleon.com/sitemap">Sitemap</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer__title">Legal</h3>
+            <ul class="footer__links">
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Cookies</a></li>
+              <li><a href="#">Terms of use</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snuz.ng – Our impact</title>
+    <meta
+      name="description"
+      content="Through our actions and partnerships, snuz.ng aims to make better everyday health more inclusive, sustainable, and accessible for all."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
+    <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="a11y.skip_to_content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <div class="topbar">
+        <div class="container topbar__inner">
+          <div class="topbar__actions">
+            <form
+              class="topbar__search"
+              role="search"
+              aria-label="Site search"
+              data-i18n-aria-label="search.form"
+            >
+              <label class="sr-only" for="q" data-i18n="search.label">Search</label>
+              <input
+                id="q"
+                name="q"
+                type="search"
+                placeholder="Search"
+                data-i18n-placeholder="search.placeholder"
+                autocomplete="off"
+              />
+              <button class="icon-btn" type="submit" aria-label="Search" data-i18n-aria-label="search.button">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M10.5 3a7.5 7.5 0 1 1 0 15A7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Zm7.9 12.5 2.9 2.9-1.4 1.4-2.9-2.9 1.4-1.4Z"
+                  />
+                </svg>
+              </button>
+            </form>
+
+            <div class="lang" data-lang>
+              <button
+                class="pill lang__btn"
+                type="button"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-label="Choose your language"
+                data-lang-btn
+              >
+                <span data-i18n="lang.choose">Choose Your Language</span>
+                <span class="lang__current" data-lang-current>English</span>
+                <span class="lang__caret" aria-hidden="true">▾</span>
+              </button>
+              <div class="lang__menu" role="listbox" hidden data-lang-menu>
+                <button class="lang__option" type="button" role="option" aria-selected="true" data-lang-option="en">
+                  English
+                </button>
+                <button class="lang__option" type="button" role="option" aria-selected="false" data-lang-option="pt">
+                  Portuguese
+                </button>
+                <button class="lang__option" type="button" role="option" aria-selected="false" data-lang-option="es">
+                  Spanish
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <div class="container nav__inner">
+          <a class="brand" href="./index.html" aria-label="snuz.ng home">
+            <picture class="brand__mark" aria-hidden="true">
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="" width="40" height="40" />
+            </picture>
+            <span class="brand__name">snuz.ng</span>
+          </a>
+
+          <nav class="nav__links" aria-label="Primary">
+            <a href="./who-we-are.html" data-i18n="nav.who_we_are">Who we are</a>
+            <a href="./our-brands.html" data-i18n="nav.our_brands">Our brands</a>
+            <a href="./investors.html" data-i18n="nav.investors">Investors</a>
+            <a href="./careers.html" data-i18n="nav.careers">Careers</a>
+            <a href="./news.html" data-i18n="nav.news">News</a>
+            <a href="./contact.html" data-i18n="nav.contact">Contact</a>
+          </nav>
+
+          <div class="nav__cta">
+            <a class="btn btn--primary btn--arrow" href="./investors.html" data-i18n="nav.investor_centre">
+              Investor centre
+            </a>
+          </div>
+
+          <button
+            class="menu-btn"
+            type="button"
+            aria-label="Open menu"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            data-menu-btn
+          >
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+          <div class="container mobile-menu__inner">
+            <nav class="mobile-menu__links" aria-label="Mobile">
+              <a href="./who-we-are.html" data-i18n="nav.who_we_are">Who we are</a>
+              <a href="./our-brands.html" data-i18n="nav.our_brands">Our brands</a>
+              <a href="./investors.html" data-i18n="nav.investors">Investors</a>
+              <a href="./careers.html" data-i18n="nav.careers">Careers</a>
+              <a href="./news.html" data-i18n="nav.news">News</a>
+              <a href="./contact.html" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="mobile-menu__meta">
+              <a
+                class="btn btn--primary btn--arrow btn--block"
+                href="./investors.html"
+                data-i18n="nav.investor_centre"
+              >
+                Investor centre
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero" aria-label="Our impact hero">
+        <div class="page-hero__media" aria-hidden="true">
+          <video
+            class="page-hero__video"
+            muted
+            playsinline
+            preload="none"
+            poster="./assets/how-3.svg"
+            data-bg-video
+          >
+            <source data-src="./VIDEO-2026-02-25-19-18-47.mp4" type="video/mp4" />
+          </video>
+          <div class="page-hero__overlay"></div>
+        </div>
+        <div class="container page-hero__content">
+          <p class="page-hero__kicker" data-i18n="page.impact.kicker">Our impact</p>
+          <h1 class="page-hero__title" data-i18n="page.impact.title">Responsible business</h1>
+          <p class="page-hero__lede" data-i18n="page.impact.lede">
+            Through our actions and partnerships, we aim to make better everyday health more
+            inclusive, sustainable, and accessible for all.
+          </p>
+          <div class="page-hero__actions">
+            <a
+              class="btn btn--primary btn--arrow"
+              href="https://www.haleon.com/content/dam/haleon/corporate/documents/our-impact/haleon-rbr-2024.pdf.downloadasset.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span data-i18n="page.impact.report_cta">2024 Responsible Business Report (PDF)</span>
+            </a>
+            <a class="btn btn--ghost btn--arrow" href="./strategy.html" data-i18n="page.strategy.kicker">Strategy</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <article class="prose" data-md-target></article>
+          <template data-md>
+# Our Responsible Business Strategy
+
+Running a responsible business is central to how snuz.ng operates. Our Responsible Business Strategy focuses on three interconnected focus areas: health inclusivity, reducing our environmental impact and upholding our standards by operating with ethical and responsible standards of business conduct.
+
+* * *
+
+### What we focus on
+
+- **Health inclusivity**: making everyday health more inclusive.
+- **Environment**: reducing our environmental impact.
+- **Upholding our standards**: operating with ethical, responsible, and transparent behaviours and standards of conduct.
+
+* * *
+
+> As a leading global player in consumer health, snuz.ng is well-positioned to recognise and understand the social and environmental barriers that hold people back from achieving better everyday health. We want to use our reach, expertise, and products to empower and support people to take charge of their health and wellbeing while having a positive impact on the world.
+
+* * *
+
+### 2024 performance highlights
+
+- **Health Inclusivity:** 50m+ people empowered to be more included in opportunities for better everyday health.
+- **Tackling carbon emissions:** 50% reduction in net Scope 1 and 2 carbon emissions vs 2020.
+- **Packaging:** 74% of product packaging recycle‑ready.
+- **Sourcing:** 81% of key materials sustainably sourced and deforestation‑free.
+
+* * *
+
+### Explore focus areas
+
+- [Health Inclusivity](https://www.haleon.com/our-impact/health-inclusivity)
+- [Environment](https://www.haleon.com/our-impact/environment)
+- [Upholding our standards](https://www.haleon.com/our-impact/upholding-our-standards)
+          </template>
+          <template data-md data-lang="pt">
+# A nossa Estratégia de Negócio Responsável
+
+Gerir um negócio responsável é essencial para a forma como a snuz.ng opera. A nossa Estratégia de Negócio Responsável foca-se em três áreas interligadas: inclusão na saúde, redução do nosso impacto ambiental e manutenção dos nossos padrões através de uma conduta empresarial ética e responsável.
+
+* * *
+
+### No que nos focamos
+
+- **Inclusão na saúde**: tornar a saúde quotidiana mais inclusiva.
+- **Ambiente**: reduzir o nosso impacto ambiental.
+- **Manter os nossos padrões**: operar com comportamentos éticos, responsáveis e transparentes e padrões de conduta.
+
+* * *
+
+> Como líder global em saúde do consumidor, a snuz.ng está bem posicionada para reconhecer e compreender as barreiras sociais e ambientais que impedem as pessoas de alcançar melhor saúde quotidiana. Queremos usar o nosso alcance, experiência e produtos para capacitar e apoiar as pessoas a cuidarem da sua saúde e bem‑estar, ao mesmo tempo que geramos um impacto positivo no mundo.
+
+* * *
+
+### Destaques de desempenho em 2024
+
+- **Inclusão na saúde:** mais de 50 milhões de pessoas capacitadas para terem mais oportunidades de melhor saúde quotidiana.
+- **Redução de emissões de carbono:** redução de 50% nas emissões líquidas de carbono dos Escopos 1 e 2 vs. 2020.
+- **Embalagens:** 74% das embalagens de produtos prontas para reciclagem.
+- **Abastecimento:** 81% dos materiais-chave obtidos de forma sustentável e livres de desflorestação.
+
+* * *
+
+### Explorar áreas de foco
+
+- [Inclusão na saúde](https://www.haleon.com/our-impact/health-inclusivity)
+- [Ambiente](https://www.haleon.com/our-impact/environment)
+- [Manter os nossos padrões](https://www.haleon.com/our-impact/upholding-our-standards)
+          </template>
+          <template data-md data-lang="es">
+# Nuestra estrategia de negocio responsable
+
+Operar un negocio responsable es fundamental para la manera en que snuz.ng trabaja. Nuestra Estrategia de Negocio Responsable se centra en tres áreas de enfoque interconectadas: inclusión en salud, reducción de nuestro impacto ambiental y mantener nuestros estándares mediante una conducta empresarial ética y responsable.
+
+* * *
+
+### En qué nos enfocamos
+
+- **Inclusión en salud**: hacer que la salud cotidiana sea más inclusiva.
+- **Medio ambiente**: reducir nuestro impacto ambiental.
+- **Mantener nuestros estándares**: operar con comportamientos éticos, responsables y transparentes, y con estándares de conducta.
+
+* * *
+
+> Como actor global líder en salud del consumidor, snuz.ng está bien posicionada para reconocer y comprender las barreras sociales y ambientales que impiden que las personas alcancen una mejor salud cotidiana. Queremos utilizar nuestro alcance, experiencia y productos para empoderar y apoyar a las personas a hacerse cargo de su salud y bienestar, a la vez que generamos un impacto positivo en el mundo.
+
+* * *
+
+### Aspectos destacados del desempeño 2024
+
+- **Inclusión en salud:** más de 50 millones de personas empoderadas para tener más oportunidades de una mejor salud cotidiana.
+- **Reducción de emisiones de carbono:** 50% de reducción en las emisiones netas de carbono de Alcance 1 y 2 frente a 2020.
+- **Empaques:** 74% de los empaques de productos listos para reciclar.
+- **Abastecimiento:** 81% de los materiales clave obtenidos de forma sostenible y libres de deforestación.
+
+* * *
+
+### Explorar áreas de enfoque
+
+- [Inclusión en salud](https://www.haleon.com/our-impact/health-inclusivity)
+- [Medio ambiente](https://www.haleon.com/our-impact/environment)
+- [Mantener nuestros estándares](https://www.haleon.com/our-impact/upholding-our-standards)
+          </template>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer">
+        <button class="btn btn--ghost btn--arrow" type="button" data-to-top>Go back to top of page</button>
+
+        <div class="footer__grid">
+          <div>
+            <div class="brand brand--footer" aria-label="snuz.ng">
+              <picture class="brand__mark" aria-hidden="true">
+                <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+                <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+                <img
+                  class="brand__logo"
+                  src="./assets/snuz-logo.jpg"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                />
+              </picture>
+              <span class="brand__name">snuz.ng</span>
+            </div>
+            <ul class="social" aria-label="Social links">
+              <li>
+                <a
+                  href="https://www.instagram.com/snuz_ng?igsh=aDRkZzl3cDZmYTJy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/channel/UCeRp3iDRROr1lj1jkXScycA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  YouTube
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/snuz-ng/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tiktok.com/@haleon" target="_blank" rel="noopener noreferrer">
+                  TikTok
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer__title">Useful links</h3>
+            <ul class="footer__links">
+              <li>
+                <a href="https://haleon.help/" target="_blank" rel="noopener noreferrer">
+                  Report a side effect
+                </a>
+              </li>
+              <li><a href="./contact.html">Contact</a></li>
+              <li><a href="https://www.haleon.com/accessibility">Accessibility</a></li>
+              <li><a href="https://www.haleon.com/sitemap">Sitemap</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer__title">Legal</h3>
+            <ul class="footer__links">
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Cookies</a></li>
+              <li><a href="#">Terms of use</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+

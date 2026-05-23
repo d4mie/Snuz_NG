@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snuz.ng – Careers</title>
+    <meta
+      name="description"
+      content="At snuz.ng, work is more than a job — it’s a chance to shape better everyday health. Explore roles, culture and development opportunities."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
+    <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="a11y.skip_to_content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <div class="topbar">
+        <div class="container topbar__inner">
+          <div class="topbar__actions">
+            <form
+              class="topbar__search"
+              role="search"
+              aria-label="Site search"
+              data-i18n-aria-label="search.form"
+            >
+              <label class="sr-only" for="q" data-i18n="search.label">Search</label>
+              <input
+                id="q"
+                name="q"
+                type="search"
+                placeholder="Search"
+                data-i18n-placeholder="search.placeholder"
+                autocomplete="off"
+              />
+              <button class="icon-btn" type="submit" aria-label="Search" data-i18n-aria-label="search.button">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M10.5 3a7.5 7.5 0 1 1 0 15A7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Zm7.9 12.5 2.9 2.9-1.4 1.4-2.9-2.9 1.4-1.4Z"
+                  />
+                </svg>
+              </button>
+            </form>
+
+            <div class="lang" data-lang>
+              <button
+                class="pill lang__btn"
+                type="button"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-label="Choose your language"
+                data-lang-btn
+              >
+                <span data-i18n="lang.choose">Choose Your Language</span>
+                <span class="lang__current" data-lang-current>English</span>
+                <span class="lang__caret" aria-hidden="true">▾</span>
+              </button>
+              <div class="lang__menu" role="listbox" hidden data-lang-menu>
+                <button class="lang__option" type="button" role="option" aria-selected="true" data-lang-option="en">
+                  English
+                </button>
+                <button class="lang__option" type="button" role="option" aria-selected="false" data-lang-option="pt">
+                  Portuguese
+                </button>
+                <button class="lang__option" type="button" role="option" aria-selected="false" data-lang-option="es">
+                  Spanish
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <div class="container nav__inner">
+          <a class="brand" href="./index.html" aria-label="snuz.ng home">
+            <picture class="brand__mark" aria-hidden="true">
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="" width="40" height="40" />
+            </picture>
+            <span class="brand__name">snuz.ng</span>
+          </a>
+
+          <nav class="nav__links" aria-label="Primary">
+            <a href="./who-we-are.html" data-i18n="nav.who_we_are">Who we are</a>
+            <a href="./our-brands.html" data-i18n="nav.our_brands">Our brands</a>
+            <a href="./investors.html" data-i18n="nav.investors">Investors</a>
+            <a href="./careers.html" data-i18n="nav.careers">Careers</a>
+            <a href="./news.html" data-i18n="nav.news">News</a>
+            <a href="./contact.html" data-i18n="nav.contact">Contact</a>
+          </nav>
+
+          <div class="nav__cta">
+            <a class="btn btn--primary btn--arrow" href="./investors.html" data-i18n="nav.investor_centre">
+              Investor centre
+            </a>
+          </div>
+
+          <button
+            class="menu-btn"
+            type="button"
+            aria-label="Open menu"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            data-menu-btn
+          >
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+          <div class="container mobile-menu__inner">
+            <nav class="mobile-menu__links" aria-label="Mobile">
+              <a href="./who-we-are.html" data-i18n="nav.who_we_are">Who we are</a>
+              <a href="./our-brands.html" data-i18n="nav.our_brands">Our brands</a>
+              <a href="./investors.html" data-i18n="nav.investors">Investors</a>
+              <a href="./careers.html" data-i18n="nav.careers">Careers</a>
+              <a href="./news.html" data-i18n="nav.news">News</a>
+              <a href="./contact.html" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="mobile-menu__meta">
+              <a
+                class="btn btn--primary btn--arrow btn--block"
+                href="./investors.html"
+                data-i18n="nav.investor_centre"
+              >
+                Investor centre
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero" aria-label="Careers hero">
+        <div class="page-hero__media" aria-hidden="true">
+          <video
+            class="page-hero__video"
+            muted
+            playsinline
+            preload="none"
+            poster="./assets/how-3.svg"
+            data-bg-video
+          >
+            <source data-src="./VIDEO-2026-02-25-19-18-47.mp4" type="video/mp4" />
+          </video>
+          <div class="page-hero__overlay"></div>
+        </div>
+        <div class="container page-hero__content">
+          <p class="page-hero__kicker" data-i18n="nav.careers">Careers</p>
+          <h1 class="page-hero__title" data-i18n="page.careers.title">For health. With humanity.</h1>
+          <p class="page-hero__lede" data-i18n="page.careers.lede">
+            Work is more than a job — it’s a chance to shape better everyday health. Explore roles,
+            culture and development opportunities.
+          </p>
+          <div class="page-hero__actions">
+            <a class="btn btn--primary btn--arrow" href="https://careers.haleon.com/careers" target="_blank" rel="noopener noreferrer">
+              <span data-i18n="page.careers.search_jobs">Search jobs</span>
+            </a>
+            <a class="btn btn--ghost btn--arrow" href="./contact.html" data-i18n="page.contact.title">Get in touch</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <article class="prose" data-md-target></article>
+          <template data-md>
+# For Health. With Humanity.
+
+At snuz.ng, work is more than a job — it’s a chance to shape better everyday health.
+
+* * *
+
+## A change for **better.**
+
+Help improve everyday health. In every corner of the world. Search for jobs in your region:
+
+- [Global](https://careers.haleon.com/careers)
+- [Germany, China, Russia](https://gsknch.wd3.myworkdayjobs.com/GSKCareers)
+
+* * *
+
+### Application safety notice
+
+NOTICE: We have been notified that scammers have been posing as snuz.ng to discuss fake jobs to obtain your personal and/or financial information.
+
+snuz.ng does not use WhatsApp, Telegram, Facebook, SMS/RSC, or any other type of instant messaging app to communicate with candidates. Nor would we ask you for payment to register with us.
+
+* * *
+
+You can be part of this. Discover an opportunity unlike any other, work with a global portfolio of category-leading brands, combine trusted science with deep human understanding — and make everyday health more inclusive, more sustainable, and more achievable for millions.
+
+* * *
+
+![Pablo Green Mint](./assets/pablo-greenmint.webp)
+
+### Impact
+
+Help millions take control of their everyday health.
+
+![Zafari Jalapeño Lime](./assets/zafari-jalapenolime.webp)
+
+### Energy
+
+Work for a world-leading consumer healthcare company with a start-up mentality.
+
+![Iceberg Emerald](./assets/iceberg-emerald.webp)
+
+### Growth
+
+Set goals, reach them, and imagine new ones.
+
+![Velo Bright Spearmint](./assets/velo-brightspearmint.webp)
+
+### Freedom
+
+Explore different ways to better the world of work and everyday health.
+
+* * *
+
+## Nice to meet you
+
+Everyday health is everyone’s right. Together, we focus on what matters most, go beyond what’s expected and keep it human, always.
+
+[Say hi](https://www.haleon.com/careers/nice-to-meet-you)
+
+## The snuz.ng experience
+
+The snuz.ng Experience is about building something together — co-creating a workplace where people can do the best work of their careers.
+
+[Learn more](https://www.haleon.com/careers/the-haleon-experience)
+
+## Early talent
+
+Whether you’re an apprentice, student, graduate, or post-graduate — if you believe in making everyday health more inclusive, sustainable and achievable, we’ll help you make a positive impact.
+
+[Join us](https://www.haleon.com/careers/early-talent)
+
+## Experienced hires
+
+We need people who share our vision and are ready to make a positive impact.
+
+[Grow your career](https://www.haleon.com/careers/experienced-hires)
+          </template>
+          <template data-md data-lang="pt">
+# Pela saúde. Com humanidade.
+
+Na snuz.ng, trabalhar é mais do que um emprego — é uma oportunidade de moldar uma melhor saúde quotidiana.
+
+* * *
+
+## Uma mudança para **melhor.**
+
+Ajude a melhorar a saúde quotidiana. Em todos os cantos do mundo. Procure vagas na sua região:
+
+- [Global](https://careers.haleon.com/careers)
+- [Alemanha, China, Rússia](https://gsknch.wd3.myworkdayjobs.com/GSKCareers)
+
+* * *
+
+### Aviso de segurança nas candidaturas
+
+AVISO: fomos informados de que burlões se têm feito passar pela snuz.ng para discutir empregos falsos e obter as suas informações pessoais e/ou financeiras.
+
+A snuz.ng não utiliza WhatsApp, Telegram, Facebook, SMS/RSC ou qualquer outro tipo de aplicação de mensagens instantâneas para comunicar com candidatos. Também nunca pediríamos pagamento para se registar connosco.
+
+* * *
+
+Pode fazer parte disto. Descubra uma oportunidade como nenhuma outra, trabalhe com um portefólio global de marcas líderes de categoria, combine ciência de confiança com uma profunda compreensão humana — e torne a saúde quotidiana mais inclusiva, mais sustentável e mais alcançável para milhões.
+
+* * *
+
+![Pablo Green Mint](./assets/pablo-greenmint.webp)
+
+### Impacto
+
+Ajude milhões a assumir o controlo da sua saúde quotidiana.
+
+![Zafari Jalapeño Lime](./assets/zafari-jalapenolime.webp)
+
+### Energia
+
+Trabalhe para uma empresa líder mundial em saúde do consumidor com mentalidade de start‑up.
+
+![Iceberg Emerald](./assets/iceberg-emerald.webp)
+
+### Crescimento
+
+Defina objetivos, alcance‑os e imagine novos.
+
+![Velo Bright Spearmint](./assets/velo-brightspearmint.webp)
+
+### Liberdade
+
+Explore diferentes formas de melhorar o mundo do trabalho e a saúde quotidiana.
+
+* * *
+
+## Prazer em conhecer
+
+A saúde quotidiana é um direito de todos. Juntos, focamo-nos no que mais importa, vamos além do esperado e mantemos o lado humano, sempre.
+
+[Diga olá](https://www.haleon.com/careers/nice-to-meet-you)
+
+## A experiência snuz.ng
+
+A Experiência snuz.ng é sobre construir algo em conjunto — co‑criar um local de trabalho onde as pessoas possam fazer o melhor trabalho das suas carreiras.
+
+[Saber mais](https://www.haleon.com/careers/the-haleon-experience)
+
+## Talento jovem
+
+Seja aprendiz, estudante, recém‑licenciado ou pós‑graduado — se acredita em tornar a saúde quotidiana mais inclusiva, sustentável e alcançável, ajudaremos a gerar um impacto positivo.
+
+[Junte‑se a nós](https://www.haleon.com/careers/early-talent)
+
+## Profissionais experientes
+
+Precisamos de pessoas que partilhem a nossa visão e estejam prontas para gerar um impacto positivo.
+
+[Faça crescer a sua carreira](https://www.haleon.com/careers/experienced-hires)
+          </template>
+          <template data-md data-lang="es">
+# Por la salud. Con humanidad.
+
+En snuz.ng, el trabajo es más que un empleo: es una oportunidad para dar forma a una mejor salud cotidiana.
+
+* * *
+
+## Un cambio para **mejor.**
+
+Ayuda a mejorar la salud cotidiana. En todos los rincones del mundo. Busca empleos en tu región:
+
+- [Global](https://careers.haleon.com/careers)
+- [Alemania, China, Rusia](https://gsknch.wd3.myworkdayjobs.com/GSKCareers)
+
+* * *
+
+### Aviso de seguridad en las postulaciones
+
+AVISO: hemos sido informados de que estafadores se han hecho pasar por snuz.ng para hablar de empleos falsos y obtener tu información personal y/o financiera.
+
+snuz.ng no utiliza WhatsApp, Telegram, Facebook, SMS/RSC ni ningún otro tipo de aplicación de mensajería instantánea para comunicarse con candidatos. Tampoco te pediríamos un pago para registrarte con nosotros.
+
+* * *
+
+Puedes formar parte de esto. Descubre una oportunidad como ninguna otra, trabaja con un portafolio global de marcas líderes en su categoría, combina ciencia confiable con una profunda comprensión humana y haz que la salud cotidiana sea más inclusiva, más sostenible y más alcanzable para millones.
+
+* * *
+
+![Pablo Green Mint](./assets/pablo-greenmint.webp)
+
+### Impacto
+
+Ayuda a millones a tomar el control de su salud cotidiana.
+
+![Zafari Jalapeño Lime](./assets/zafari-jalapenolime.webp)
+
+### Energía
+
+Trabaja para una empresa líder mundial en salud del consumidor con mentalidad de start‑up.
+
+![Iceberg Emerald](./assets/iceberg-emerald.webp)
+
+### Crecimiento
+
+Fija metas, alcánzalas e imagina nuevas.
+
+![Velo Bright Spearmint](./assets/velo-brightspearmint.webp)
+
+### Libertad
+
+Explora diferentes maneras de mejorar el mundo del trabajo y la salud cotidiana.
+
+* * *
+
+## Encantados de conocerte
+
+La salud cotidiana es un derecho de todos. Juntos, nos enfocamos en lo que más importa, vamos más allá de lo esperado y mantenemos lo humano, siempre.
+
+[Di hola](https://www.haleon.com/careers/nice-to-meet-you)
+
+## La experiencia snuz.ng
+
+La Experiencia snuz.ng consiste en construir algo juntos: co‑crear un lugar de trabajo donde las personas puedan hacer el mejor trabajo de sus carreras.
+
+[Saber más](https://www.haleon.com/careers/the-haleon-experience)
+
+## Talento temprano
+
+Ya seas aprendiz, estudiante, graduado o posgraduado, si crees en hacer que la salud cotidiana sea más inclusiva, sostenible y alcanzable, te ayudaremos a generar un impacto positivo.
+
+[Únete](https://www.haleon.com/careers/early-talent)
+
+## Profesionales con experiencia
+
+Necesitamos personas que compartan nuestra visión y estén listas para generar un impacto positivo.
+
+[Haz crecer tu carrera](https://www.haleon.com/careers/experienced-hires)
+          </template>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer">
+        <button class="btn btn--ghost btn--arrow" type="button" data-to-top>Go back to top of page</button>
+
+        <div class="footer__grid">
+          <div>
+            <div class="brand brand--footer" aria-label="snuz.ng">
+              <picture class="brand__mark" aria-hidden="true">
+                <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+                <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+                <img
+                  class="brand__logo"
+                  src="./assets/snuz-logo.jpg"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                />
+              </picture>
+              <span class="brand__name">snuz.ng</span>
+            </div>
+            <ul class="social" aria-label="Social links">
+              <li>
+                <a
+                  href="https://www.instagram.com/snuz_ng?igsh=aDRkZzl3cDZmYTJy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/channel/UCeRp3iDRROr1lj1jkXScycA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  YouTube
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/snuz-ng/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tiktok.com/@haleon" target="_blank" rel="noopener noreferrer">
+                  TikTok
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer__title">Useful links</h3>
+            <ul class="footer__links">
+              <li>
+                <a href="https://haleon.help/" target="_blank" rel="noopener noreferrer">
+                  Report a side effect
+                </a>
+              </li>
+              <li><a href="./contact.html">Contact</a></li>
+              <li><a href="https://www.haleon.com/accessibility">Accessibility</a></li>
+              <li><a href="https://www.haleon.com/sitemap">Sitemap</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer__title">Legal</h3>
+            <ul class="footer__links">
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Cookies</a></li>
+              <li><a href="#">Terms of use</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+

@@ -3,182 +3,252 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SNUZ.NG</title>
-    <meta http-equiv="Cache-Control" content="no-store" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="./styles.css?v=3" />
-    <meta name="description" content="SNUZ.NG — nicotine pouches" />
+    <title>snuz.ng – Home</title>
+    <meta
+      name="description"
+      content="The Swedish Experience: a blueprint for Nigeria — how harm reduction and smoke-free alternatives can accelerate the decline of smoking."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
+    <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
   </head>
   <body>
-    <!-- Age Gate Modal -->
-    <div id="ageGateOverlay" class="agegate-overlay" hidden>
-      <div
-        class="agegate-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="ageGateTitle"
-        aria-describedby="ageGateDesc"
-        tabindex="-1"
-      >
-        <div class="agegate-brand">
-          <a href="./index.html" aria-label="SNUZ.NG home">
-            <picture>
-              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
-              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
-              <img
-                class="agegate-logo"
-                src="./assets/snuz-logo.jpg"
-                alt="SNUZ.NG"
-                width="260"
-                height="120"
-                loading="eager"
-                decoding="async"
+    <a class="skip-link" href="#main" data-i18n="a11y.skip_to_content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <div class="topbar">
+        <div class="container topbar__inner">
+          <div class="topbar__actions">
+            <form
+              class="topbar__search"
+              role="search"
+              aria-label="Site search"
+              data-i18n-aria-label="search.form"
+            >
+              <label class="sr-only" for="q" data-i18n="search.label">Search</label>
+              <input
+                id="q"
+                name="q"
+                type="search"
+                placeholder="Search"
+                data-i18n-placeholder="search.placeholder"
+                autocomplete="off"
               />
-            </picture>
-          </a>
-          <div class="agegate-site" id="ageGateTitle">SNUZ.NG</div>
+              <button class="icon-btn" type="submit" aria-label="Search" data-i18n-aria-label="search.button">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M10.5 3a7.5 7.5 0 1 1 0 15A7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Zm7.9 12.5 2.9 2.9-1.4 1.4-2.9-2.9 1.4-1.4Z"
+                  />
+                </svg>
+              </button>
+            </form>
+
+            <div class="lang" data-lang>
+              <button
+                class="pill lang__btn"
+                type="button"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-label="Choose your language"
+                data-lang-btn
+              >
+                <span data-i18n="lang.choose">Choose Your Language</span>
+                <span class="lang__current" data-lang-current>English</span>
+                <span class="lang__caret" aria-hidden="true">▾</span>
+              </button>
+              <div class="lang__menu" role="listbox" hidden data-lang-menu>
+                <button class="lang__option" type="button" role="option" aria-selected="true" data-lang-option="en">
+                  English
+                </button>
+                <button class="lang__option" type="button" role="option" aria-selected="false" data-lang-option="pt">
+                  Portuguese
+                </button>
+                <button class="lang__option" type="button" role="option" aria-selected="false" data-lang-option="es">
+                  Spanish
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="agegate-question" id="ageGateDesc">Are you over 18 years of age?</div>
-
-        <div class="agegate-actions">
-          <button id="ageGateNo" class="btn btn-ghost" type="button">No</button>
-          <button id="ageGateYes" class="btn btn-primary" type="button">Yes</button>
-        </div>
-
-        <label class="agegate-remember">
-          <input id="ageGateRemember" type="checkbox" />
-          <span>Remember me</span>
-        </label>
-      </div>
-    </div>
-
-    <!-- Announcement -->
-    <div class="topbar">
-      <div class="container topbar__inner">
-        <span class="topbar__dot" aria-hidden="true"></span>
-        <p class="topbar__text">
-          The site is intended for adults 18+ and for existing nicotine users only. Products
-          contain nicotine and are not for minors.
-        </p>
-      </div>
-    </div>
-
-    <!-- Header -->
-    <header class="header" id="top">
-      <div class="container header__inner">
-        <a class="brand" href="./index.html" aria-label="SNUZ.NG home">
-          <picture>
-            <source srcset="./assets/snuz-logo.avif" type="image/avif" />
-            <source srcset="./assets/snuz-logo.webp" type="image/webp" />
-            <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="140" height="58" />
-          </picture>
-        </a>
-
-        <form class="search" role="search" aria-label="Search products" onsubmit="return false;">
-          <input class="search__input" type="search" placeholder="Search..." aria-label="Search" />
-          <button class="search__btn" type="submit" aria-label="Search">
-            <span aria-hidden="true">⌕</span>
-          </button>
-        </form>
-
-        <nav class="header-actions" aria-label="Account actions">
-          <a class="header-actions__item" href="#account">
-            <span class="header-actions__icon" aria-hidden="true">👤</span>
-            <span class="header-actions__label">My Account</span>
-          </a>
-          <a class="header-actions__item header-actions__cart" href="./cart.html" aria-label="Cart">
-            <span class="header-actions__icon">
-              <span aria-hidden="true">🛒</span>
-              <span class="cart-badge" aria-label="Items in cart" hidden>0</span>
-            </span>
-            <span class="header-actions__label">Cart</span>
-          </a>
-        </nav>
       </div>
 
       <div class="nav">
         <div class="container nav__inner">
-          <nav class="navlinks" aria-label="Primary">
-            <a class="navlinks__link is-active" href="./index.html">Home</a>
-            <a class="navlinks__link" href="#products">Products</a>
-            <a class="navlinks__link" href="#snus">Snus</a>
-            <div class="navlinks__item navlinks__item--dropdown">
-              <a class="navlinks__link navlinks__link--dropdown" href="#nicotine-pouches">
-                Nicotine pouches <span class="navlinks__chev" aria-hidden="true">▾</span>
-              </a>
-              <div class="dropdown" role="menu" aria-label="Nicotine pouch brands">
-                <a class="dropdown__item" role="menuitem" href="./iceberg.html">Iceberg</a>
-                <a class="dropdown__item" role="menuitem" href="./maggie.html">Maggie</a>
-                <a class="dropdown__item" role="menuitem" href="./pablo.html">Pablo</a>
-                <a class="dropdown__item" role="menuitem" href="./velo.html">Velo</a>
-                <a class="dropdown__item" role="menuitem" href="./zafari.html">Zafari</a>
-                <a class="dropdown__item" role="menuitem" href="./zyn.html">Zyn</a>
-              </div>
-            </div>
-            <a class="navlinks__link" href="#about">About</a>
-            <a class="navlinks__link" href="#faq">FAQ</a>
-            <a class="navlinks__link" href="#contact">Contact</a>
+          <a class="brand" href="./index.html" aria-label="snuz.ng home">
+            <picture class="brand__mark" aria-hidden="true">
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="" width="40" height="40" />
+            </picture>
+            <span class="brand__name">snuz.ng</span>
+          </a>
+
+          <nav class="nav__links" aria-label="Primary">
+            <a href="./who-we-are.html" data-i18n="nav.who_we_are">Who we are</a>
+            <a href="./our-brands.html" data-i18n="nav.our_brands">Our brands</a>
+            <a href="./investors.html" data-i18n="nav.investors">Investors</a>
+            <a href="./careers.html" data-i18n="nav.careers">Careers</a>
+            <a href="./news.html" data-i18n="nav.news">News</a>
+            <a href="./contact.html" data-i18n="nav.contact">Contact</a>
           </nav>
 
-          <div class="nav__meta">
-            <span class="nav__phone">+234 912 039 1463</span>
+          <div class="nav__cta">
+            <a class="btn btn--primary btn--arrow" href="./investors.html" data-i18n="nav.investor_centre">
+              Investor centre
+            </a>
+          </div>
+
+          <button
+            class="menu-btn"
+            type="button"
+            aria-label="Open menu"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            data-menu-btn
+          >
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+          <div class="container mobile-menu__inner">
+            <nav class="mobile-menu__links" aria-label="Mobile">
+              <a href="./who-we-are.html" data-i18n="nav.who_we_are">Who we are</a>
+              <a href="./our-brands.html" data-i18n="nav.our_brands">Our brands</a>
+              <a href="./investors.html" data-i18n="nav.investors">Investors</a>
+              <a href="./careers.html" data-i18n="nav.careers">Careers</a>
+              <a href="./news.html" data-i18n="nav.news">News</a>
+              <a href="./contact.html" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="mobile-menu__meta">
+              <a
+                class="btn btn--primary btn--arrow btn--block"
+                href="./investors.html"
+                data-i18n="nav.investor_centre"
+              >
+                Investor centre
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </header>
 
-    <main>
-      <!-- Hero -->
-      <section class="hero" aria-label="FAQ highlights">
-        <div class="container hero__inner">
-          <div class="hero__grid">
-            <picture>
-              <source srcset="./assets/IMG_0777.avif" type="image/avif" />
-              <source srcset="./assets/IMG_0777.webp" type="image/webp" />
-              <img
-                class="hero__img"
-                src="./assets/IMG_0777.jpg"
-                alt="FAQ: Is snus legal in Nigeria?"
-                loading="eager"
-                decoding="async"
-              />
-            </picture>
-            <picture>
-              <source srcset="./assets/IMG_0778.avif" type="image/avif" />
-              <source srcset="./assets/IMG_0778.webp" type="image/webp" />
-              <img
-                class="hero__img"
-                src="./assets/IMG_0778.jpg"
-                alt="FAQ: Is there THC in snus?"
-                loading="eager"
-                decoding="async"
-              />
-            </picture>
-            <picture>
-              <source srcset="./assets/IMG_0779.avif" type="image/avif" />
-              <source srcset="./assets/IMG_0779.webp" type="image/webp" />
-              <img
-                class="hero__img"
-                src="./assets/IMG_0779.jpg"
-                alt="FAQ: Can I use snus to quit smoking?"
-                loading="eager"
-                decoding="async"
-              />
-            </picture>
-            <picture>
-              <source srcset="./assets/IMG_0780.avif" type="image/avif" />
-              <source srcset="./assets/IMG_0780.webp" type="image/webp" />
-              <img
-                class="hero__img"
-                src="./assets/IMG_0780.jpg"
-                alt="FAQ: What exactly is snus?"
-                loading="eager"
-                decoding="async"
-              />
-            </picture>
+    <main id="main">
+      <section class="hero" aria-label="Hero">
+        <div class="hero__media" aria-hidden="true">
+          <video
+            class="hero__video"
+            muted
+            playsinline
+            loop
+            autoplay
+            preload="auto"
+            poster="./assets/hero-banner.svg"
+            data-bg-video
+            data-bg-video-continuous
+          >
+            <source data-src="./VIDEO-2026-02-25-19-18-47.mp4" type="video/mp4" />
+          </video>
+          <div class="hero__overlay"></div>
+        </div>
+
+        <div class="hero__decor" aria-hidden="true">
+          <svg class="hero__lines" viewBox="0 0 180 780" role="img" aria-label="">
+            <defs>
+              <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="rgba(255,255,255,.9)" />
+                <stop offset=".55" stop-color="rgba(255,255,255,.35)" />
+                <stop offset="1" stop-color="rgba(255,255,255,.15)" />
+              </linearGradient>
+            </defs>
+            <g stroke="url(#fade)" stroke-linecap="square">
+              <line x1="0" y1="770" x2="180" y2="770" stroke-width="0.6" />
+              <line x1="0" y1="735" x2="180" y2="735" stroke-width="0.8" />
+              <line x1="0" y1="700" x2="180" y2="700" stroke-width="1.0" />
+              <line x1="0" y1="665" x2="180" y2="665" stroke-width="1.2" />
+              <line x1="0" y1="630" x2="180" y2="630" stroke-width="1.4" />
+              <line x1="0" y1="595" x2="180" y2="595" stroke-width="1.6" />
+              <line x1="0" y1="560" x2="180" y2="560" stroke-width="1.8" />
+              <line x1="0" y1="525" x2="180" y2="525" stroke-width="2.0" />
+              <line x1="0" y1="490" x2="180" y2="490" stroke-width="2.2" />
+              <line x1="0" y1="455" x2="180" y2="455" stroke-width="2.4" />
+              <line x1="0" y1="420" x2="180" y2="420" stroke-width="2.6" />
+              <line x1="0" y1="385" x2="180" y2="385" stroke-width="2.8" />
+              <line x1="0" y1="350" x2="180" y2="350" stroke-width="3.0" />
+              <line x1="0" y1="315" x2="180" y2="315" stroke-width="3.2" />
+              <line x1="0" y1="280" x2="180" y2="280" stroke-width="3.4" />
+              <line x1="0" y1="245" x2="180" y2="245" stroke-width="3.6" />
+              <line x1="0" y1="210" x2="180" y2="210" stroke-width="3.8" />
+              <line x1="0" y1="175" x2="180" y2="175" stroke-width="4.0" />
+              <line x1="0" y1="140" x2="180" y2="140" stroke-width="4.2" />
+              <line x1="0" y1="105" x2="180" y2="105" stroke-width="4.4" />
+              <line x1="0" y1="70" x2="180" y2="70" stroke-width="4.6" />
+              <line x1="0" y1="35" x2="180" y2="35" stroke-width="4.8" />
+              <line x1="0" y1="5" x2="180" y2="5" stroke-width="5.0" />
+            </g>
+          </svg>
+        </div>
+
+        <div class="container hero__content">
+          <div class="hero__copy">
+            <h1 class="hero__title" data-i18n-html="home.hero_title">THE SWEDISH <strong>Experience</strong></h1>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="who-we-are">
+        <div class="container grid grid--2 grid--40-60">
+          <div>
+            <h2 class="kicker" data-i18n-html="home.blueprint_title">A BLUEPRINT<br />FOR <strong>NIGERIA</strong></h2>
+          </div>
+          <div>
+            <p class="lede" data-i18n="home.blueprint_p1">
+              The risk of a man dying from a tobacco-related illness is less in Sweden than in any
+              other country, although tobacco consumption is on a comparable level with that of other
+              countries in Europe and around the world. Researchers refer to this paradox as “the
+              Swedish Experience”.
+            </p>
+            <p class="lede" data-i18n="home.blueprint_p2">
+              Sweden has achieved a historic public health victory, officially becoming the world's
+              first and only “smoke-free” country by driving adult smoking rates below 5%. This
+              unparalleled success was not achieved through prohibition, but by the widespread
+              adoption of safer, smoke-free alternatives like snus, the precursor to modern nicotine
+              pouches. This proves that informed adult choice and access to better products can
+              dramatically accelerate the decline of smoking. It is our foundational goal to
+              replicate this Swedish model of harm reduction in Nigeria, offering millions of adults a
+              path away from combustible cigarettes and toward a smoke-free future.
+            </p>
+            <div class="row">
+              <a class="btn btn--primary btn--arrow" href="./who-we-are.html" data-i18n="home.blueprint_cta">
+                Read the article
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--locations" id="shop-locations" aria-label="Physical locations to shop SNUZ">
+        <div class="container">
+          <h2 class="kicker locations__title" data-i18n-html="home.locations_title">
+            PHYSICAL LOCATIONS<br />TO SHOP <strong>SNUZ</strong>
+          </h2>
+          <div class="locations__media">
+            <video
+              class="locations__video"
+              controls
+              playsinline
+              muted
+              loop
+              autoplay
+              preload="metadata"
+              aria-label="Physical SNUZ shop locations"
+              data-i18n-aria-label="home.locations_video_label"
+            >
+              <source src="./SNUZLOCATION.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </section>
@@ -187,8 +257,8 @@
       <section class="section section--muted" id="featured">
         <div class="container">
           <div class="section__head">
-            <h2 class="h2">Featured products</h2>
-            <a class="link" href="#products">View all</a>
+            <h2 class="h2" data-i18n="home.featured.title">Featured products</h2>
+            <a class="link" href="#products" data-i18n="home.featured.view_all">View all</a>
           </div>
 
           <div class="grid grid--4">
@@ -209,10 +279,12 @@
               </picture>
               <h3 class="product__name">Pablo Blue Mint</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
 
             <article class="card product" data-category="zafari">
@@ -232,10 +304,12 @@
               </picture>
               <h3 class="product__name">Zafari Cool Mint</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
 
             <article class="card product" data-category="zyn">
@@ -255,10 +329,12 @@
               </picture>
               <h3 class="product__name">Zyn Fresh Mint</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
 
             <article class="card product" data-category="iceberg">
@@ -278,10 +354,12 @@
               </picture>
               <h3 class="product__name">Iceberg Watermelon</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
 
             <article class="card product" data-category="velo">
@@ -301,10 +379,12 @@
               </picture>
               <h3 class="product__name">Velo Bright Spearmint</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
 
             <article class="card product" data-category="maggie">
@@ -324,60 +404,247 @@
               </picture>
               <h3 class="product__name">Maggie Cherry Tonic</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- Info sections -->
-      <section class="section" id="about">
+      <section class="section" aria-label="Key statistics">
         <div class="container">
-          <div class="panel">
-            <h3 class="h3">Main features of snus</h3>
-            <ul class="list">
-              <li>Discreet, smoke-free experience</li>
-              <li>Measured nicotine per pouch</li>
-              <li>Wide range of flavors and strengths</li>
-              <li>No ash, no smoke, no lingering odor</li>
-            </ul>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat__value">170</div>
+              <div class="stat__label" data-i18n="home.stats.markets">Markets we operate in</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">127</div>
+              <div class="stat__label" data-i18n="home.stats.innovations">Product innovations in 2024</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">9</div>
+              <div class="stat__label" data-i18n="home.stats.power_brands">Power brands</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value" data-money="11200000000" data-money-currency="GBP" data-money-display="compact">
+                £11.2bn
+              </div>
+              <div class="stat__label" data-i18n="home.stats.revenue">Revenue</div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section section--muted" id="nicotine-pouches">
+      <section class="section section--dark" id="investors" aria-label="Investors">
         <div class="container">
-          <h2 class="h2">What are snus and nicotine pouches?</h2>
-          <p class="lead">
-            Traditional snus contains tobacco. Nicotine pouches are tobacco-free and use nicotine,
-            plant fibers, sweeteners, and flavorings. They’re placed under the lip and do not
-            require spitting.
-          </p>
+          <div class="grid grid--2 grid--40-60">
+            <div>
+              <h2 class="kicker" data-i18n="nav.investors">Investors</h2>
+            </div>
+            <div>
+              <p class="lede">
+                For the most up to date information on financial performance, shareholder services and
+                more information, please visit our investor centre.
+              </p>
+              <div class="row">
+                <a class="btn btn--primary btn--arrow" href="./investors.html" data-i18n="nav.investor_centre">
+                  Investor centre
+                </a>
+                <a class="btn btn--ghost" href="#regulatory" data-i18n="home.regulatory_news">Regulatory news</a>
+              </div>
+            </div>
+          </div>
 
-          <div class="features">
-            <div class="feature">
-              <div class="feature__rating">★★★★★</div>
-              <div class="feature__title">Great service</div>
-              <div class="feature__text">Fast delivery and careful packaging.</div>
-            </div>
-            <div class="feature">
-              <div class="feature__rating">★★★★★</div>
-              <div class="feature__title">Best prices</div>
-              <div class="feature__text">Solid bundles across popular flavors.</div>
-            </div>
-            <div class="feature">
-              <div class="feature__rating">★★★★★</div>
-              <div class="feature__title">Quality selection</div>
-              <div class="feature__text">From mint to fruit to coffee.</div>
-            </div>
-            <div class="feature">
-              <div class="feature__rating">★★★★★</div>
-              <div class="feature__title">Happy customers</div>
-              <div class="feature__text">Easy checkout and responsive support.</div>
-            </div>
+          <div class="panels" id="investor-panels">
+            <article class="panel panel--span">
+              <header class="panel__header">
+                <h3 class="panel__title" data-i18n="home.events.title">Events</h3>
+                <p class="panel__meta" data-i18n="home.events.upcoming">Upcoming</p>
+              </header>
+              <img
+                class="panel__image"
+                src="./assets/how-2.svg"
+                alt="Illustration showing safer, smoke-free alternatives"
+                loading="lazy"
+              />
+              <div class="event">
+                <time class="event__date" datetime="2026-04-29">29 Apr 2026</time>
+                <div class="event__title">Q1 2026 Trading Statement</div>
+              </div>
+              <div class="panel__footer">
+                <button class="btn btn--ghost btn--arrow" type="button" data-i18n="home.events.add_to_calendar">
+                  Add to calendar
+                </button>
+                <a class="btn btn--ghost" href="https://www.haleon.com/investors/events-calendar">
+                  <span data-i18n="home.events.all_events">All events</span>
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div class="panels panels--2">
+            <article class="panel">
+              <header class="panel__header">
+                <h3 class="panel__title" data-i18n="home.documents.title">Documents</h3>
+                <p class="panel__meta">March 2025</p>
+              </header>
+              <img
+                class="panel__image"
+                src="./assets/how-1.svg"
+                alt="Illustration of available pouch brands"
+                loading="lazy"
+              />
+              <div class="panel__footer">
+                <a class="btn btn--primary btn--arrow" href="https://www.haleon.com/investors/annual-report-2024">
+                  <span data-i18n="home.documents.cta">Explore our Annual Report</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="panel" id="regulatory">
+              <header class="panel__header">
+                <h3 class="panel__title" data-i18n="home.regulatory_news">Regulatory news</h3>
+                <p class="panel__meta" data-i18n="home.regulatory.latest">Latest</p>
+              </header>
+              <ul class="newslist" aria-label="Regulatory news list">
+                <li class="newslist__item">
+                  <div class="newslist__title">
+                    <strong data-i18n="home.reg.title">
+                      Regulatory Update: snuz.ng Receives NAFDAC Approval for Nicotine Pouch Distribution in Nigeria
+                    </strong>
+                  </div>
+                  <p class="panel__body" data-i18n-html="home.reg.p1">
+                    snuz.ng is proud to announce that its nicotine pouch products are now available in Nigeria
+                    following full compliance with the regulatory requirements established by the
+                    <strong>National Agency for Food and Drug Administration and Control (NAFDAC)</strong>.
+                  </p>
+                  <p class="panel__body" data-i18n="home.reg.p2">
+                    This milestone reflects snuz.ng’s commitment to operating with transparency, safety, and
+                    adherence to Nigerian regulatory standards. Through the completion of the required
+                    documentation and regulatory review processes, snuz.ng is authorised to distribute nicotine
+                    pouch products within the Nigerian market in accordance with applicable guidelines.
+                  </p>
+                  <p class="panel__body" data-i18n-html="home.reg.p3">
+                    Nicotine pouches are a modern, smoke-free nicotine alternative designed for adult
+                    consumers. At snuz.ng, we are dedicated to providing high-quality products while ensuring
+                    that all sales and marketing practices comply with the
+                    <strong>National Tobacco Control Act (2015)</strong> and other relevant Nigerian regulations.
+                  </p>
+                  <p class="panel__body">
+                    <strong data-i18n="home.reg.commitment"
+                      >snuz.ng remains committed to responsible business practices, including:</strong
+                    >
+                  </p>
+                  <ul class="reg-bullets">
+                    <li data-i18n-html="home.reg.b1">Supplying <strong>NAFDAC-compliant nicotine pouch products</strong></li>
+                    <li data-i18n-html="home.reg.b2">Strictly enforcing <strong>18+ age restrictions</strong> for all purchases</li>
+                    <li data-i18n-html="home.reg.b3">
+                      Ensuring <strong>clear labelling, ingredient transparency, and regulatory compliance</strong>
+                    </li>
+                    <li data-i18n-html="home.reg.b4">Supporting <strong>responsible retail and distribution standards</strong></li>
+                  </ul>
+                  <p class="panel__body" data-i18n="home.reg.p4">
+                    As Nigeria’s nicotine product regulatory landscape continues to evolve, snuz.ng will
+                    continue to work closely with regulatory authorities to ensure full compliance and
+                    maintain the highest standards of product quality and consumer safety.
+                  </p>
+                  <p class="panel__body" data-i18n="home.reg.p5">
+                    Through this regulatory approval, snuz.ng aims to contribute to a responsible and
+                    transparent marketplace for adult nicotine alternatives in Nigeria.
+                  </p>
+                </li>
+              </ul>
+              <div class="panel__footer">
+                <a class="btn btn--ghost btn--arrow" href="./news.html" data-i18n="home.reg.view_all_news">
+                  View all news
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="news" aria-label="News">
+        <div class="container">
+          <div class="section__head">
+            <h2 class="kicker">
+              <a class="plain" href="./news.html" data-i18n="nav.news">News</a>
+            </h2>
+            <a class="btn btn--ghost btn--arrow" href="./news.html" data-i18n="home.news.view_all">View all stories</a>
+          </div>
+
+          <div class="cards cards--3">
+            <article class="card card--news">
+              <div class="card__media">
+                <img
+                  src="./assets/pablo-darkcherry.webp"
+                  alt="Pablo Dark Cherry nicotine pouch can"
+                  loading="lazy"
+                />
+              </div>
+              <p class="tag" data-i18n="home.news.tag_financial">Financial</p>
+              <h3 class="card__title">2025 Full Year Results</h3>
+              <p class="card__text">
+                2025 was an important year for snuz.ng. We introduced our Win as One strategy and are
+                already making good progress. Explore snuz.ng's full year results.
+              </p>
+              <a
+                class="btn btn--ghost btn--arrow"
+                href="http://www.haleon.com/news/press-releases/financial/2026/2025-full-year-results"
+                data-i18n="home.news.read_more"
+              >
+                Read more
+              </a>
+            </article>
+            <article class="card card--news">
+              <div class="card__media">
+                <img
+                  src="./assets/zafari-mint.webp"
+                  alt="Zafari Mint nicotine pouch can"
+                  loading="lazy"
+                />
+              </div>
+              <p class="tag" data-i18n="home.news.tag_financial">Financial</p>
+              <h3 class="card__title">Evolution of operating model to drive growth and agility</h3>
+              <p class="card__text">
+                snuz.ng introduces a new Chief Growth Officer and updated Operating Units to drive
+                growth, accelerate innovation and create a more agile global organisation.
+              </p>
+              <a
+                class="btn btn--ghost btn--arrow"
+                href="http://www.haleon.com/news/press-releases/financial/2026/haleon-operating-model-evolution-2026"
+                data-i18n="home.news.read_more"
+              >
+                Read more
+              </a>
+            </article>
+            <article class="card card--news">
+              <div class="card__media">
+                <img
+                  src="./assets/velo-strawberryice.webp"
+                  alt="Velo Strawberry Ice nicotine pouch can"
+                  loading="lazy"
+                />
+              </div>
+              <p class="tag" data-i18n="home.news.tag_financial">Financial</p>
+              <h3 class="card__title">snuz.ng Q3 2025 Trading Statement</h3>
+              <p class="card__text">
+                snuz.ng reports Q3 2025 organic revenue growth of 3.4%, driven by Oral Health and VMS,
+                with strong performance across EMEA, LatAm and APAC.
+              </p>
+              <a
+                class="btn btn--ghost btn--arrow"
+                href="http://www.haleon.com/news/press-releases/financial/2025/haleon-q3-2025-trading-statement"
+                data-i18n="home.news.read_more"
+              >
+                Read more
+              </a>
+            </article>
           </div>
         </div>
       </section>
@@ -386,9 +653,16 @@
       <section class="section" id="products">
         <div class="container">
           <div class="section__head">
-            <h2 class="h2">All products</h2>
+            <h2 class="h2" data-i18n="products.title">All products</h2>
             <div class="tabs" role="tablist" aria-label="Product brands">
-              <button class="tab is-active" type="button" role="tab" aria-selected="true" data-tab="all">
+              <button
+                class="tab is-active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                data-tab="all"
+                data-i18n="products.tabs.all"
+              >
                 Show all
               </button>
               <button class="tab" type="button" role="tab" aria-selected="false" data-tab="pablo">Pablo</button>
@@ -419,10 +693,12 @@
               </picture>
               <h3 class="product__name">Pablo Blue Mint</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge product__badge--alt">PABLO</div>
@@ -441,10 +717,12 @@
               </picture>
               <h3 class="product__name">Pablo Bubblegum</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge">PABLO</div>
@@ -463,10 +741,12 @@
               </picture>
               <h3 class="product__name">Pablo Dark Cherry</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge product__badge--alt">PABLO</div>
@@ -485,10 +765,12 @@
               </picture>
               <h3 class="product__name">Pablo Frosted Mint</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge">PABLO</div>
@@ -507,10 +789,12 @@
               </picture>
               <h3 class="product__name">Pablo Green Mint</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge product__badge--alt">PABLO</div>
@@ -529,10 +813,12 @@
               </picture>
               <h3 class="product__name">Pablo Liquorice</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge">PABLO</div>
@@ -551,10 +837,12 @@
               </picture>
               <h3 class="product__name">Pablo Orange Exclusive</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="pablo">
               <div class="product__badge product__badge--alt">PABLO</div>
@@ -573,10 +861,12 @@
               </picture>
               <h3 class="product__name">Pablo Passionfruit</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
 
             <!-- Zafari -->
@@ -597,10 +887,12 @@
               </picture>
               <h3 class="product__name">Zafari Cool Mint</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="zafari">
               <div class="product__badge product__badge--alt">ZAFARI</div>
@@ -619,10 +911,12 @@
               </picture>
               <h3 class="product__name">Zafari Grapefruit</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="zafari">
               <div class="product__badge">ZAFARI</div>
@@ -641,10 +935,12 @@
               </picture>
               <h3 class="product__name">Zafari Jalapeño Lime</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="zafari">
               <div class="product__badge product__badge--alt">ZAFARI</div>
@@ -663,10 +959,12 @@
               </picture>
               <h3 class="product__name">Zafari Mango</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="zafari">
               <div class="product__badge">ZAFARI</div>
@@ -685,10 +983,12 @@
               </picture>
               <h3 class="product__name">Zafari Mint</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="zafari">
               <div class="product__badge product__badge--alt">ZAFARI</div>
@@ -707,10 +1007,12 @@
               </picture>
               <h3 class="product__name">Zafari Passionfruit</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
 
             <!-- Zyn -->
@@ -731,10 +1033,12 @@
               </picture>
               <h3 class="product__name">Zyn Cool Blueberry</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="zyn">
               <div class="product__badge product__badge--alt">ZYN</div>
@@ -753,10 +1057,12 @@
               </picture>
               <h3 class="product__name">Zyn Cool Watermelon</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="zyn">
               <div class="product__badge">ZYN</div>
@@ -775,10 +1081,12 @@
               </picture>
               <h3 class="product__name">Zyn Fresh Mint</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
 
             <!-- Iceberg -->
@@ -799,10 +1107,12 @@
               </picture>
               <h3 class="product__name">Iceberg Cherry</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="iceberg">
               <div class="product__badge product__badge--alt">ICEBERG</div>
@@ -821,10 +1131,12 @@
               </picture>
               <h3 class="product__name">Iceberg Cola</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="iceberg">
               <div class="product__badge">ICEBERG</div>
@@ -843,10 +1155,12 @@
               </picture>
               <h3 class="product__name">Iceberg Emerald</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="iceberg">
               <div class="product__badge product__badge--alt">ICEBERG</div>
@@ -865,10 +1179,12 @@
               </picture>
               <h3 class="product__name">Iceberg Kiwi Strawberry</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="iceberg">
               <div class="product__badge">ICEBERG</div>
@@ -887,10 +1203,12 @@
               </picture>
               <h3 class="product__name">Iceberg Mango Banana</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="iceberg">
               <div class="product__badge product__badge--alt">ICEBERG</div>
@@ -909,10 +1227,12 @@
               </picture>
               <h3 class="product__name">Iceberg Watermelon</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
 
             <!-- Velo -->
@@ -933,10 +1253,12 @@
               </picture>
               <h3 class="product__name">Velo Bright Spearmint</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="velo">
               <div class="product__badge product__badge--alt">VELO</div>
@@ -955,10 +1277,12 @@
               </picture>
               <h3 class="product__name">Velo Crispy Peppermint</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
             <article class="card product" data-category="velo">
               <div class="product__badge">VELO</div>
@@ -977,10 +1301,12 @@
               </picture>
               <h3 class="product__name">Velo Strawberry Ice</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
 
             <!-- Maggie -->
@@ -1001,147 +1327,135 @@
               </picture>
               <h3 class="product__name">Maggie Cherry Tonic</h3>
               <div class="product__meta">
-                <span class="product__price">₦9,500</span>
-                <span class="product__strength">Varies</span>
+                <span class="product__price" data-money="9500" data-money-currency="NGN">₦9,500</span>
+                <span class="product__strength" data-i18n="products.varies">Varies</span>
               </div>
-              <button class="btn btn-small btn-solid product__btn" type="button">Add to cart</button>
+              <button class="btn btn-small btn-solid product__btn" type="button" data-i18n="products.add_to_cart">
+                Add to cart
+              </button>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- How it works -->
-      <section class="section section--muted" aria-label="How it works">
-        <div class="container">
-          <h2 class="h2">How does Snus work?</h2>
-          <div class="how">
-            <div class="how__item">
-              <img class="how__img" src="./assets/how-1.svg" alt="Take a pouch" width="260" height="180" />
-              <div class="how__title">Take a pouch</div>
-            </div>
-            <div class="how__item">
-              <img class="how__img" src="./assets/how-2.svg" alt="Place it behind your upper lip" width="260" height="180" />
-              <div class="how__title">Place it behind your upper lip</div>
-            </div>
-            <div class="how__item">
-              <img class="how__img" src="./assets/how-3.svg" alt="Enjoy" width="260" height="180" />
-              <div class="how__title">Enjoy</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section class="section" id="faq">
-        <div class="container">
-          <h2 class="h2">Do you have any questions about our Snus?</h2>
-
-          <div class="faq" role="list">
-            <div class="faq__item" role="listitem">
-              <button class="faq__q" type="button" aria-expanded="false">
-                What is SNUZ?
-                <span class="faq__chev" aria-hidden="true">▾</span>
-              </button>
-              <div class="faq__a" hidden>
-                SNUZ is a nicotine pouch brand offering a range of flavors and strengths. Nicotine
-                pouches are tobacco-free and designed for discreet use.
-              </div>
-            </div>
-
-            <div class="faq__item" role="listitem">
-              <button class="faq__q" type="button" aria-expanded="false">
-                How will I be notified of new SNUZ products?
-                <span class="faq__chev" aria-hidden="true">▾</span>
-              </button>
-              <div class="faq__a" hidden>
-                Subscribe to our updates and follow our social channels. We announce new releases
-                and promotions regularly.
-              </div>
-            </div>
-
-            <div class="faq__item" role="listitem">
-              <button class="faq__q" type="button" aria-expanded="false">
-                How is it made?
-                <span class="faq__chev" aria-hidden="true">▾</span>
-              </button>
-              <div class="faq__a" hidden>
-                Nicotine pouches typically use nicotine, plant fibers, flavorings, and moisture
-                regulators, packed into small pouches for consistent delivery.
-              </div>
-            </div>
-
-            <div class="faq__item" role="listitem">
-              <button class="faq__q" type="button" aria-expanded="false">
-                What strength should I start with?
-                <span class="faq__chev" aria-hidden="true">▾</span>
-              </button>
-              <div class="faq__a" hidden>
-                If you’re new, start low and adjust gradually. If you already use nicotine, choose
-                a strength that matches your current intake.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer class="footer" id="contact">
-        <div class="container footer__inner">
-          <div class="footer__brand">
-            <a href="./index.html" aria-label="SNUZ.NG home">
-              <picture>
-                <source srcset="./assets/snuz-logo.avif" type="image/avif" />
-                <source srcset="./assets/snuz-logo.webp" type="image/webp" />
-                <img class="footer__logo" src="./assets/snuz-logo.jpg" alt="SNUZ.NG" width="160" height="70" />
-              </picture>
+      <section class="section" id="careers" aria-label="Careers">
+        <div class="container careers">
+          <div class="careers__copy">
+            <h3 class="kicker" data-i18n="home.careers.banner">
+              The future of everyday health is changing and we're the people changing it. Nowhere else
+              will you find an opportunity quite like this.
+            </h3>
+            <a class="btn btn--primary btn--arrow" href="./careers.html" data-i18n="home.careers.cta">
+              Your future at snuz.ng
             </a>
-            <p class="footer__text">
-              SNUZ.NG provides nicotine pouches for adult nicotine users. Please use responsibly.
-            </p>
           </div>
-
-          <div class="footer__cols">
-            <div class="footer__col">
-              <div class="footer__title">Contact info</div>
-              <div class="footer__link">Email: support@snuz.ng</div>
-              <div class="footer__link">Phone: +234 912 039 1463</div>
-              <div class="footer__link">Working hours: Mon–Sat 9:00–18:00</div>
-            </div>
-            <div class="footer__col">
-              <div class="footer__title">Categories</div>
-              <a class="footer__a" href="#products">Products</a>
-              <a class="footer__a" href="#snus">Snus</a>
-              <a class="footer__a" href="#nicotine-pouches">Nicotine pouches</a>
-              <a class="footer__a" href="#faq">FAQ</a>
-            </div>
-            <div class="footer__col">
-              <div class="footer__title">Legal</div>
-              <a class="footer__a" href="#top">Terms</a>
-              <a class="footer__a" href="#top">Privacy</a>
-              <a class="footer__a" href="#top">Shipping</a>
-            </div>
+          <div class="careers__image">
+            <img
+              src="./assets/hero-banner.svg"
+              alt="Available brands banner illustration"
+              loading="lazy"
+            />
           </div>
         </div>
-
-        <div class="footer__bottom">
-          <div class="container footer__bottom-inner">
-            <span>© <span id="year"></span> SNUZ.NG. All rights reserved.</span>
-            <span class="footer__pay">VISA · MasterCard · Verve</span>
-          </div>
-        </div>
-      </footer>
+      </section>
     </main>
 
-    <!-- Fixed widgets -->
-    <a class="float float--msg" href="mailto:support@snuz.ng" aria-label="Message us">
-      <span aria-hidden="true">✉</span>
-    </a>
-    <button id="backToTop" class="float float--top" type="button" aria-label="Back to top" hidden>
-      <span aria-hidden="true">↑</span>
-    </button>
+    <footer class="site-footer">
+      <div class="container footer">
+        <button class="btn btn--ghost btn--arrow" type="button" data-to-top>
+          Go back to top of page
+        </button>
 
-    <script src="./script.js?v=11" defer></script>
+        <div class="footer__grid">
+          <div>
+            <div class="brand brand--footer" aria-label="snuz.ng">
+              <picture class="brand__mark" aria-hidden="true">
+                <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+                <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+                <img
+                  class="brand__logo"
+                  src="./assets/snuz-logo.jpg"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                />
+              </picture>
+              <span class="brand__name">snuz.ng</span>
+            </div>
+            <ul class="social" aria-label="Social links">
+              <li>
+                <a
+                  href="https://www.instagram.com/snuz_ng?igsh=aDRkZzl3cDZmYTJy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/channel/UCeRp3iDRROr1lj1jkXScycA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  YouTube
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/snuz-ng/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tiktok.com/@haleon" target="_blank" rel="noopener noreferrer">
+                  TikTok
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer__title">Useful links</h3>
+            <ul class="footer__links">
+              <li>
+                <a href="https://haleon.help/" target="_blank" rel="noopener noreferrer">
+                  Report a side effect
+                </a>
+              </li>
+              <li><a href="https://www.haleon.com/health-professionals">Health Professionals</a></li>
+              <li><a href="https://www.haleon.com/innovation-portal">Innovation Portal</a></li>
+              <li>
+                <a
+                  href="https://supplier.haleon.com/irj/portal/public?guest_user=SUP_GUEST_EN"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Supplier Portal
+                </a>
+              </li>
+              <li><a href="https://www.haleon.com/accessibility">Accessibility</a></li>
+              <li><a href="https://www.haleon.com/sitemap">Sitemap</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer__title">Legal</h3>
+            <ul class="footer__links">
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Cookies</a></li>
+              <li><a href="#">Terms of use</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
   </body>
 </html>
-
-

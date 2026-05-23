@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snuz.ng – Investors</title>
+    <meta
+      name="description"
+      content="Explore snuz.ng’s investor centre: access financial results, shareholder services, debt info, regulatory news, and strategic updates."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
+    <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="a11y.skip_to_content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <div class="topbar">
+        <div class="container topbar__inner">
+          <div class="topbar__actions">
+            <form
+              class="topbar__search"
+              role="search"
+              aria-label="Site search"
+              data-i18n-aria-label="search.form"
+            >
+              <label class="sr-only" for="q" data-i18n="search.label">Search</label>
+              <input
+                id="q"
+                name="q"
+                type="search"
+                placeholder="Search"
+                data-i18n-placeholder="search.placeholder"
+                autocomplete="off"
+              />
+              <button class="icon-btn" type="submit" aria-label="Search" data-i18n-aria-label="search.button">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M10.5 3a7.5 7.5 0 1 1 0 15A7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Zm7.9 12.5 2.9 2.9-1.4 1.4-2.9-2.9 1.4-1.4Z"
+                  />
+                </svg>
+              </button>
+            </form>
+
+            <div class="lang" data-lang>
+              <button
+                class="pill lang__btn"
+                type="button"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-label="Choose your language"
+                data-lang-btn
+              >
+                <span data-i18n="lang.choose">Choose Your Language</span>
+                <span class="lang__current" data-lang-current>English</span>
+                <span class="lang__caret" aria-hidden="true">▾</span>
+              </button>
+              <div class="lang__menu" role="listbox" hidden data-lang-menu>
+                <button class="lang__option" type="button" role="option" aria-selected="true" data-lang-option="en">
+                  English
+                </button>
+                <button class="lang__option" type="button" role="option" aria-selected="false" data-lang-option="pt">
+                  Portuguese
+                </button>
+                <button class="lang__option" type="button" role="option" aria-selected="false" data-lang-option="es">
+                  Spanish
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <div class="container nav__inner">
+          <a class="brand" href="./index.html" aria-label="snuz.ng home">
+            <picture class="brand__mark" aria-hidden="true">
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="" width="40" height="40" />
+            </picture>
+            <span class="brand__name">snuz.ng</span>
+          </a>
+
+          <nav class="nav__links" aria-label="Primary">
+            <a href="./who-we-are.html" data-i18n="nav.who_we_are">Who we are</a>
+            <a href="./our-brands.html" data-i18n="nav.our_brands">Our brands</a>
+            <a href="./investors.html" data-i18n="nav.investors">Investors</a>
+            <a href="./careers.html" data-i18n="nav.careers">Careers</a>
+            <a href="./news.html" data-i18n="nav.news">News</a>
+            <a href="./contact.html" data-i18n="nav.contact">Contact</a>
+          </nav>
+
+          <div class="nav__cta">
+            <a class="btn btn--primary btn--arrow" href="./investors.html" data-i18n="nav.investor_centre">
+              Investor centre
+            </a>
+          </div>
+
+          <button
+            class="menu-btn"
+            type="button"
+            aria-label="Open menu"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            data-menu-btn
+          >
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+          <div class="container mobile-menu__inner">
+            <nav class="mobile-menu__links" aria-label="Mobile">
+              <a href="./who-we-are.html" data-i18n="nav.who_we_are">Who we are</a>
+              <a href="./our-brands.html" data-i18n="nav.our_brands">Our brands</a>
+              <a href="./investors.html" data-i18n="nav.investors">Investors</a>
+              <a href="./careers.html" data-i18n="nav.careers">Careers</a>
+              <a href="./news.html" data-i18n="nav.news">News</a>
+              <a href="./contact.html" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="mobile-menu__meta">
+              <a
+                class="btn btn--primary btn--arrow btn--block"
+                href="./investors.html"
+                data-i18n="nav.investor_centre"
+              >
+                Investor centre
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero" aria-label="Investors hero">
+        <div class="page-hero__media" aria-hidden="true">
+          <video
+            class="page-hero__video"
+            muted
+            playsinline
+            preload="none"
+            poster="./assets/how-1.svg"
+            data-bg-video
+          >
+            <source data-src="./VIDEO-2026-02-25-19-18-47.mp4" type="video/mp4" />
+          </video>
+          <div class="page-hero__overlay"></div>
+        </div>
+        <div class="container page-hero__content">
+          <p class="page-hero__kicker" data-i18n="nav.investors">Investors</p>
+          <h1 class="page-hero__title" data-i18n="nav.investor_centre">Investor centre</h1>
+          <p class="page-hero__lede" data-i18n="page.investors.lede">
+            Insight into the investment case, financial performance, reports, events, and shareholder
+            resources.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <article class="prose" data-md-target></article>
+          <template data-md>
+# Investors
+
+snuz.ng is a consumer company that specialises in everyday health. This page provides insight into the investment case, financial performance, reports, regulatory news, and shareholder resources.
+
+* * *
+
+### Investment case
+
+- Global leader in the consumer healthcare market, underpinned by long‑term structural tailwinds and resilient categories
+- Portfolio of superior brands rooted in trusted science with leading route‑to‑market capabilities
+- Headroom for growth via innovation‑led premiumisation and expanding reach to more consumers
+- Step‑change supply chain programme driving significant gross cost savings
+- Strong cash generation and disciplined capital allocation supporting shareholder returns
+
+* * *
+
+### Explore
+
+- [Results](https://www.haleon.com/investors/results-reports-presentations/results)
+- [Annual report 2024](https://www.haleon.com/investors/annual-report-2024)
+- [Regulatory news](https://www.haleon.com/investors/regulatory-news)
+- [Events calendar](https://www.haleon.com/investors/events-calendar)
+- [Shareholder information](https://www.haleon.com/investors/shareholder-information)
+
+* * *
+
+### Contact information
+
+If you are an institutional shareholder or equity analyst and would like information, contact the investor relations team.
+
+[Investor Relations contacts](https://www.haleon.com/investors/investor-contacts)
+          </template>
+          <template data-md data-lang="pt">
+# Investidores
+
+A snuz.ng é uma empresa de consumo que se especializa em saúde quotidiana. Esta página oferece uma visão geral da tese de investimento, desempenho financeiro, relatórios, notícias regulatórias e recursos para acionistas.
+
+* * *
+
+### Tese de investimento
+
+- Líder global no mercado de saúde do consumidor, sustentado por tendências estruturais de longo prazo e categorias resilientes
+- Portefólio de marcas superiores, apoiado em ciência de confiança e capacidades líderes de comercialização
+- Espaço para crescer através de premiumização orientada pela inovação e expansão do alcance a mais consumidores
+- Programa de transformação da cadeia de abastecimento, gerando poupanças significativas de custos brutos
+- Forte geração de caixa e alocação disciplinada de capital, apoiando retornos aos acionistas
+
+* * *
+
+### Explorar
+
+- [Resultados](https://www.haleon.com/investors/results-reports-presentations/results)
+- [Relatório anual 2024](https://www.haleon.com/investors/annual-report-2024)
+- [Notícias regulatórias](https://www.haleon.com/investors/regulatory-news)
+- [Calendário de eventos](https://www.haleon.com/investors/events-calendar)
+- [Informação para acionistas](https://www.haleon.com/investors/shareholder-information)
+
+* * *
+
+### Informações de contacto
+
+Se é um acionista institucional ou analista de ações e gostaria de informação, contacte a equipa de Relações com Investidores.
+
+[Contactos de Relações com Investidores](https://www.haleon.com/investors/investor-contacts)
+          </template>
+          <template data-md data-lang="es">
+# Inversores
+
+snuz.ng es una empresa de consumo especializada en salud cotidiana. Esta página ofrece información sobre el caso de inversión, el desempeño financiero, los informes, las noticias regulatorias y los recursos para accionistas.
+
+* * *
+
+### Caso de inversión
+
+- Líder global en el mercado de salud del consumidor, respaldado por tendencias estructurales de largo plazo y categorías resilientes
+- Portafolio de marcas superiores basado en ciencia confiable y capacidades líderes de comercialización
+- Espacio para crecer mediante la premiumización impulsada por la innovación y la expansión del alcance a más consumidores
+- Programa de transformación de la cadena de suministro que impulsa ahorros significativos de costos brutos
+- Fuerte generación de caja y asignación disciplinada de capital que respaldan retornos para los accionistas
+
+* * *
+
+### Explorar
+
+- [Resultados](https://www.haleon.com/investors/results-reports-presentations/results)
+- [Informe anual 2024](https://www.haleon.com/investors/annual-report-2024)
+- [Noticias regulatorias](https://www.haleon.com/investors/regulatory-news)
+- [Calendario de eventos](https://www.haleon.com/investors/events-calendar)
+- [Información para accionistas](https://www.haleon.com/investors/shareholder-information)
+
+* * *
+
+### Información de contacto
+
+Si es un accionista institucional o analista de renta variable y desea información, póngase en contacto con el equipo de relaciones con inversores.
+
+[Contactos de Relaciones con Inversores](https://www.haleon.com/investors/investor-contacts)
+          </template>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer">
+        <button class="btn btn--ghost btn--arrow" type="button" data-to-top>Go back to top of page</button>
+
+        <div class="footer__grid">
+          <div>
+            <div class="brand brand--footer" aria-label="snuz.ng">
+              <picture class="brand__mark" aria-hidden="true">
+                <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+                <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+                <img
+                  class="brand__logo"
+                  src="./assets/snuz-logo.jpg"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                />
+              </picture>
+              <span class="brand__name">snuz.ng</span>
+            </div>
+            <ul class="social" aria-label="Social links">
+              <li>
+                <a
+                  href="https://www.instagram.com/snuz_ng?igsh=aDRkZzl3cDZmYTJy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/channel/UCeRp3iDRROr1lj1jkXScycA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  YouTube
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/snuz-ng/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tiktok.com/@haleon" target="_blank" rel="noopener noreferrer">
+                  TikTok
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer__title">Useful links</h3>
+            <ul class="footer__links">
+              <li>
+                <a href="https://haleon.help/" target="_blank" rel="noopener noreferrer">
+                  Report a side effect
+                </a>
+              </li>
+              <li><a href="./contact.html">Contact</a></li>
+              <li><a href="https://www.haleon.com/accessibility">Accessibility</a></li>
+              <li><a href="https://www.haleon.com/sitemap">Sitemap</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer__title">Legal</h3>
+            <ul class="footer__links">
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Cookies</a></li>
+              <li><a href="#">Terms of use</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+
