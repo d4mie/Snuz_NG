@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snuz.ng – Cart</title>
+    <meta name="description" content="Your snuz.ng shopping cart." />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
+    <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
+  </head>
+  <body class="page-shop">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header is-solid" data-header>
+      <div class="topbar">
+        <div class="container topbar__inner">
+          <div class="topbar__actions">
+            <div class="lang" data-lang>
+              <button class="pill lang__btn" type="button" aria-haspopup="listbox" aria-expanded="false" data-lang-btn>
+                <span data-i18n="lang.choose">Choose Your Language</span>
+                <span class="lang__current" data-lang-current>English</span>
+                <span class="lang__caret" aria-hidden="true">▾</span>
+              </button>
+              <div class="lang__menu" role="listbox" hidden data-lang-menu>
+                <button class="lang__option" type="button" role="option" aria-selected="true" data-lang-option="en">English</button>
+                <button class="lang__option" type="button" role="option" aria-selected="false" data-lang-option="pt">Portuguese</button>
+                <button class="lang__option" type="button" role="option" aria-selected="false" data-lang-option="es">Spanish</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <div class="container nav__inner">
+          <a class="brand" href="./index.html" aria-label="snuz.ng home">
+            <picture class="brand__mark" aria-hidden="true">
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="" width="40" height="40" />
+            </picture>
+            <span class="brand__name">snuz.ng</span>
+          </a>
+
+          <nav class="nav__links" aria-label="Primary">
+            <a href="./who-we-are.html" data-i18n="nav.who_we_are">Who we are</a>
+            <a href="./our-brands.html" data-i18n="nav.our_brands">Our brands</a>
+            <a href="./investors.html" data-i18n="nav.investors">Investors</a>
+            <a href="./careers.html" data-i18n="nav.careers">Careers</a>
+            <a href="./news.html" data-i18n="nav.news">News</a>
+            <a href="./contact.html" data-i18n="nav.contact">Contact</a>
+          </nav>
+
+          <div class="nav__cta">
+            <a class="btn btn--primary btn--arrow" href="./index.html#products">Shop</a>
+          </div>
+
+          <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false" data-menu-btn>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+            <span class="menu-btn__bar" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+          <div class="container mobile-menu__inner">
+            <nav class="mobile-menu__links" aria-label="Mobile">
+              <a href="./who-we-are.html">Who we are</a>
+              <a href="./our-brands.html">Our brands</a>
+              <a href="./investors.html">Investors</a>
+              <a href="./careers.html">Careers</a>
+              <a href="./news.html">News</a>
+              <a href="./contact.html">Contact</a>
+              <a href="./cart.html" class="is-active">Cart</a>
+            </nav>
+            <div class="mobile-menu__meta">
+              <a class="btn btn--primary btn--arrow btn--block" href="./index.html#products">Shop</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="shop-hero" aria-label="Cart">
+        <div class="container">
+          <p class="shop-hero__kicker">Shop</p>
+          <h1 class="shop-hero__title">Your cart</h1>
+          <p class="shop-hero__lede">Review your items, then continue to checkout.</p>
+        </div>
+      </section>
+
+      <section class="section shop-section" data-cart-page>
+        <div class="container">
+          <div class="cart-page-empty" data-cart-page-empty>
+            <p>Your cart is empty.</p>
+            <a class="btn btn--primary" href="./index.html#products">Return to shop</a>
+          </div>
+
+          <div class="cart-page-grid" data-cart-page-summary hidden>
+            <div class="cart-page-list" data-cart-page-list></div>
+            <aside class="cart-summary">
+              <div class="cart-summary__row">
+                <span>Subtotal</span>
+                <strong data-cart-page-subtotal>₦0</strong>
+              </div>
+              <p class="cart-summary__note">Delivery fee is paid to the dispatcher on delivery.</p>
+              <a class="btn btn--primary btn--block" href="./checkout.html">Checkout</a>
+              <a class="link cart-summary__continue" href="./index.html#products">Continue shopping</a>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer">
+        <div class="footer__grid">
+          <div>
+            <div class="brand brand--footer" aria-label="snuz.ng">
+              <picture class="brand__mark" aria-hidden="true">
+                <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+                <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+                <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="" width="40" height="40" loading="lazy" />
+              </picture>
+              <span class="brand__name">snuz.ng</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="footer__title">Shop</h3>
+            <ul class="footer__links">
+              <li><a href="./index.html#products">All products</a></li>
+              <li><a href="./cart.html">Cart</a></li>
+              <li><a href="./checkout.html">Checkout</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="footer__title">Legal</h3>
+            <ul class="footer__links">
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Terms of use</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./shop-config.js"></script>
+    <script src="./script.js"></script>
+    <script src="./cart.js"></script>
+  </body>
+</html>
