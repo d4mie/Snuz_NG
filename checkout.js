@@ -55,23 +55,35 @@
         resolve();
         return;
       }
+
+      // Prefer the static tag inside <form> (Paystack errors if loaded from <head>).
       const existing = document.querySelector("script[data-paystack-inline]");
       if (existing) {
+        const wait = () => {
+          if (window.PaystackPop) resolve();
+          else window.setTimeout(wait, 30);
+        };
         existing.addEventListener("load", () => resolve(), { once: true });
         existing.addEventListener(
           "error",
           () => reject(new Error("Paystack failed to load")),
           { once: true }
         );
+        wait();
+        return;
+      }
+
+      const form = document.querySelector("[data-checkout-form]");
+      if (!form) {
+        reject(new Error("Checkout form missing; cannot start Paystack."));
         return;
       }
       const script = document.createElement("script");
       script.src = "https://js.paystack.co/v1/inline.js";
-      script.async = true;
       script.dataset.paystackInline = "1";
       script.onload = () => resolve();
       script.onerror = () => reject(new Error("Paystack failed to load"));
-      document.head.appendChild(script);
+      form.appendChild(script);
     });
 
   const boot = () => {

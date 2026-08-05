@@ -250,6 +250,8 @@
 
           <button class="checkout-pay" type="button" data-pay-now disabled>Pay now</button>
           <p class="checkout-error" data-pay-error></p>
+          <!-- Paystack requires inline.js to load inside a <form> (not in <head>). -->
+          <script src="https://js.paystack.co/v1/inline.js" data-paystack-inline></script>
         </form>
 
         <aside class="checkout-aside">
