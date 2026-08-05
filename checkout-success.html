@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snuz.ng – Payment status</title>
+    <meta name="description" content="Payment confirmation for your snuz.ng order." />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
+    <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
+  </head>
+  <body class="page-shop">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header is-solid" data-header>
+      <div class="nav">
+        <div class="container nav__inner">
+          <a class="brand" href="./index.html" aria-label="snuz.ng home">
+            <picture class="brand__mark" aria-hidden="true">
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="" width="40" height="40" />
+            </picture>
+            <span class="brand__name">snuz.ng</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section shop-section">
+        <div class="container success-card">
+          <p class="shop-hero__kicker">Payment</p>
+          <h1 class="shop-hero__title" data-success-title>Thanks for your order</h1>
+          <p class="success-card__ref">
+            Reference: <strong data-success-reference>—</strong>
+          </p>
+          <div class="success-card__status">
+            <p>Status</p>
+            <strong data-success-status>Checking…</strong>
+            <p class="success-card__note" data-success-note></p>
+          </div>
+          <div class="success-card__actions">
+            <a class="btn btn--primary" href="./index.html">Home</a>
+            <a class="btn btn--ghost" href="./index.html#products">Continue shopping</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./shop-config.js"></script>
+    <script>
+      (() => {
+        const params = new URLSearchParams(window.location.search);
+        const reference = params.get("reference") || "";
+        const refEl = document.querySelector("[data-success-reference]");
+        const statusEl = document.querySelector("[data-success-status]");
+        const noteEl = document.querySelector("[data-success-note]");
+        const titleEl = document.querySelector("[data-success-title]");
+
+        if (refEl) refEl.textContent = reference || "Missing";
+
+        if (!reference) {
+          if (titleEl) titleEl.textContent = "Payment status";
+          if (statusEl) statusEl.textContent = "error";
+          if (noteEl) noteEl.textContent = "Missing Paystack reference.";
+          return;
+        }
+
+        const apiBase = (window.SNUZ_SHOP?.apiBase || "").replace(/\/+$/, "");
+        if (!apiBase) {
+          if (statusEl) statusEl.textContent = "success";
+          if (noteEl) {
+            noteEl.textContent =
+              "Your payment was submitted through Paystack. Keep this reference for your records.";
+          }
+          return;
+        }
+
+        fetch(`${apiBase}/api/paystack/verify?reference=${encodeURIComponent(reference)}`)
+          .then((res) => res.json())
+          .then((json) => {
+            const status = json?.data?.status || (json?.ok ? "unknown" : "error");
+            if (statusEl) statusEl.textContent = status;
+            if (!json?.ok && noteEl) {
+              noteEl.textContent = json?.error || "Unable to verify payment right now.";
+            } else if (status === "success" && noteEl) {
+              noteEl.textContent = "Payment confirmed. We’ll process your order shortly.";
+            }
+          })
+          .catch(() => {
+            if (statusEl) statusEl.textContent = "submitted";
+            if (noteEl) {
+              noteEl.textContent =
+                "We couldn’t verify automatically, but your Paystack reference is saved above.";
+            }
+          });
+      })();
+    </script>
+  </body>
+</html>

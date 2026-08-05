@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snuz.ng – Checkout</title>
+    <meta name="description" content="Secure checkout for snuz.ng products." />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
+    <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
+  </head>
+  <body class="page-checkout">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="checkout-top">
+      <div class="checkout-top__inner">
+        <a class="brand" href="./index.html" aria-label="snuz.ng home">
+          <picture class="brand__mark" aria-hidden="true">
+            <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+            <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+            <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="" width="40" height="40" />
+          </picture>
+          <span class="brand__name">snuz.ng</span>
+        </a>
+        <nav class="checkout-steps" aria-label="Checkout progress">
+          <a href="./cart.html">Cart</a>
+          <span aria-hidden="true">/</span>
+          <span class="is-current">Checkout</span>
+          <span aria-hidden="true">/</span>
+          <span>Pay</span>
+        </nav>
+        <a class="checkout-top__back" href="./cart.html">← Cart</a>
+      </div>
+    </header>
+
+    <main id="main" class="checkout-main">
+      <div class="checkout-shell">
+        <form class="checkout-form" data-checkout-form novalidate>
+          <header class="checkout-intro">
+            <p class="checkout-intro__kicker">Secure checkout</p>
+            <h1>Almost there</h1>
+            <p class="checkout-intro__lede">Enter your details. Delivery fee is paid directly to the dispatcher.</p>
+          </header>
+
+          <p class="checkout-empty" data-checkout-empty hidden>
+            Your cart is empty.
+            <a href="./index.html#products">Return to shop</a>
+          </p>
+
+          <section class="checkout-block">
+            <div class="checkout-block__head">
+              <h2>Contact</h2>
+            </div>
+            <label class="field">
+              <span class="field__label">Email</span>
+              <input id="checkout-email" type="email" placeholder="you@email.com" required autocomplete="email" />
+            </label>
+          </section>
+
+          <section class="checkout-block">
+            <div class="checkout-block__head">
+              <h2>Delivery</h2>
+            </div>
+
+            <div class="segmented" role="radiogroup" aria-label="Delivery method">
+              <label class="segmented__option">
+                <input id="delivery-ship" type="radio" name="delivery" value="ship" checked />
+                <span>Ship</span>
+              </label>
+              <label class="segmented__option">
+                <input id="delivery-pickup" type="radio" name="delivery" value="pickup" />
+                <span>Pick up</span>
+              </label>
+            </div>
+
+            <label class="field">
+              <span class="field__label">Country / region</span>
+              <select id="checkout-country">
+                <option>Nigeria</option>
+                <option>Ghana</option>
+                <option>United States</option>
+                <option>United Kingdom</option>
+              </select>
+            </label>
+
+            <div class="field-grid field-grid--2">
+              <label class="field">
+                <span class="field__label">First name</span>
+                <input id="checkout-first" type="text" placeholder="First name" required autocomplete="given-name" />
+              </label>
+              <label class="field">
+                <span class="field__label">Last name</span>
+                <input id="checkout-last" type="text" placeholder="Last name" required autocomplete="family-name" />
+              </label>
+            </div>
+
+            <label class="field">
+              <span class="field__label">Company <em>(optional)</em></span>
+              <input id="checkout-company" type="text" placeholder="Company" autocomplete="organization" />
+            </label>
+
+            <label class="field field--autocomplete">
+              <span class="field__label">Address</span>
+              <div class="address-autocomplete">
+                <input
+                  id="checkout-address"
+                  type="text"
+                  placeholder="Start typing your street or area…"
+                  required
+                  autocomplete="off"
+                  data-address-autocomplete
+                />
+                <ul
+                  class="address-suggestions"
+                  data-address-suggestions
+                  hidden
+                  role="listbox"
+                  aria-label="Address suggestions"
+                ></ul>
+              </div>
+              <span class="field__hint">Suggestions appear as you type</span>
+            </label>
+
+            <label class="field">
+              <span class="field__label">Apartment, suite, etc. <em>(optional)</em></span>
+              <input id="checkout-apartment" type="text" placeholder="Apartment, suite, landmark" />
+            </label>
+
+            <div class="field-grid field-grid--3">
+              <label class="field">
+                <span class="field__label">City</span>
+                <input id="checkout-city" type="text" placeholder="City" required autocomplete="address-level2" />
+              </label>
+              <label class="field">
+                <span class="field__label">State</span>
+                <select id="checkout-state" required></select>
+              </label>
+              <label class="field">
+                <span class="field__label">Postal <em>(optional)</em></span>
+                <input id="checkout-postal" type="text" placeholder="Code" autocomplete="postal-code" />
+              </label>
+            </div>
+
+            <label class="field">
+              <span class="field__label">Phone</span>
+              <input id="checkout-phone" type="tel" placeholder="Phone number" required autocomplete="tel" />
+            </label>
+          </section>
+
+          <section class="checkout-block" data-shipping-methods>
+            <div class="checkout-block__head">
+              <h2>Delivery</h2>
+            </div>
+            <div class="ship-card" data-shipping-quote>
+              <div class="ship-card__top">
+                <div>
+                  <p class="ship-card__title">Pay dispatcher on delivery</p>
+                  <p class="ship-card__detail" data-shipping-quote-detail>
+                    Your order total covers products only. Delivery fee is paid directly to the dispatcher when your order arrives.
+                  </p>
+                </div>
+                <p class="ship-card__fee" data-shipping-quote-fee>₦0</p>
+              </div>
+              <p class="ship-card__status" data-shipping-quote-status></p>
+            </div>
+          </section>
+
+          <section class="checkout-block">
+            <div class="checkout-block__head">
+              <h2>Payment</h2>
+              <p>Encrypted via Paystack</p>
+            </div>
+            <div class="pay-card">
+              <div class="pay-card__brands" aria-hidden="true">
+                <span>Mastercard</span>
+                <span>Visa</span>
+                <span>Verve</span>
+              </div>
+              <p>You’ll finish payment securely on the next step after clicking Pay now.</p>
+            </div>
+          </section>
+
+          <section class="checkout-block">
+            <div class="checkout-block__head">
+              <h2>Billing</h2>
+            </div>
+            <div class="segmented segmented--stack" role="radiogroup" aria-label="Billing address">
+              <label class="segmented__option">
+                <input id="billing-same" type="radio" name="billing" value="same" checked />
+                <span>Same as shipping</span>
+              </label>
+              <label class="segmented__option">
+                <input id="billing-different" type="radio" name="billing" value="different" />
+                <span>Different billing address</span>
+              </label>
+            </div>
+
+            <div class="billing-fields" data-billing-fields hidden>
+              <label class="field">
+                <span class="field__label">Country / region</span>
+                <select id="billing-country">
+                  <option>Nigeria</option>
+                  <option>Ghana</option>
+                  <option>United States</option>
+                  <option>United Kingdom</option>
+                </select>
+              </label>
+              <div class="field-grid field-grid--2">
+                <label class="field">
+                  <span class="field__label">First name</span>
+                  <input id="billing-first" type="text" placeholder="First name" />
+                </label>
+                <label class="field">
+                  <span class="field__label">Last name</span>
+                  <input id="billing-last" type="text" placeholder="Last name" />
+                </label>
+              </div>
+              <label class="field">
+                <span class="field__label">Company <em>(optional)</em></span>
+                <input id="billing-company" type="text" placeholder="Company" />
+              </label>
+              <label class="field">
+                <span class="field__label">Address</span>
+                <input id="billing-address" type="text" placeholder="Address" />
+              </label>
+              <label class="field">
+                <span class="field__label">Apartment <em>(optional)</em></span>
+                <input id="billing-apartment" type="text" placeholder="Apartment, suite" />
+              </label>
+              <div class="field-grid field-grid--3">
+                <label class="field">
+                  <span class="field__label">City</span>
+                  <input id="billing-city" type="text" placeholder="City" />
+                </label>
+                <label class="field">
+                  <span class="field__label">State</span>
+                  <select id="billing-state"></select>
+                </label>
+                <label class="field">
+                  <span class="field__label">Postal</span>
+                  <input id="billing-postal" type="text" placeholder="Code" />
+                </label>
+              </div>
+              <label class="field">
+                <span class="field__label">Phone</span>
+                <input id="billing-phone" type="tel" placeholder="Phone" />
+              </label>
+            </div>
+          </section>
+
+          <button class="checkout-pay" type="button" data-pay-now disabled>Pay now</button>
+          <p class="checkout-error" data-pay-error></p>
+        </form>
+
+        <aside class="checkout-aside">
+          <div class="checkout-summary">
+            <h2>Your order</h2>
+            <div class="checkout-summary__items" data-checkout-items></div>
+            <div class="checkout-summary__totals">
+              <div><span>Subtotal</span><strong data-checkout-subtotal>₦0</strong></div>
+              <div><span>Delivery</span><strong data-checkout-shipping>Pay on delivery</strong></div>
+              <div class="is-total"><span>Total</span><strong data-checkout-total>₦0</strong></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <script src="./shop-config.js"></script>
+    <script src="./script.js"></script>
+    <script src="./cart.js"></script>
+    <script src="./shipping-calculator.js"></script>
+    <script src="./checkout.js"></script>
+  </body>
+</html>
