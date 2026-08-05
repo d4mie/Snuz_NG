@@ -10,6 +10,7 @@ window.SNUZ_SHOP = {
 
   // Used for address suggestions at checkout (optional).
   // Enable: Maps JavaScript API + Places API (New). Restrict to snuz.ng + localhost.
+  // Leave empty in git. Local: shop-config.local.js. Live: GitHub Actions secrets.
   googleMapsApiKey: "",
 
   // Unused while shippingMode is "on_delivery".
@@ -19,7 +20,7 @@ window.SNUZ_SHOP = {
   shippingMaxNaira: 25000,
   shippingRoundToNaira: 100,
 
-  // Paystack PUBLIC key (pk_test_... or pk_live_...)
+  // Paystack PUBLIC key (pk_test_... or pk_live_...). Leave empty in git.
   paystackPublicKey: "",
 
   // Optional server payment. Leave "" for Paystack Popup.
@@ -86,3 +87,15 @@ window.SNUZ_SHOP = {
     },
   ],
 };
+
+// On localhost only: pull keys from gitignored shop-config.local.js
+(function () {
+  try {
+    var host = location.hostname;
+    if (host !== "localhost" && host !== "127.0.0.1") return;
+    document.write('<script src="./shop-config.local.js"><\/script>');
+  } catch (e) {
+    // ignore
+  }
+})();
+

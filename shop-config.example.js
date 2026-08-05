@@ -1,5 +1,5 @@
-/* Copy to shop-config.js and fill in your keys locally.
-   Do not commit real Paystack / Google keys. */
+/* Keys: copy this pattern to shop-config.local.js (gitignored), not into git.
+   Live: set GOOGLE_MAPS_API_KEY + PAYSTACK_PUBLIC_KEY as GitHub Actions secrets. */
 window.SNUZ_SHOP = {
   currency: "NGN",
 
