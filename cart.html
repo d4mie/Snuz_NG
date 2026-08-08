@@ -46,6 +46,7 @@
           <nav class="nav__links" aria-label="Primary">
             <a href="./who-we-are.html" data-i18n="nav.who_we_are">Who we are</a>
             <a href="./our-brands.html" data-i18n="nav.our_brands">Our brands</a>
+            <a href="./articles.html" data-i18n="nav.articles">Articles</a>
             <a href="./contact.html" data-i18n="nav.contact">Contact</a>
           </nav>
 
@@ -65,6 +66,7 @@
             <nav class="mobile-menu__links" aria-label="Mobile">
               <a href="./who-we-are.html">Who we are</a>
               <a href="./our-brands.html">Our brands</a>
+              <a href="./articles.html" data-i18n="nav.articles">Articles</a>
               <a href="./contact.html">Contact</a>
               <a href="./cart.html" class="is-active">Cart</a>
             </nav>
@@ -110,32 +112,51 @@
 
     <footer class="site-footer">
       <div class="container footer">
+        <div class="footer__top">
+          <button class="footer__to-top" type="button" data-to-top>
+            <span>Back to top</span>
+            <span class="footer__to-top-icon" aria-hidden="true">↑</span>
+          </button>
+        </div>
+
         <div class="footer__grid">
-          <div>
+          <div class="footer__brand">
             <div class="brand brand--footer" aria-label="snuz.ng">
               <picture class="brand__mark" aria-hidden="true">
                 <source srcset="./assets/snuz-logo.avif" type="image/avif" />
                 <source srcset="./assets/snuz-logo.webp" type="image/webp" />
-                <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="" width="40" height="40" loading="lazy" />
+                <img
+                  class="brand__logo"
+                  src="./assets/snuz-logo.jpg"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                />
               </picture>
               <span class="brand__name">snuz.ng</span>
             </div>
+            <p class="footer__tagline">Premium nicotine pouches for adults across Nigeria.</p>
           </div>
-          <div>
+
+          <div class="footer__col">
             <h3 class="footer__title">Shop</h3>
             <ul class="footer__links">
-              <li><a href="./index.html#products">All products</a></li>
+              <li><a href="./index.html#featured">Featured products</a></li>
               <li><a href="./cart.html">Cart</a></li>
               <li><a href="./checkout.html">Checkout</a></li>
             </ul>
           </div>
-          <div>
-            <h3 class="footer__title">Legal</h3>
-            <ul class="footer__links">
-              <li><a href="#">Privacy</a></li>
-              <li><a href="#">Terms of use</a></li>
-            </ul>
+
+          <div class="footer__col">
+            <h3 class="footer__title">Contact</h3>
+            <a class="footer__email" href="mailto:Snuspouchesnigeria@gmail.com">Snuspouchesnigeria@gmail.com</a>
           </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copy">© snuz.ng</p>
+          <p class="footer__note">For adults 18+ only.</p>
         </div>
       </div>
     </footer>

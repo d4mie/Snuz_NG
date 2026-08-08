@@ -473,11 +473,16 @@
       "a11y.skip_to_content": "Skip to content",
       "nav.who_we_are": "Who we are",
       "nav.our_brands": "Our brands",
-      "nav.investors": "Investors",
+      "nav.articles": "Articles",
+      "nav.investors": "Become a Distributor",
       "nav.careers": "Careers",
       "nav.news": "News",
       "nav.contact": "Contact",
-      "nav.investor_centre": "Investor centre",
+      "nav.investor_centre": "Become a distributor",
+      "home.distributor.lede":
+        "Partner with snuz.ng to bring premium nicotine pouches to more adults across Nigeria. Reach out to start a distributor conversation with our team.",
+      "page.articles.lede":
+        "Lessons from Sweden’s smoke-free success — and what they mean for Nigeria.",
       "lang.choose": "Choose Your Language",
       "search.form": "Site search",
       "search.label": "Search",
@@ -515,14 +520,17 @@
       "page.about.lede":
         "Dedicated to tobacco‑free nicotine pouches, fair premium practices, and public health through harm reduction.",
       "page.about.cta": "Read about us",
-      "home.hero_title": 'THE SWEDISH <strong>Experience</strong>',
+      "home.hero_title": 'YOUR SMOKELESS JOURNEY <strong>AWAITS</strong>',
       "home.blueprint_title": 'A BLUEPRINT<br />FOR <strong>NIGERIA</strong>',
       "home.blueprint_p1":
         'The risk of a man dying from a tobacco-related illness is less in Sweden than in any other country, although tobacco consumption is on a comparable level with that of other countries in Europe and around the world. Researchers refer to this paradox as “the Swedish Experience”.',
       "home.blueprint_p2":
         'Sweden has achieved a historic public health victory, officially becoming the world\'s first and only “smoke-free” country by driving adult smoking rates below 5%. This unparalleled success was not achieved through prohibition, but by the widespread adoption of safer, smoke-free alternatives like snus, the precursor to modern nicotine pouches. This proves that informed adult choice and access to better products can dramatically accelerate the decline of smoking. It is our foundational goal to replicate this Swedish model of harm reduction in Nigeria, offering millions of adults a path away from combustible cigarettes and toward a smoke-free future.',
       "home.blueprint_cta": "Read the article",
-      "home.locations_title": 'PHYSICAL LOCATIONS<br />TO SHOP <strong>SNUZ</strong>',
+      "home.deliveries.eyebrow": "Trusted nationwide",
+      "home.deliveries.label": "Successful Snus Deliveries",
+      "home.locations_title": "Snus Shop Locator",
+      "home.locations_lede": "Find a physical SNUZ store near you. Tap a pin to open directions.",
       "home.locations_video_label": "Physical SNUZ shop locations",
       "home.stats.markets": "Markets we operate in",
       "home.stats.innovations": "Product innovations in 2024",
@@ -556,11 +564,28 @@
       "home.reg.p5":
         "Through this regulatory approval, snuz.ng aims to contribute to a responsible and transparent marketplace for adult nicotine alternatives in Nigeria.",
       "home.news.view_all": "View all stories",
+      "home.articles.view_all": "View all articles",
+      "home.articles.tag": "Regulatory",
+      "home.articles.snippet":
+        "snuz.ng nicotine pouch products are now available in Nigeria following full compliance with NAFDAC requirements — a milestone for transparent, regulated adult nicotine alternatives in the market.",
       "home.news.tag_financial": "Financial",
       "home.news.read_more": "Read more",
       "home.careers.banner":
         "The future of everyday health is changing and we're the people changing it. Nowhere else will you find an opportunity quite like this.",
       "home.careers.cta": "Your future at snuz.ng",
+      "home.pouch.title": "What goes into a pouch?",
+      "home.pouch.cta": "Shop products",
+      "home.pouch.lede":
+        "A modern smoke-free pouch is built from a few simple parts: nicotine, water, flavouring, and plant fibres. It is made for adults who want a tobacco-free pouch used in a similar way to snus.",
+      "home.pouch.ingredient_nicotine": "Nicotine",
+      "home.pouch.ingredient_water": "Water",
+      "home.pouch.ingredient_flavouring": "Flavouring",
+      "home.pouch.ingredient_fibres": "Plant fibres",
+      "home.pouch.use_title": "Simple use guide",
+      "home.pouch.use_step_1": "Use one pouch per session.",
+      "home.pouch.use_step_2": "Place it under your upper lip.",
+      "home.pouch.use_step_3": "Keep it in place for about 5 minutes, or up to an hour if preferred.",
+      "home.pouch.use_step_4": "Put the used pouch into the lid compartment before disposal.",
       "home.featured.title": "Featured products",
       "home.featured.view_all": "View all",
       "products.title": "All products",
@@ -572,11 +597,16 @@
       "a11y.skip_to_content": "Saltar para o conteúdo",
       "nav.who_we_are": "Quem somos",
       "nav.our_brands": "As nossas marcas",
-      "nav.investors": "Investidores",
+      "nav.articles": "Artigos",
+      "nav.investors": "Torne-se um distribuidor",
       "nav.careers": "Carreiras",
       "nav.news": "Notícias",
       "nav.contact": "Contacto",
-      "nav.investor_centre": "Centro de investidores",
+      "nav.investor_centre": "Torne-se um distribuidor",
+      "home.distributor.lede":
+        "Faça parceria com a snuz.ng para levar bolsas de nicotina premium a mais adultos na Nigéria. Entre em contacto para iniciar uma conversa de distribuição com a nossa equipa.",
+      "page.articles.lede":
+        "Lições do sucesso da Suécia sem fumo — e o que isso significa para a Nigéria.",
       "lang.choose": "Escolha o seu idioma",
       "search.form": "Pesquisa no site",
       "search.label": "Pesquisar",
@@ -621,7 +651,10 @@
       "home.blueprint_p2":
         'A Suécia alcançou uma vitória histórica de saúde pública, tornando-se oficialmente o primeiro e único país “sem fumo” do mundo ao reduzir as taxas de tabagismo adulto para menos de 5%. Este sucesso sem precedentes não foi alcançado através da proibição, mas pela adoção generalizada de alternativas mais seguras e sem fumo, como o snus, precursor das modernas bolsas de nicotina. Isto prova que a escolha informada de adultos e o acesso a melhores produtos podem acelerar drasticamente o declínio do tabagismo. O nosso objetivo fundamental é replicar este modelo sueco de redução de danos na Nigéria, oferecendo a milhões de adultos um caminho para abandonar os cigarros combustíveis e avançar para um futuro sem fumo.',
       "home.blueprint_cta": "Ler o artigo",
-      "home.locations_title": 'LOCAIS FÍSICOS<br />PARA COMPRAR <strong>SNUZ</strong>',
+      "home.deliveries.eyebrow": "Confiança em todo o país",
+      "home.deliveries.label": "Entregas Snus bem-sucedidas",
+      "home.locations_title": "Snus Shop Locator",
+      "home.locations_lede": "Encontre uma loja SNUZ perto de si. Toque num pin para abrir direções.",
       "home.locations_video_label": "Locais físicos para comprar SNUZ",
       "home.stats.markets": "Mercados em que operamos",
       "home.stats.innovations": "Inovações de produto em 2024",
@@ -655,11 +688,28 @@
       "home.reg.p5":
         "Com esta aprovação regulatória, a snuz.ng pretende contribuir para um mercado responsável e transparente de alternativas de nicotina para adultos na Nigéria.",
       "home.news.view_all": "Ver todas as histórias",
+      "home.articles.view_all": "Ver todos os artigos",
+      "home.articles.tag": "Regulamentar",
+      "home.articles.snippet":
+        "Os produtos de bolsas de nicotina da snuz.ng já estão disponíveis na Nigéria após o cumprimento integral dos requisitos da NAFDAC — um marco para alternativas de nicotina para adultos reguladas e transparentes no mercado.",
       "home.news.tag_financial": "Financeiro",
       "home.news.read_more": "Ler mais",
       "home.careers.banner":
         "O futuro da saúde quotidiana está a mudar e nós somos as pessoas que a estão a mudar. Em mais nenhum lugar encontrará uma oportunidade como esta.",
       "home.careers.cta": "O seu futuro na snuz.ng",
+      "home.pouch.title": "O que existe numa bolsa?",
+      "home.pouch.cta": "Comprar produtos",
+      "home.pouch.lede":
+        "Uma bolsa moderna sem fumo é feita de alguns elementos simples: nicotina, água, aromas e fibras vegetais. Foi criada para adultos que procuram uma bolsa sem tabaco usada de forma semelhante ao snus.",
+      "home.pouch.ingredient_nicotine": "Nicotina",
+      "home.pouch.ingredient_water": "Água",
+      "home.pouch.ingredient_flavouring": "Aromas",
+      "home.pouch.ingredient_fibres": "Fibras vegetais",
+      "home.pouch.use_title": "Guia simples de uso",
+      "home.pouch.use_step_1": "Use uma bolsa por vez.",
+      "home.pouch.use_step_2": "Coloque-a por baixo do lábio superior.",
+      "home.pouch.use_step_3": "Mantenha-a no lugar por cerca de 5 minutos, ou até uma hora se preferir.",
+      "home.pouch.use_step_4": "Coloque a bolsa usada no compartimento da tampa antes de descartar.",
       "home.featured.title": "Produtos em destaque",
       "home.featured.view_all": "Ver tudo",
       "products.title": "Todos os produtos",
@@ -671,11 +721,16 @@
       "a11y.skip_to_content": "Saltar al contenido",
       "nav.who_we_are": "Quiénes somos",
       "nav.our_brands": "Nuestras marcas",
-      "nav.investors": "Inversores",
+      "nav.articles": "Artículos",
+      "nav.investors": "Conviértete en distribuidor",
       "nav.careers": "Carreras",
       "nav.news": "Noticias",
       "nav.contact": "Contacto",
-      "nav.investor_centre": "Centro de inversores",
+      "nav.investor_centre": "Conviértete en distribuidor",
+      "home.distributor.lede":
+        "Asóciate con snuz.ng para llevar bolsas de nicotina premium a más adultos en Nigeria. Contáctanos para iniciar una conversación de distribución con nuestro equipo.",
+      "page.articles.lede":
+        "Lecciones del éxito de Suecia libre de humo — y lo que significan para Nigeria.",
       "lang.choose": "Elige tu idioma",
       "search.form": "Búsqueda en el sitio",
       "search.label": "Buscar",
@@ -721,7 +776,10 @@
       "home.blueprint_p2":
         'Suecia ha logrado una victoria histórica de salud pública, convirtiéndose oficialmente en el primer y único país “libre de humo” del mundo al reducir la tasa de tabaquismo adulto por debajo del 5%. Este éxito sin precedentes no se alcanzó mediante la prohibición, sino gracias a la adopción generalizada de alternativas más seguras y sin humo como el snus, precursor de las modernas bolsas de nicotina. Esto demuestra que la elección informada de los adultos y el acceso a mejores productos pueden acelerar de forma drástica el descenso del tabaquismo. Nuestro objetivo fundamental es replicar este modelo sueco de reducción de daños en Nigeria, ofreciendo a millones de adultos una vía para alejarse de los cigarrillos combustibles y avanzar hacia un futuro sin humo.',
       "home.blueprint_cta": "Leer el artículo",
-      "home.locations_title": 'UBICACIONES FÍSICAS<br />PARA COMPRAR <strong>SNUZ</strong>',
+      "home.deliveries.eyebrow": "Confianza en todo el país",
+      "home.deliveries.label": "Entregas Snus exitosas",
+      "home.locations_title": "Snus Shop Locator",
+      "home.locations_lede": "Encuentra una tienda SNUZ cerca de ti. Toca un pin para abrir direcciones.",
       "home.locations_video_label": "Ubicaciones físicas para comprar SNUZ",
       "home.stats.markets": "Mercados en los que operamos",
       "home.stats.innovations": "Innovaciones de producto en 2024",
@@ -755,11 +813,28 @@
       "home.reg.p5":
         "Con esta aprobación regulatoria, snuz.ng busca contribuir a un mercado responsable y transparente de alternativas de nicotina para adultos en Nigeria.",
       "home.news.view_all": "Ver todas las historias",
+      "home.articles.view_all": "Ver todos los artículos",
+      "home.articles.tag": "Regulatorio",
+      "home.articles.snippet":
+        "Los productos de bolsas de nicotina de snuz.ng ya están disponibles en Nigeria tras el cumplimiento total de los requisitos de NAFDAC — un hito para alternativas de nicotina para adultos reguladas y transparentes en el mercado.",
       "home.news.tag_financial": "Financiero",
       "home.news.read_more": "Leer más",
       "home.careers.banner":
         "El futuro de la salud cotidiana está cambiando y nosotros somos quienes lo están cambiando. En ningún otro lugar encontrarás una oportunidad como esta.",
       "home.careers.cta": "Tu futuro en snuz.ng",
+      "home.pouch.title": "¿Qué contiene una bolsa?",
+      "home.pouch.cta": "Comprar productos",
+      "home.pouch.lede":
+        "Una bolsa moderna sin humo se compone de pocos elementos: nicotina, agua, saborizantes y fibras vegetales. Está pensada para adultos que quieren una bolsa sin tabaco usada de forma similar al snus.",
+      "home.pouch.ingredient_nicotine": "Nicotina",
+      "home.pouch.ingredient_water": "Agua",
+      "home.pouch.ingredient_flavouring": "Saborizantes",
+      "home.pouch.ingredient_fibres": "Fibras vegetales",
+      "home.pouch.use_title": "Guía simple de uso",
+      "home.pouch.use_step_1": "Usa una bolsa por sesión.",
+      "home.pouch.use_step_2": "Colócala debajo del labio superior.",
+      "home.pouch.use_step_3": "Déjala en su lugar unos 5 minutos, o hasta una hora si lo prefieres.",
+      "home.pouch.use_step_4": "Pon la bolsa usada en el compartimento de la tapa antes de desecharla.",
       "home.featured.title": "Productos destacados",
       "home.featured.view_all": "Ver todo",
       "products.title": "Todos los productos",
@@ -944,4 +1019,49 @@
       setActiveTab(key);
     });
   });
+
+  // Scroll-triggered delivery counter.
+  const animateCounter = (el) => {
+    const to = Number(el.getAttribute("data-to-value") || "0");
+    const from = Number(el.getAttribute("data-from-value") || "0");
+    const duration = Number(el.getAttribute("data-duration") || "3000");
+    const delimiter = el.getAttribute("data-delimiter") || ",";
+    const format = (n) =>
+      Math.round(n)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, delimiter);
+
+    if (prefersReduced || duration <= 0) {
+      el.textContent = format(to);
+      return;
+    }
+
+    const start = performance.now();
+    const tick = (now) => {
+      const progress = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = format(from + (to - from) * eased);
+      if (progress < 1) window.requestAnimationFrame(tick);
+    };
+    window.requestAnimationFrame(tick);
+  };
+
+  const counters = Array.from(document.querySelectorAll("[data-counter]"));
+  if (counters.length) {
+    if ("IntersectionObserver" in window) {
+      const counterObs = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            animateCounter(entry.target);
+            obs.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.45 }
+      );
+      counters.forEach((el) => counterObs.observe(el));
+    } else {
+      counters.forEach((el) => animateCounter(el));
+    }
+  }
 })();
