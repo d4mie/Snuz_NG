@@ -597,9 +597,10 @@
         "Through this regulatory approval, snuz.ng aims to contribute to a responsible and transparent marketplace for adult nicotine alternatives in Nigeria.",
       "home.news.view_all": "View all stories",
       "home.articles.view_all": "View all articles",
-      "home.articles.tag": "Regulatory",
+      "home.articles.tag": "Insight",
+      "home.articles.title": 'A Blueprint for <strong>Nigeria</strong>',
       "home.articles.snippet":
-        "snuz.ng nicotine pouch products are now available in Nigeria following full compliance with NAFDAC requirements — a milestone for transparent, regulated adult nicotine alternatives in the market.",
+        "Lessons from Sweden’s smoke-free success — and what they mean for Nigeria.",
       "home.news.tag_financial": "Financial",
       "home.news.read_more": "Read more",
       "home.careers.banner":
@@ -721,9 +722,10 @@
         "Com esta aprovação regulatória, a snuz.ng pretende contribuir para um mercado responsável e transparente de alternativas de nicotina para adultos na Nigéria.",
       "home.news.view_all": "Ver todas as histórias",
       "home.articles.view_all": "Ver todos os artigos",
-      "home.articles.tag": "Regulamentar",
+      "home.articles.tag": "Perspetiva",
+      "home.articles.title": 'Um guia para a <strong>Nigéria</strong>',
       "home.articles.snippet":
-        "Os produtos de bolsas de nicotina da snuz.ng já estão disponíveis na Nigéria após o cumprimento integral dos requisitos da NAFDAC — um marco para alternativas de nicotina para adultos reguladas e transparentes no mercado.",
+        "Lições do sucesso da Suécia sem fumo — e o que isso significa para a Nigéria.",
       "home.news.tag_financial": "Financeiro",
       "home.news.read_more": "Ler mais",
       "home.careers.banner":
@@ -846,9 +848,10 @@
         "Con esta aprobación regulatoria, snuz.ng busca contribuir a un mercado responsable y transparente de alternativas de nicotina para adultos en Nigeria.",
       "home.news.view_all": "Ver todas las historias",
       "home.articles.view_all": "Ver todos los artículos",
-      "home.articles.tag": "Regulatorio",
+      "home.articles.tag": "Perspectiva",
+      "home.articles.title": 'Una hoja de ruta para <strong>Nigeria</strong>',
       "home.articles.snippet":
-        "Los productos de bolsas de nicotina de snuz.ng ya están disponibles en Nigeria tras el cumplimiento total de los requisitos de NAFDAC — un hito para alternativas de nicotina para adultos reguladas y transparentes en el mercado.",
+        "Lecciones del éxito de Suecia libre de humo — y lo que significan para Nigeria.",
       "home.news.tag_financial": "Financiero",
       "home.news.read_more": "Leer más",
       "home.careers.banner":
