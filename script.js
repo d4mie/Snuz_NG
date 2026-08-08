@@ -66,19 +66,29 @@
     setMenuOpen(false);
   });
 
-  // Low-carbon playback: only load/play background video when appropriate,
-  // and pause it when off-screen or when the tab is hidden.
+  // Low-carbon playback for non-hero background clips: skip on Save-Data / slow
+  // networks. The homepage hero loop is continuous and should still try on mobile.
   const connection =
     navigator.connection || navigator.mozConnection || navigator.webkitConnection || null;
   const saveData = !!connection?.saveData;
   const effectiveType = connection?.effectiveType || "";
   const slowNetwork = effectiveType === "slow-2g" || effectiveType === "2g";
   const allowBgVideo = !prefersReduced && !saveData && !slowNetwork;
+  const allowContinuousVideo = !prefersReduced;
 
   const bgVideos = Array.from(document.querySelectorAll("video[data-bg-video]"));
   const isContinuousVideo = (video) => video.hasAttribute("data-bg-video-continuous");
   const continuousVideos = bgVideos.filter(isContinuousVideo);
   const viewportBgVideos = bgVideos.filter((video) => !isContinuousVideo(video));
+
+  const prepareVideo = (video) => {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+  };
 
   const loadVideoSources = (video) => {
     let changed = false;
@@ -107,10 +117,12 @@
   };
 
   const playVideo = async (video) => {
+    prepareVideo(video);
     try {
       await video.play();
+      return true;
     } catch {
-      // ignore
+      return false;
     }
   };
 
@@ -122,10 +134,11 @@
   };
 
   const playContinuousVideo = (video) => {
-    if (!allowBgVideo || document.hidden) {
+    if (!allowContinuousVideo || document.hidden) {
       pauseVideo(video);
       return;
     }
+    prepareVideo(video);
     loadVideoSources(video);
     playVideo(video);
   };
@@ -141,6 +154,7 @@
         pauseVideo(video);
         return;
       }
+      prepareVideo(video);
       loadVideoSources(video);
       playVideo(video);
     });
@@ -150,16 +164,43 @@
     document.documentElement.dataset.lowCarbon = allowBgVideo ? "0" : "1";
 
     continuousVideos.forEach((video) => {
+      prepareVideo(video);
       video.loop = true;
       video.addEventListener("ended", () => {
         video.currentTime = 0;
         playVideo(video);
       });
+      // iOS often needs a second attempt after the source is ready.
+      video.addEventListener(
+        "loadeddata",
+        () => {
+          playContinuousVideo(video);
+        },
+        { once: true },
+      );
       playContinuousVideo(video);
     });
 
+    // Phones sometimes block the first autoplay; retry on first interaction.
+    const resumeContinuousOnGesture = () => {
+      continuousVideos.forEach(playContinuousVideo);
+      window.removeEventListener("touchstart", resumeContinuousOnGesture);
+      window.removeEventListener("click", resumeContinuousOnGesture);
+    };
+    window.addEventListener("touchstart", resumeContinuousOnGesture, { passive: true, once: true });
+    window.addEventListener("click", resumeContinuousOnGesture, { once: true });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        bgVideos.forEach(pauseVideo);
+        return;
+      }
+      continuousVideos.forEach(playContinuousVideo);
+      updateBgVideos();
+    });
+
     if (!allowBgVideo) {
-      bgVideos.forEach(pauseVideo);
+      viewportBgVideos.forEach(pauseVideo);
     } else if (viewportBgVideos.length && "IntersectionObserver" in window) {
       const obs = new IntersectionObserver(
         (entries) => {
@@ -170,6 +211,7 @@
               return;
             }
             if (entry.isIntersecting && entry.intersectionRatio >= 0.12) {
+              prepareVideo(video);
               loadVideoSources(video);
               playVideo(video);
             } else {
@@ -180,19 +222,9 @@
         { threshold: [0, 0.12] },
       );
       viewportBgVideos.forEach((v) => obs.observe(v));
-
-      document.addEventListener("visibilitychange", () => {
-        if (document.hidden) {
-          bgVideos.forEach(pauseVideo);
-          return;
-        }
-        continuousVideos.forEach(playContinuousVideo);
-        updateBgVideos();
-      });
-    } else {
+    } else if (viewportBgVideos.length) {
       updateBgVideos();
       window.addEventListener("scroll", updateBgVideos, { passive: true });
-      document.addEventListener("visibilitychange", updateBgVideos);
     }
   }
 
