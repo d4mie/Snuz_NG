@@ -84,14 +84,30 @@
   const prepareVideo = (video) => {
     video.muted = true;
     video.defaultMuted = true;
+    video.volume = 0;
     video.playsInline = true;
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
   };
 
+  const resolveVideoUrl = (video) => {
+    if (video.getAttribute("src")) return video.getAttribute("src");
+    const source = video.querySelector("source[src], source[data-src]");
+    return source?.getAttribute("src") || source?.getAttribute("data-src") || "";
+  };
+
   const loadVideoSources = (video) => {
     let changed = false;
+    const directSrc = video.getAttribute("src");
+    if (!directSrc) {
+      const url = resolveVideoUrl(video);
+      if (url && video.currentSrc !== url && !video.src?.endsWith(url.replace(/^\.\//, ""))) {
+        // iOS is most reliable when src is on the <video> element itself.
+        video.src = url;
+        changed = true;
+      }
+    }
     video.querySelectorAll("source").forEach((s) => {
       const src = s.getAttribute("src");
       const dataSrc = s.getAttribute("data-src");
@@ -118,9 +134,13 @@
 
   const playVideo = async (video) => {
     prepareVideo(video);
+    if (video.readyState >= 2 && !video.paused && !video.ended) return true;
     try {
-      await video.play();
-      return true;
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.then === "function") {
+        await playPromise;
+      }
+      return !video.paused;
     } catch {
       return false;
     }
@@ -136,11 +156,29 @@
   const playContinuousVideo = (video) => {
     if (!allowContinuousVideo || document.hidden) {
       pauseVideo(video);
-      return;
+      return Promise.resolve(false);
     }
     prepareVideo(video);
     loadVideoSources(video);
-    playVideo(video);
+    video.loop = true;
+    return playVideo(video);
+  };
+
+  const kickContinuousVideo = (video) => {
+    const tryPlay = () => {
+      playContinuousVideo(video);
+    };
+    tryPlay();
+    // Phones often reject the first autoplay until media is ready.
+    ["loadedmetadata", "loadeddata", "canplay", "canplaythrough"].forEach((evt) => {
+      video.addEventListener(evt, tryPlay, { once: true });
+    });
+    // Timed retries cover Slow 3G / Low Power Mode races.
+    [120, 400, 1000, 2200].forEach((ms) => {
+      window.setTimeout(() => {
+        if (video.paused && !document.hidden) tryPlay();
+      }, ms);
+    });
   };
 
   const updateBgVideos = () => {
@@ -170,31 +208,36 @@
         video.currentTime = 0;
         playVideo(video);
       });
-      // iOS often needs a second attempt after the source is ready.
-      video.addEventListener(
-        "loadeddata",
-        () => {
-          playContinuousVideo(video);
-        },
-        { once: true },
-      );
-      playContinuousVideo(video);
+      kickContinuousVideo(video);
     });
 
     // Phones sometimes block the first autoplay; retry on first interaction.
     const resumeContinuousOnGesture = () => {
       continuousVideos.forEach(playContinuousVideo);
-      window.removeEventListener("touchstart", resumeContinuousOnGesture);
-      window.removeEventListener("click", resumeContinuousOnGesture);
     };
-    window.addEventListener("touchstart", resumeContinuousOnGesture, { passive: true, once: true });
-    window.addEventListener("click", resumeContinuousOnGesture, { once: true });
+    window.addEventListener("pointerdown", resumeContinuousOnGesture, {
+      passive: true,
+      once: true,
+      capture: true,
+    });
+    window.addEventListener("touchstart", resumeContinuousOnGesture, {
+      passive: true,
+      once: true,
+      capture: true,
+    });
+    window.addEventListener("click", resumeContinuousOnGesture, { once: true, capture: true });
 
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
         bgVideos.forEach(pauseVideo);
         return;
       }
+      continuousVideos.forEach(playContinuousVideo);
+      updateBgVideos();
+    });
+
+    // Safari restores pages from bfcache without re-running the first play path.
+    window.addEventListener("pageshow", () => {
       continuousVideos.forEach(playContinuousVideo);
       updateBgVideos();
     });
