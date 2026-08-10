@@ -388,8 +388,11 @@ a:hover{opacity:.92}
   width:100%;
   height:100%;
   object-fit:cover;
-  transform:none;
+  /* Keep frames compositing on iOS Safari (avoids a stuck black hero). */
+  -webkit-transform:translateZ(0);
+  transform:translateZ(0);
   filter:saturate(1.05) contrast(1.02);
+  background:var(--ink);
 }
 .hero__overlay{
   position:absolute;
