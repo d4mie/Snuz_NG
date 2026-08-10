@@ -335,17 +335,37 @@
       .join("");
   };
 
+  const isSoldOutCard = (card) =>
+    card.classList.contains("is-sold-out") || card.getAttribute("data-sold-out") === "true";
+
   const wireProducts = () => {
     document.querySelectorAll(".product").forEach((card) => {
       const btn = card.querySelector(".product__btn");
-      if (!btn || btn.dataset.cartBound === "1") return;
+      if (!btn) return;
+      if (isSoldOutCard(card)) {
+        btn.disabled = true;
+        btn.setAttribute("aria-disabled", "true");
+        btn.dataset.cartBound = "";
+        return;
+      }
+      if (btn.dataset.cartBound === "1") return;
+      btn.disabled = false;
+      btn.removeAttribute("aria-disabled");
       btn.dataset.cartBound = "1";
       btn.addEventListener("click", () => {
+        if (isSoldOutCard(card)) return;
         const product = productFromCard(card);
         if (!product.title || !product.priceNaira) return;
         addItem(product, 1);
       });
     });
+  };
+
+  const rewireProducts = () => {
+    document.querySelectorAll(".product .product__btn").forEach((btn) => {
+      btn.dataset.cartBound = "";
+    });
+    wireProducts();
   };
 
   const wireCartPage = () => {
@@ -385,6 +405,7 @@
     subscribe,
     formatNaira,
     shop,
+    rewireProducts,
   };
 
   const boot = () => {

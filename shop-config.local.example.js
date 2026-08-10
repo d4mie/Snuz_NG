@@ -3,4 +3,7 @@
 window.SNUZ_SHOP = Object.assign(window.SNUZ_SHOP || {}, {
   googleMapsApiKey: "",
   paystackPublicKey: "",
+  supabaseUrl: "",
+  supabaseAnonKey: "",
+  adminPassword: "",
 });

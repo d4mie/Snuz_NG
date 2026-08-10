@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snuz.ng – Stock admin</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="description" content="Private stock admin for snuz.ng collections." />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
+    <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
+  </head>
+  <body class="page-admin">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header is-solid" data-header>
+      <div class="nav">
+        <div class="container nav__inner">
+          <a class="brand" href="./index.html" aria-label="snuz.ng home">
+            <picture class="brand__mark" aria-hidden="true">
+              <source srcset="./assets/snuz-logo.avif" type="image/avif" />
+              <source srcset="./assets/snuz-logo.webp" type="image/webp" />
+              <img class="brand__logo" src="./assets/snuz-logo.jpg" alt="" width="40" height="40" />
+            </picture>
+            <span class="brand__name">snuz.ng</span>
+          </a>
+          <div class="nav__cta">
+            <a class="btn btn--ghost" href="./index.html#featured">View shop</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="admin">
+      <div class="container admin__wrap">
+        <div class="admin__head">
+          <p class="admin__eyebrow">Private</p>
+          <h1 class="admin__title">Stock admin</h1>
+          <p class="admin__lede">
+            Mark each collection product as available or sold out. Shoppers see the change on the homepage.
+          </p>
+        </div>
+
+        <section class="admin-card" id="admin-login" data-admin-login>
+          <h2 class="admin-card__title">Sign in</h2>
+          <p class="admin-card__hint">Enter the admin password to manage stock.</p>
+          <form class="admin-login" data-admin-login-form>
+            <label class="admin-field">
+              <span>Password</span>
+              <input type="password" name="password" autocomplete="current-password" required />
+            </label>
+            <button class="btn btn--primary btn--block" type="submit">Unlock</button>
+            <p class="admin-status" data-admin-login-status hidden></p>
+          </form>
+        </section>
+
+        <section class="admin-card" id="admin-panel" data-admin-panel hidden>
+          <div class="admin-panel__top">
+            <div>
+              <h2 class="admin-card__title">Our Collections</h2>
+              <p class="admin-card__hint" data-admin-source>Loading stock…</p>
+            </div>
+            <button class="btn btn--ghost" type="button" data-admin-logout>Lock</button>
+          </div>
+
+          <div class="admin-list" data-admin-list></div>
+
+          <div class="admin-panel__actions">
+            <button class="btn btn--primary" type="button" data-admin-save>Save changes</button>
+            <p class="admin-status" data-admin-save-status hidden></p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="./shop-config.js"></script>
+    <script src="./products-stock.js"></script>
+    <script>
+      (function () {
+        var SESSION_KEY = "snuz_admin_ok";
+        var loginView = document.querySelector("[data-admin-login]");
+        var panelView = document.querySelector("[data-admin-panel]");
+        var loginForm = document.querySelector("[data-admin-login-form]");
+        var loginStatus = document.querySelector("[data-admin-login-status]");
+        var sourceEl = document.querySelector("[data-admin-source]");
+        var listEl = document.querySelector("[data-admin-list]");
+        var saveBtn = document.querySelector("[data-admin-save]");
+        var saveStatus = document.querySelector("[data-admin-save-status]");
+        var logoutBtn = document.querySelector("[data-admin-logout]");
+        var draft = {};
+
+        function showStatus(el, message, isError) {
+          if (!el) return;
+          el.hidden = !message;
+          el.textContent = message || "";
+          el.classList.toggle("is-error", !!isError);
+        }
+
+        function isUnlocked() {
+          try {
+            return sessionStorage.getItem(SESSION_KEY) === "1";
+          } catch (e) {
+            return false;
+          }
+        }
+
+        function setUnlocked(on) {
+          try {
+            if (on) sessionStorage.setItem(SESSION_KEY, "1");
+            else sessionStorage.removeItem(SESSION_KEY);
+          } catch (e) {}
+        }
+
+        function renderList(map) {
+          draft = Object.assign({}, map);
+          listEl.innerHTML = (window.SnuzStock.CATALOG || [])
+            .map(function (product) {
+              var available = draft[product.slug] !== false;
+              return (
+                '<article class="admin-row" data-slug="' +
+                product.slug +
+                '">' +
+                '<div class="admin-row__meta">' +
+                '<p class="admin-row__brand">' +
+                product.brand +
+                "</p>" +
+                '<h3 class="admin-row__title">' +
+                product.title +
+                "</h3>" +
+                "</div>" +
+                '<div class="admin-toggle" role="group" aria-label="Stock for ' +
+                product.title +
+                '">' +
+                '<button type="button" class="admin-toggle__btn' +
+                (available ? " is-on" : "") +
+                '" data-set="1">Available</button>' +
+                '<button type="button" class="admin-toggle__btn' +
+                (!available ? " is-on is-sold" : "") +
+                '" data-set="0">Sold out</button>' +
+                "</div>" +
+                "</article>"
+              );
+            })
+            .join("");
+        }
+
+        function sourceLabel(source, error) {
+          if (source === "supabase") return "Live stock (Supabase)";
+          if (source === "local" || source === "local-fallback") {
+            return error
+              ? "Browser-only stock (live save unavailable). " + error
+              : "Browser-only stock — add Supabase keys for live multi-device sync.";
+          }
+          return "Default stock (Zafari available). Change and save to store.";
+        }
+
+        async function openPanel() {
+          loginView.hidden = true;
+          panelView.hidden = false;
+          showStatus(saveStatus, "");
+          sourceEl.textContent = "Loading stock…";
+          var result = await window.SnuzStock.loadStock();
+          renderList(result.map);
+          sourceEl.textContent = sourceLabel(result.source, result.error);
+        }
+
+        function showLogin() {
+          setUnlocked(false);
+          panelView.hidden = true;
+          loginView.hidden = false;
+        }
+
+        loginForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var password = new FormData(loginForm).get("password");
+          if (!window.SnuzStock.checkAdminPassword(password)) {
+            showStatus(loginStatus, "Wrong password.", true);
+            return;
+          }
+          if (!String((window.SNUZ_SHOP && window.SNUZ_SHOP.adminPassword) || "").trim()) {
+            showStatus(
+              loginStatus,
+              "No admin password configured — unlocked for local demo. Set adminPassword in shop-config.local.js for a real lock.",
+              false
+            );
+          } else {
+            showStatus(loginStatus, "");
+          }
+          setUnlocked(true);
+          openPanel();
+        });
+
+        logoutBtn.addEventListener("click", showLogin);
+
+        listEl.addEventListener("click", function (e) {
+          var btn = e.target.closest("[data-set]");
+          if (!btn) return;
+          var row = btn.closest("[data-slug]");
+          if (!row) return;
+          var slug = row.getAttribute("data-slug");
+          var available = btn.getAttribute("data-set") === "1";
+          draft[slug] = available;
+          row.querySelectorAll("[data-set]").forEach(function (b) {
+            var on = b.getAttribute("data-set") === (available ? "1" : "0");
+            b.classList.toggle("is-on", on);
+            b.classList.toggle("is-sold", on && !available);
+          });
+        });
+
+        saveBtn.addEventListener("click", async function () {
+          saveBtn.disabled = true;
+          saveBtn.textContent = "Saving…";
+          showStatus(saveStatus, "");
+          try {
+            var result = await window.SnuzStock.saveStock(draft);
+            sourceEl.textContent = sourceLabel(result.source);
+            showStatus(
+              saveStatus,
+              result.source === "supabase"
+                ? "Saved. Shoppers will see this on the next page load."
+                : "Saved in this browser only. Add Supabase for live site-wide stock.",
+              false
+            );
+          } catch (err) {
+            showStatus(saveStatus, err.message || "Could not save stock.", true);
+          } finally {
+            saveBtn.disabled = false;
+            saveBtn.textContent = "Save changes";
+          }
+        });
+
+        if (isUnlocked()) openPanel();
+      })();
+    </script>
+  </body>
+</html>

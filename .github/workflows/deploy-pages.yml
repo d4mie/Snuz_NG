@@ -2,6 +2,9 @@
 # Secrets (Settings → Secrets and variables → Actions):
 #   GOOGLE_MAPS_API_KEY
 #   PAYSTACK_PUBLIC_KEY
+#   SUPABASE_URL
+#   SUPABASE_ANON_KEY
+#   ADMIN_PASSWORD
 #
 # One-time: Settings → Pages → Source → GitHub Actions
 
@@ -32,6 +35,9 @@ jobs:
         env:
           GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
           PAYSTACK_PUBLIC_KEY: ${{ secrets.PAYSTACK_PUBLIC_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
         run: node scripts/apply-shop-secrets.js
 
       - name: Setup Pages

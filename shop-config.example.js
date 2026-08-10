@@ -1,5 +1,8 @@
 /* Keys: copy this pattern to shop-config.local.js (gitignored), not into git.
-   Live: set GOOGLE_MAPS_API_KEY + PAYSTACK_PUBLIC_KEY as GitHub Actions secrets. */
+   Live GitHub Actions secrets:
+   GOOGLE_MAPS_API_KEY, PAYSTACK_PUBLIC_KEY,
+   SUPABASE_URL, SUPABASE_ANON_KEY, ADMIN_PASSWORD.
+   Stock table SQL: scripts/product-stock-supabase.sql */
 window.SNUZ_SHOP = {
   currency: "NGN",
 
@@ -25,10 +28,21 @@ window.SNUZ_SHOP = {
   // Optional server payment. Leave "" for Paystack Popup.
   apiBase: "",
 
+  // Product stock admin (Supabase). Leave empty in git.
+  supabaseUrl: "",
+  supabaseAnonKey: "",
+  adminPassword: "",
+
   distributors: [
     {
       id: "smoke-n-sip-ikola",
       name: "Smoke'N'Sip",
+      address: "24 Ikola Rd, Alimosho, Lagos, Nigeria",
+      active: true,
+    },
+    {
+      id: "primemart-ikola",
+      name: "Primemart Superstores Ikola Branch",
       address: "23 Ikola Rd, Alimosho, Lagos, Nigeria",
       active: true,
     },

@@ -26,12 +26,26 @@ window.SNUZ_SHOP = {
   // Optional server payment. Leave "" for Paystack Popup.
   apiBase: "",
 
+  // Product stock admin (Supabase). Leave empty in git.
+  // Local: shop-config.local.js. Live: GitHub Actions secrets.
+  // Without these, admin falls back to this browser only (localStorage).
+  supabaseUrl: "",
+  supabaseAnonKey: "",
+  // Shared password for /admin.html (leave empty in git).
+  adminPassword: "",
+
   // Active distributors / starting points (closest one wins).
   // Website Loc 1–4 = Smoke'N'Sip, Delizz, Trolley, Multiker.
   distributors: [
     {
       id: "smoke-n-sip-ikola",
       name: "Smoke'N'Sip",
+      address: "24 Ikola Rd, Alimosho, Lagos, Nigeria",
+      active: true,
+    },
+    {
+      id: "primemart-ikola",
+      name: "Primemart Superstores Ikola Branch",
       address: "23 Ikola Rd, Alimosho, Lagos, Nigeria",
       active: true,
     },
