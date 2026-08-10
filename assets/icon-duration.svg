@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-hidden="true">
+  <g fill="none" stroke="#fff" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Top pouch -->
+    <path d="M42 28 H158"/>
+    <path d="M42 66 H158"/>
+    <path d="M42 28 L48 33 L42 38 L48 43 L42 48 L48 53 L42 58 L48 63 L42 66"/>
+    <path d="M158 28 L152 33 L158 38 L152 43 L158 48 L152 53 L158 58 L152 63 L158 66"/>
+    <path d="M58 32 V62"/>
+    <path d="M142 32 V62"/>
+    <!-- Middle pouch -->
+    <path d="M42 81 H158"/>
+    <path d="M42 119 H158"/>
+    <path d="M42 81 L48 86 L42 91 L48 96 L42 101 L48 106 L42 111 L48 116 L42 119"/>
+    <path d="M158 81 L152 86 L158 91 L152 96 L158 101 L152 106 L158 111 L152 116 L158 119"/>
+    <path d="M58 85 V115"/>
+    <path d="M142 85 V115"/>
+    <!-- Bottom pouch -->
+    <path d="M42 134 H158"/>
+    <path d="M42 172 H158"/>
+    <path d="M42 134 L48 139 L42 144 L48 149 L42 154 L48 159 L42 164 L48 169 L42 172"/>
+    <path d="M158 134 L152 139 L158 144 L152 149 L158 154 L152 159 L158 164 L152 169 L158 172"/>
+    <path d="M58 138 V168"/>
+    <path d="M142 138 V168"/>
+  </g>
+  <g fill="#fff" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="18" text-anchor="middle">
+    <text x="100" y="52">60 SEC</text>
+    <text x="100" y="105">2 MIN</text>
+    <text x="100" y="158">5 MIN</text>
+  </g>
+</svg>
