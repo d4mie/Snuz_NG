@@ -27,11 +27,11 @@ window.SNUZ_SHOP = {
   apiBase: "",
 
   // Active distributors / starting points (closest one wins).
-  // Website Loc 1 = Primemart Ikola; Loc 2 & 3 share the same Abuja address (listed once).
+  // Website Loc 1–4 = Smoke'N'Sip, Delizz, Trolley, Multiker.
   distributors: [
     {
-      id: "primemart-ikola",
-      name: "Primemart Superstore Ikola Branch",
+      id: "smoke-n-sip-ikola",
+      name: "Smoke'N'Sip",
       address: "23 Ikola Rd, Alimosho, Lagos, Nigeria",
       active: true,
     },
@@ -70,18 +70,24 @@ window.SNUZ_SHOP = {
     {
       id: "4u-wuse2",
       name: "4u Supermarket",
-      address: "58 Adetokunbo Ademola Cres, Wuse 2, Abuja, Nigeria",
+      address: "58 Adetokunbo Ademola Crescent, Wuse 2, Abuja, Nigeria",
       active: true,
     },
     {
-      id: "snuz-aminu-kano",
-      name: "SNUZ Wuse 2 (Aminu Kano)",
-      address: "75 Aminu Kano Cres, Wuse 2, Abuja 900288, Federal Capital Territory, Nigeria",
+      id: "delizz-aminu-kano",
+      name: "Delizz Supermarket",
+      address: "75 Aminu Kano Crescent, Wuse 2, Abuja 900288, Federal Capital Territory, Nigeria",
       active: true,
     },
     {
-      id: "snuz-victoria-island",
-      name: "SNUZ Victoria Island",
+      id: "trolley-aminu-kano",
+      name: "Trolley Supermarket",
+      address: "Plot 1247 Aminu Kano Crescent, Wuse 2, Abuja, Nigeria",
+      active: true,
+    },
+    {
+      id: "multiker-victoria-island",
+      name: "Multiker Supermarket",
       address: "7 Bishop Aboyade Cole St, Victoria Island, Lagos 106104, Lagos, Nigeria",
       active: true,
     },
