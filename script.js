@@ -564,9 +564,9 @@
       "search.placeholder": "Search",
       "search.button": "Search",
       "page.contact.title": "Get in touch",
-      "page.contact.lede": "Contact details and support links for consumers, investors, careers and media.",
+      "page.contact.lede":
+        "Talk to the snuz.ng team anytime — email, call, or visit our Lagos headquarters.",
       "page.contact.general_enquiry": "General enquiry",
-      "page.contact.investor_relations": "Investor relations",
       "page.careers.title": "For health. With humanity.",
       "page.careers.lede":
         "Work is more than a job — it’s a chance to shape better everyday health. Explore roles, culture and development opportunities.",
@@ -690,9 +690,9 @@
       "search.placeholder": "Pesquisar",
       "search.button": "Pesquisar",
       "page.contact.title": "Entre em contacto",
-      "page.contact.lede": "Detalhes de contacto e links de apoio para consumidores, investidores, carreiras e media.",
+      "page.contact.lede":
+        "Fale com a equipa snuz.ng a qualquer momento — email, telefone ou visite a nossa sede em Lagos.",
       "page.contact.general_enquiry": "Pedido geral",
-      "page.contact.investor_relations": "Relações com investidores",
       "page.careers.title": "Pela saúde. Com humanidade.",
       "page.careers.lede":
         "O trabalho é mais do que um emprego — é uma oportunidade de moldar uma melhor saúde quotidiana. Explore funções, cultura e oportunidades de desenvolvimento.",
@@ -817,9 +817,8 @@
       "search.button": "Buscar",
       "page.contact.title": "Ponte en contacto",
       "page.contact.lede":
-        "Datos de contacto y enlaces de apoyo para consumidores, inversores, carreras y prensa.",
+        "Habla con el equipo de snuz.ng en cualquier momento: email, llamada o visita nuestra sede en Lagos.",
       "page.contact.general_enquiry": "Consulta general",
-      "page.contact.investor_relations": "Relaciones con inversores",
       "page.careers.title": "Por la salud. Con humanidad.",
       "page.careers.lede":
         "El trabajo es más que un empleo: es una oportunidad para dar forma a una mejor salud cotidiana. Explora roles, cultura y oportunidades de desarrollo.",
