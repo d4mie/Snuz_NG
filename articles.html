@@ -158,19 +158,30 @@
         </div>
       </section>
 
-      <section class="section" id="article" aria-label="Blueprint for Nigeria article">
-        <div class="container grid grid--2 grid--40-60">
-          <div>
-            <h2 class="kicker" data-i18n-html="home.blueprint_title">A BLUEPRINT<br />FOR <strong>NIGERIA</strong></h2>
-          </div>
-          <div>
-            <p class="lede" data-i18n="home.blueprint_p1">
+      <section class="section section--article" id="article" aria-label="Blueprint for Nigeria article">
+        <div class="article-glow" aria-hidden="true"></div>
+        <div class="container article__shell">
+          <header class="article__head">
+            <p class="article__eyebrow">Insight</p>
+            <h2 class="article__title" data-i18n-html="home.blueprint_title">
+              A BLUEPRINT<br />FOR <strong>NIGERIA</strong>
+            </h2>
+            <p class="article__deck" data-i18n="page.articles.lede">
+              Lessons from Sweden’s smoke-free success — and what they mean for Nigeria.
+            </p>
+          </header>
+
+          <div class="article__body">
+            <p class="article__lead" data-i18n="home.blueprint_p1">
               The risk of a man dying from a tobacco-related illness is less in Sweden than in any
               other country, although tobacco consumption is on a comparable level with that of other
               countries in Europe and around the world. Researchers refer to this paradox as “the
               Swedish Experience”.
             </p>
-            <p class="lede" data-i18n="home.blueprint_p2">
+            <blockquote class="article__pull">
+              Sweden became the world’s first “smoke-free” country by driving adult smoking below 5%.
+            </blockquote>
+            <p data-i18n="home.blueprint_p2">
               Sweden has achieved a historic public health victory, officially becoming the world's
               first and only “smoke-free” country by driving adult smoking rates below 5%. This
               unparalleled success was not achieved through prohibition, but by the widespread
@@ -185,34 +196,21 @@
       </section>
     </main>
 
-    <footer class="site-footer">
+        <footer class="site-footer">
+      <div class="footer-glow" aria-hidden="true"></div>
       <div class="container footer">
-        <div class="footer__top">
+        <div class="footer__rail">
+          <a class="footer__wordmark" href="./index.html" aria-label="snuz.ng home">snuz<span>.</span>ng</a>
           <button class="footer__to-top" type="button" data-to-top>
-            <span>Back to top</span>
             <span class="footer__to-top-icon" aria-hidden="true">↑</span>
+            <span>Back to top</span>
           </button>
         </div>
 
         <div class="footer__grid">
           <div class="footer__brand">
-            <div class="brand brand--footer" aria-label="snuz.ng">
-              <picture class="brand__mark" aria-hidden="true">
-                <source srcset="./assets/snuz-logo.avif" type="image/avif" />
-                <source srcset="./assets/snuz-logo.webp" type="image/webp" />
-                <img
-                  class="brand__logo"
-                  src="./assets/snuz-logo.jpg"
-                  alt=""
-                  width="40"
-                  height="40"
-                  loading="lazy"
-                />
-              </picture>
-              <span class="brand__name">snuz.ng</span>
-            </div>
             <p class="footer__tagline">Premium nicotine pouches for adults across Nigeria.</p>
-                                    <ul class="social" aria-label="Social links">
+            <ul class="social" aria-label="Social links">
               <li>
                 <a
                   class="social__link"
@@ -256,10 +254,12 @@
           </div>
 
           <div class="footer__col">
-            <h3 class="footer__title">Useful links</h3>
+            <h3 class="footer__title">Explore</h3>
             <ul class="footer__links">
               <li><a href="./index.html#shop-locations">Nearest branch</a></li>
               <li><a href="./become-a-distributor.html">Become a distributor</a></li>
+              <li><a href="./who-we-are.html">Who we are</a></li>
+              <li><a href="./index.html#featured">Our Collections</a></li>
             </ul>
           </div>
 
@@ -270,8 +270,11 @@
         </div>
 
         <div class="footer__bottom">
-          <p class="footer__copy">© snuz.ng</p>
-          <p class="footer__note">For adults 18+ only.</p>
+          <div class="footer__meta">
+            <p class="footer__copy">© snuz.ng</p>
+            <span class="footer__dot" aria-hidden="true"></span>
+            <p class="footer__note">For adults 18+ only.</p>
+          </div>
         </div>
       </div>
     </footer>

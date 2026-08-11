@@ -1195,62 +1195,54 @@
         </div>
       </section>
 
-      <section class="section section--dark" id="articles" aria-label="Articles">
-        <div class="container">
-          <div class="section__head">
-            <h2 class="kicker">
-              <a class="plain" href="./articles.html" data-i18n="nav.articles">Articles</a>
-            </h2>
+      <section class="section section--articles-home" id="articles" aria-label="Articles">
+        <div class="articles-home-glow" aria-hidden="true"></div>
+        <div class="container articles-home">
+          <div class="articles-home__head">
+            <div>
+              <p class="articles-home__eyebrow">From the desk</p>
+              <h2 class="articles-home__title">
+                <a class="plain" href="./articles.html" data-i18n="nav.articles">Articles</a>
+              </h2>
+            </div>
             <a class="btn btn--ghost btn--arrow" href="./articles.html" data-i18n="home.articles.view_all">
               View all articles
             </a>
           </div>
 
-          <article class="article-snip">
-            <p class="tag" data-i18n="home.articles.tag">Insight</p>
-            <h3 class="article-snip__title" data-i18n-html="home.articles.title">
+          <a class="article-feature" href="./articles.html#article">
+            <div class="article-feature__meta">
+              <span class="article-feature__tag" data-i18n="home.articles.tag">Insight</span>
+              <span class="article-feature__mark" aria-hidden="true">01</span>
+            </div>
+            <h3 class="article-feature__title" data-i18n-html="home.articles.title">
               A Blueprint for <strong>Nigeria</strong>
             </h3>
-            <p class="article-snip__text" data-i18n="home.articles.snippet">
+            <p class="article-feature__text" data-i18n="home.articles.snippet">
               Lessons from Sweden’s smoke-free success — and what they mean for Nigeria.
             </p>
-            <a class="btn btn--ghost btn--arrow" href="./articles.html#article" data-i18n="home.news.read_more">
-              Read more
-            </a>
-          </article>
+            <span class="article-feature__cta" data-i18n="home.news.read_more">Read more</span>
+          </a>
         </div>
       </section>
 
     </main>
 
-    <footer class="site-footer">
+        <footer class="site-footer">
+      <div class="footer-glow" aria-hidden="true"></div>
       <div class="container footer">
-        <div class="footer__top">
+        <div class="footer__rail">
+          <a class="footer__wordmark" href="./index.html" aria-label="snuz.ng home">snuz<span>.</span>ng</a>
           <button class="footer__to-top" type="button" data-to-top>
-            <span>Back to top</span>
             <span class="footer__to-top-icon" aria-hidden="true">↑</span>
+            <span>Back to top</span>
           </button>
         </div>
 
         <div class="footer__grid">
           <div class="footer__brand">
-            <div class="brand brand--footer" aria-label="snuz.ng">
-              <picture class="brand__mark" aria-hidden="true">
-                <source srcset="./assets/snuz-logo.avif" type="image/avif" />
-                <source srcset="./assets/snuz-logo.webp" type="image/webp" />
-                <img
-                  class="brand__logo"
-                  src="./assets/snuz-logo.jpg"
-                  alt=""
-                  width="40"
-                  height="40"
-                  loading="lazy"
-                />
-              </picture>
-              <span class="brand__name">snuz.ng</span>
-            </div>
             <p class="footer__tagline">Premium nicotine pouches for adults across Nigeria.</p>
-                                    <ul class="social" aria-label="Social links">
+            <ul class="social" aria-label="Social links">
               <li>
                 <a
                   class="social__link"
@@ -1294,10 +1286,12 @@
           </div>
 
           <div class="footer__col">
-            <h3 class="footer__title">Useful links</h3>
+            <h3 class="footer__title">Explore</h3>
             <ul class="footer__links">
               <li><a href="#shop-locations">Nearest branch</a></li>
               <li><a href="./become-a-distributor.html">Become a distributor</a></li>
+              <li><a href="./who-we-are.html">Who we are</a></li>
+              <li><a href="./index.html#featured">Our Collections</a></li>
             </ul>
           </div>
 
@@ -1308,8 +1302,11 @@
         </div>
 
         <div class="footer__bottom">
-          <p class="footer__copy">© snuz.ng</p>
-          <p class="footer__note">For adults 18+ only.</p>
+          <div class="footer__meta">
+            <p class="footer__copy">© snuz.ng</p>
+            <span class="footer__dot" aria-hidden="true"></span>
+            <p class="footer__note">For adults 18+ only.</p>
+          </div>
         </div>
       </div>
     </footer>

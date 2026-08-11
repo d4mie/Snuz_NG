@@ -153,7 +153,11 @@
   };
 
   const applyCardStock = (card, available) => {
-    const media = card.querySelector(".featured__media") || card;
+    const media =
+      card.querySelector(".featured__media") ||
+      card.querySelector(".brands-avail__media") ||
+      card.querySelector(".card__media") ||
+      card;
     let badge = card.querySelector(".product__soldout");
     const btn = card.querySelector(".product__btn");
 
@@ -196,8 +200,13 @@
     }
   };
 
+  const stockCards = () =>
+    document.querySelectorAll(
+      ".product[data-category], .brand-card[data-category]"
+    );
+
   const applyToPage = (map) => {
-    document.querySelectorAll(".product[data-category]").forEach((card) => {
+    stockCards().forEach((card) => {
       const slug = card.getAttribute("data-category");
       if (!slug) return;
       const available = map[slug] !== false;
@@ -234,7 +243,7 @@
   };
 
   const bootShop = async () => {
-    if (!document.querySelector(".product[data-category]")) return;
+    if (!stockCards().length) return;
     const { map } = await loadStock();
     applyToPage(map);
   };
