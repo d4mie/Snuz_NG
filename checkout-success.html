@@ -6,6 +6,17 @@
     <title>snuz.ng – Payment status</title>
     <meta name="description" content="Payment confirmation for your snuz.ng order." />
     <link rel="stylesheet" href="./styles.css" />
+    <script>
+      (function () {
+        try {
+          if (sessionStorage.getItem("snuz_site_ok") !== "1") {
+            document.documentElement.classList.add("site-locked");
+          }
+        } catch (e) {
+          document.documentElement.classList.add("site-locked");
+        }
+      })();
+    </script>
     <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
     <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
   </head>
@@ -48,6 +59,7 @@
       </section>
     </main>
 
+    <script src="./gate.js"></script>
     <script src="./shop-config.js"></script>
     <script>
       (() => {

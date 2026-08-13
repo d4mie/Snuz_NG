@@ -9,6 +9,17 @@
       content="Through our actions and partnerships, snuz.ng aims to make better everyday health more inclusive, sustainable, and accessible for all."
     />
     <link rel="stylesheet" href="./styles.css" />
+    <script>
+      (function () {
+        try {
+          if (sessionStorage.getItem("snuz_site_ok") !== "1") {
+            document.documentElement.classList.add("site-locked");
+          }
+        } catch (e) {
+          document.documentElement.classList.add("site-locked");
+        }
+      })();
+    </script>
     <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
     <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
   </head>
@@ -360,6 +371,7 @@ Operar un negocio responsable es fundamental para la manera en que snuz.ng traba
       </div>
     </footer>
 
+    <script src="./gate.js"></script>
     <script src="./shop-config.js"></script>
     <script src="./script.js"></script>
     <script src="./cart.js"></script>

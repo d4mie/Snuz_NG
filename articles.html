@@ -9,6 +9,17 @@
       content="A blueprint for Nigeria — how Sweden’s smoke-free success can guide harm reduction and adult choice in Nigeria."
     />
     <link rel="stylesheet" href="./styles.css" />
+    <script>
+      (function () {
+        try {
+          if (sessionStorage.getItem("snuz_site_ok") !== "1") {
+            document.documentElement.classList.add("site-locked");
+          }
+        } catch (e) {
+          document.documentElement.classList.add("site-locked");
+        }
+      })();
+    </script>
     <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
     <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
   </head>
@@ -279,6 +290,7 @@
       </div>
     </footer>
 
+    <script src="./gate.js"></script>
     <script src="./shop-config.js"></script>
     <script src="./script.js"></script>
     <script src="./cart.js"></script>
