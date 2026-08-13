@@ -26,8 +26,9 @@ window.SNUZ_SHOP = {
   // Optional server payment. Leave "" for Paystack Popup.
   apiBase: "",
 
-  // Product stock admin (Supabase). Leave empty in git.
+  // Product admin (Supabase). Leave empty in git.
   // Local: shop-config.local.js. Live: GitHub Actions secrets.
+  // SQL setup: scripts/products-supabase.sql
   // Without these, admin falls back to this browser only (localStorage).
   supabaseUrl: "",
   supabaseAnonKey: "",
@@ -111,8 +112,13 @@ window.SNUZ_SHOP = {
 // On localhost only: pull keys from gitignored shop-config.local.js
 (function () {
   try {
-    var host = location.hostname;
-    if (host !== "localhost" && host !== "127.0.0.1") return;
+    var host = String(location.hostname || "").toLowerCase();
+    var local =
+      host === "localhost" ||
+      host === "127.0.0.1" ||
+      host === "[::1]" ||
+      host === "::1";
+    if (!local) return;
     document.write('<script src="./shop-config.local.js"><\/script>');
   } catch (e) {
     // ignore

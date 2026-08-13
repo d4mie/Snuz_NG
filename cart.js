@@ -123,7 +123,11 @@
     const priceNaira = Number(priceEl?.getAttribute("data-money") || 0);
     const image = imgEl?.getAttribute("src") || "";
     const badge = (card.querySelector(".product__badge")?.textContent || "").trim();
-    const slug = slugify(title) || slugify(badge) || `product-${Date.now()}`;
+    const slug =
+      (card.getAttribute("data-category") || "").trim() ||
+      slugify(title) ||
+      slugify(badge) ||
+      `product-${Date.now()}`;
     return {
       slug,
       title,

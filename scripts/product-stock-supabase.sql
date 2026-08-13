@@ -1,6 +1,6 @@
+-- Older stock-only table. Prefer scripts/products-supabase.sql for full
+-- product admin (name, price, photo, add/remove).
 -- Run once in Supabase → SQL Editor.
--- Then set SUPABASE_URL + SUPABASE_ANON_KEY (+ ADMIN_PASSWORD) in GitHub Actions secrets
--- or shop-config.local.js for localhost.
 
 create table if not exists public.product_stock (
   slug text primary key,

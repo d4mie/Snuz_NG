@@ -2,7 +2,8 @@
    Live GitHub Actions secrets:
    GOOGLE_MAPS_API_KEY, PAYSTACK_PUBLIC_KEY,
    SUPABASE_URL, SUPABASE_ANON_KEY, ADMIN_PASSWORD.
-   Stock table SQL: scripts/product-stock-supabase.sql */
+   Products SQL: scripts/products-supabase.sql
+   (older stock-only SQL: scripts/product-stock-supabase.sql) */
 window.SNUZ_SHOP = {
   currency: "NGN",
 
