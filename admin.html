@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>snuz.ng – Stock admin</title>
+    <title>snuz.ng – Product admin</title>
     <meta name="robots" content="noindex,nofollow" />
-    <meta name="description" content="Private stock admin for snuz.ng collections." />
+    <meta name="description" content="Private product admin for snuz.ng collections." />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="icon" type="image/webp" href="./assets/snuz-logo.webp" />
     <link rel="icon" type="image/jpeg" href="./assets/snuz-logo.jpg" />
@@ -32,18 +32,18 @@
     </header>
 
     <main id="main" class="admin">
-      <div class="container admin__wrap">
+      <div class="container admin__wrap admin__wrap--wide">
         <div class="admin__head">
           <p class="admin__eyebrow">Private</p>
-          <h1 class="admin__title">Stock admin</h1>
+          <h1 class="admin__title">Product admin</h1>
           <p class="admin__lede">
-            Mark each collection product as available or sold out. Shoppers see the change on the homepage.
+            Change name, price, photo, and stock. Add new products. Shoppers see updates on the next page load.
           </p>
         </div>
 
         <section class="admin-card" id="admin-login" data-admin-login>
           <h2 class="admin-card__title">Sign in</h2>
-          <p class="admin-card__hint">Enter the admin password to manage stock.</p>
+          <p class="admin-card__hint">Enter the admin password to manage products.</p>
           <form class="admin-login" data-admin-login-form>
             <label class="admin-field">
               <span>Password</span>
@@ -58,15 +58,18 @@
           <div class="admin-panel__top">
             <div>
               <h2 class="admin-card__title">Our Collections</h2>
-              <p class="admin-card__hint" data-admin-source>Loading stock…</p>
+              <p class="admin-card__hint" data-admin-source>Loading products…</p>
             </div>
-            <button class="btn btn--ghost" type="button" data-admin-logout>Lock</button>
+            <div class="admin-panel__top-actions">
+              <button class="btn btn--primary" type="button" data-admin-add>Add product</button>
+              <button class="btn btn--ghost" type="button" data-admin-logout>Lock</button>
+            </div>
           </div>
 
           <div class="admin-list" data-admin-list></div>
 
           <div class="admin-panel__actions">
-            <button class="btn btn--primary" type="button" data-admin-save>Save changes</button>
+            <button class="btn btn--primary" type="button" data-admin-save>Save all changes</button>
             <p class="admin-status" data-admin-save-status hidden></p>
           </div>
         </section>
@@ -87,7 +90,8 @@
         var saveBtn = document.querySelector("[data-admin-save]");
         var saveStatus = document.querySelector("[data-admin-save-status]");
         var logoutBtn = document.querySelector("[data-admin-logout]");
-        var draft = {};
+        var addBtn = document.querySelector("[data-admin-add]");
+        var draft = [];
 
         function showStatus(el, message, isError) {
           if (!el) return;
@@ -111,25 +115,80 @@
           } catch (e) {}
         }
 
-        function renderList(map) {
-          draft = Object.assign({}, map);
-          listEl.innerHTML = (window.SnuzStock.CATALOG || [])
+        function escapeHtml(value) {
+          return String(value || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        function collectFromDom() {
+          var rows = Array.from(listEl.querySelectorAll("[data-admin-row]"));
+          return rows.map(function (row, index) {
+            var slug = row.getAttribute("data-slug") || "";
+            var brand = (row.querySelector('[name="brand"]') || {}).value || "";
+            var title = (row.querySelector('[name="title"]') || {}).value || "";
+            var priceRaw = (row.querySelector('[name="price"]') || {}).value || "0";
+            var imageUrl = (row.querySelector('[name="imageUrl"]') || {}).value || "";
+            var available = row.querySelector('[data-set].is-on[data-set="1"]') != null;
+            return window.SnuzStock.normalizeProduct(
+              {
+                slug: slug,
+                brand: brand,
+                title: title,
+                priceNaira: priceRaw,
+                imageUrl: imageUrl,
+                available: available,
+                sortOrder: (index + 1) * 10,
+              },
+              index
+            );
+          });
+        }
+
+        function renderList(list) {
+          draft = window.SnuzStock.normalizeList(list);
+          listEl.innerHTML = draft
             .map(function (product) {
-              var available = draft[product.slug] !== false;
+              var available = product.available !== false;
+              var img = escapeHtml(product.imageUrl || "");
               return (
-                '<article class="admin-row" data-slug="' +
-                product.slug +
+                '<article class="admin-product" data-admin-row data-slug="' +
+                escapeHtml(product.slug) +
                 '">' +
-                '<div class="admin-row__meta">' +
-                '<p class="admin-row__brand">' +
-                product.brand +
-                "</p>" +
-                '<h3 class="admin-row__title">' +
-                product.title +
-                "</h3>" +
+                '<div class="admin-product__preview">' +
+                (img
+                  ? '<img src="' + img + '" alt="" width="88" height="88" />'
+                  : '<div class="admin-product__placeholder">No photo</div>') +
                 "</div>" +
+                '<div class="admin-product__fields">' +
+                '<label class="admin-field"><span>Brand</span>' +
+                '<input name="brand" type="text" value="' +
+                escapeHtml(product.brand) +
+                '" required /></label>' +
+                '<label class="admin-field"><span>Product name</span>' +
+                '<input name="title" type="text" value="' +
+                escapeHtml(product.title) +
+                '" required /></label>' +
+                '<label class="admin-field"><span>Price (₦)</span>' +
+                '<input name="price" type="number" min="0" step="1" value="' +
+                escapeHtml(String(product.priceNaira)) +
+                '" required /></label>' +
+                '<label class="admin-field"><span>Photo URL</span>' +
+                '<input name="imageUrl" type="text" value="' +
+                img +
+                '" placeholder="Upload below or paste a link" /></label>' +
+                '<div class="admin-product__photo">' +
+                '<label class="btn btn--ghost admin-upload-btn">' +
+                "Upload photo" +
+                '<input type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden data-upload />' +
+                "</label>" +
+                '<span class="admin-upload-status" data-upload-status hidden></span>' +
+                "</div>" +
+                '<div class="admin-product__stock">' +
                 '<div class="admin-toggle" role="group" aria-label="Stock for ' +
-                product.title +
+                escapeHtml(product.title) +
                 '">' +
                 '<button type="button" class="admin-toggle__btn' +
                 (available ? " is-on" : "") +
@@ -138,6 +197,9 @@
                 (!available ? " is-on is-sold" : "") +
                 '" data-set="0">Sold out</button>' +
                 "</div>" +
+                '<button type="button" class="btn btn--ghost admin-product__remove" data-remove>Remove</button>' +
+                "</div>" +
+                "</div>" +
                 "</article>"
               );
             })
@@ -145,22 +207,22 @@
         }
 
         function sourceLabel(source, error) {
-          if (source === "supabase") return "Live stock (Supabase)";
+          if (source === "supabase") return "Live catalog (Supabase) — changes sync for all shoppers.";
           if (source === "local" || source === "local-fallback") {
             return error
-              ? "Browser-only stock (live save unavailable). " + error
-              : "Browser-only stock — add Supabase keys for live multi-device sync.";
+              ? "Browser-only catalog (live save unavailable). " + error
+              : "Browser-only catalog — add Supabase keys for live site-wide updates.";
           }
-          return "Default stock (Zafari available). Change and save to store.";
+          return "Default catalog. Change and save to store.";
         }
 
         async function openPanel() {
           loginView.hidden = true;
           panelView.hidden = false;
           showStatus(saveStatus, "");
-          sourceEl.textContent = "Loading stock…";
-          var result = await window.SnuzStock.loadStock();
-          renderList(result.map);
+          sourceEl.textContent = "Loading products…";
+          var result = await window.SnuzStock.loadProducts();
+          renderList(result.list);
           sourceEl.textContent = sourceLabel(result.source, result.error);
         }
 
@@ -173,11 +235,19 @@
         loginForm.addEventListener("submit", function (e) {
           e.preventDefault();
           var password = new FormData(loginForm).get("password");
+          var configured = String((window.SNUZ_SHOP && window.SNUZ_SHOP.adminPassword) || "").trim();
           if (!window.SnuzStock.checkAdminPassword(password)) {
-            showStatus(loginStatus, "Wrong password.", true);
+            var host = String(location.hostname || "");
+            var hint =
+              !configured && host !== "localhost" && host !== "127.0.0.1"
+                ? " Local password only loads on http://localhost:5173 (not the live site, and not a file:// link)."
+                : configured
+                  ? " Use the exact adminPassword from shop-config.local.js, then hard-refresh (Cmd+Shift+R)."
+                  : "";
+            showStatus(loginStatus, "Wrong password." + hint, true);
             return;
           }
-          if (!String((window.SNUZ_SHOP && window.SNUZ_SHOP.adminPassword) || "").trim()) {
+          if (!configured) {
             showStatus(
               loginStatus,
               "No admin password configured — unlocked for local demo. Set adminPassword in shop-config.local.js for a real lock.",
@@ -192,14 +262,43 @@
 
         logoutBtn.addEventListener("click", showLogin);
 
+        addBtn.addEventListener("click", function () {
+          draft = collectFromDom();
+          var n = draft.length + 1;
+          draft.push(
+            window.SnuzStock.normalizeProduct(
+              {
+                slug: "product-" + Date.now(),
+                brand: "NEW",
+                title: "New product",
+                priceNaira: 0,
+                imageUrl: "",
+                available: true,
+                sortOrder: n * 10,
+              },
+              n - 1
+            )
+          );
+          renderList(draft);
+          var last = listEl.querySelector("[data-admin-row]:last-child");
+          if (last) last.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+
         listEl.addEventListener("click", function (e) {
+          var removeBtn = e.target.closest("[data-remove]");
+          if (removeBtn) {
+            var removeRow = removeBtn.closest("[data-admin-row]");
+            if (!removeRow) return;
+            if (!confirm("Remove this product from the shop?")) return;
+            removeRow.remove();
+            return;
+          }
+
           var btn = e.target.closest("[data-set]");
           if (!btn) return;
-          var row = btn.closest("[data-slug]");
+          var row = btn.closest("[data-admin-row]");
           if (!row) return;
-          var slug = row.getAttribute("data-slug");
           var available = btn.getAttribute("data-set") === "1";
-          draft[slug] = available;
           row.querySelectorAll("[data-set]").forEach(function (b) {
             var on = b.getAttribute("data-set") === (available ? "1" : "0");
             b.classList.toggle("is-on", on);
@@ -207,25 +306,91 @@
           });
         });
 
+        listEl.addEventListener("change", async function (e) {
+          var input = e.target.closest("[data-upload]");
+          if (!input || !input.files || !input.files[0]) return;
+          var row = input.closest("[data-admin-row]");
+          if (!row) return;
+          var status = row.querySelector("[data-upload-status]");
+          var urlInput = row.querySelector('[name="imageUrl"]');
+          var preview = row.querySelector(".admin-product__preview");
+          var file = input.files[0];
+          var slugHint =
+            (row.querySelector('[name="brand"]') || {}).value ||
+            row.getAttribute("data-slug") ||
+            "product";
+          showStatus(status, "Uploading…", false);
+          try {
+            var url = await window.SnuzStock.uploadImage(file, slugHint);
+            if (urlInput) urlInput.value = url;
+            if (preview) {
+              preview.innerHTML =
+                '<img src="' + escapeHtml(url) + '" alt="" width="88" height="88" />';
+            }
+            showStatus(status, "Photo ready. Click Save all changes.", false);
+          } catch (err) {
+            showStatus(status, err.message || "Upload failed.", true);
+          } finally {
+            input.value = "";
+          }
+        });
+
+        listEl.addEventListener("input", function (e) {
+          var urlInput = e.target.closest('[name="imageUrl"]');
+          if (!urlInput) return;
+          var row = urlInput.closest("[data-admin-row]");
+          if (!row) return;
+          var preview = row.querySelector(".admin-product__preview");
+          if (!preview) return;
+          var url = urlInput.value.trim();
+          preview.innerHTML = url
+            ? '<img src="' + escapeHtml(url) + '" alt="" width="88" height="88" />'
+            : '<div class="admin-product__placeholder">No photo</div>';
+        });
+
         saveBtn.addEventListener("click", async function () {
           saveBtn.disabled = true;
           saveBtn.textContent = "Saving…";
           showStatus(saveStatus, "");
           try {
-            var result = await window.SnuzStock.saveStock(draft);
+            draft = collectFromDom();
+            if (!draft.length) {
+              throw new Error("Add at least one product before saving.");
+            }
+            var bad = draft.find(function (p) {
+              return !p.title.trim() || !p.brand.trim();
+            });
+            if (bad) throw new Error("Every product needs a brand and name.");
+            // Stable slugs: keep existing; for new rows derive from brand+title once
+            draft = draft.map(function (p, i) {
+              var looksTemp = /^product-\d+$/.test(p.slug);
+              if (looksTemp) {
+                var nextSlug =
+                  window.SnuzStock.slugify(p.brand) ||
+                  window.SnuzStock.slugify(p.title) ||
+                  p.slug;
+                return window.SnuzStock.normalizeProduct(
+                  Object.assign({}, p, { slug: nextSlug }),
+                  i
+                );
+              }
+              return p;
+            });
+            var result = await window.SnuzStock.saveProducts(draft);
+            renderList(result.list);
             sourceEl.textContent = sourceLabel(result.source);
             showStatus(
               saveStatus,
               result.source === "supabase"
                 ? "Saved. Shoppers will see this on the next page load."
-                : "Saved in this browser only. Add Supabase for live site-wide stock.",
+                : "Saved in this browser only. Add Supabase for live site-wide products.",
               false
             );
           } catch (err) {
-            showStatus(saveStatus, err.message || "Could not save stock.", true);
+            showStatus(saveStatus, err.message || "Could not save products.", true);
           } finally {
             saveBtn.disabled = false;
-            saveBtn.textContent = "Save changes";
+            saveBtn.textContent = "Save all changes";
           }
         });
 

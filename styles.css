@@ -3892,12 +3892,13 @@ body.cart-open{overflow:hidden}
   .checkout-form{padding:20px}
 }
 
-/* Stock admin */
+/* Product admin */
 .page-admin{background:var(--paper-2)}
 .admin{
   padding:calc(var(--header-h, 72px) + 36px) 0 72px;
 }
 .admin__wrap{max-width:720px}
+.admin__wrap--wide{max-width:880px}
 .admin__head{margin-bottom:22px}
 .admin__eyebrow{
   margin:0 0 6px;
@@ -3915,7 +3916,7 @@ body.cart-open{overflow:hidden}
 .admin__lede{
   margin:0;
   color:rgba(15,23,42,.68);
-  max-width:46ch;
+  max-width:52ch;
   line-height:1.6;
 }
 .admin-card{
@@ -3954,6 +3955,8 @@ body.cart-open{overflow:hidden}
   padding:11px 12px;
   font:inherit;
   background:var(--paper-2);
+  width:100%;
+  box-sizing:border-box;
 }
 .admin-field input:focus{
   outline:2px solid rgba(48,234,3,.35);
@@ -3972,7 +3975,13 @@ body.cart-open{overflow:hidden}
   gap:12px;
   margin-bottom:16px;
 }
-.admin-list{display:grid;gap:10px}
+.admin-panel__top-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:flex-end;
+}
+.admin-list{display:grid;gap:14px}
 .admin-row{
   display:flex;
   align-items:center;
@@ -3995,6 +4004,57 @@ body.cart-open{overflow:hidden}
   font-size:1rem;
   font-weight:800;
 }
+.admin-product{
+  display:grid;
+  grid-template-columns:88px 1fr;
+  gap:16px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--paper-2);
+}
+.admin-product__preview{
+  width:88px;
+  height:88px;
+  border-radius:12px;
+  overflow:hidden;
+  background:rgba(15,23,42,.06);
+}
+.admin-product__preview img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.admin-product__placeholder{
+  width:100%;
+  height:100%;
+  display:grid;
+  place-items:center;
+  font-size:.72rem;
+  color:rgba(15,23,42,.5);
+  text-align:center;
+  padding:8px;
+  box-sizing:border-box;
+}
+.admin-product__fields{
+  display:grid;
+  gap:10px;
+}
+.admin-product__photo,
+.admin-product__stock{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+}
+.admin-upload-btn{cursor:pointer}
+.admin-upload-status{
+  font-size:.82rem;
+  color:rgba(15,23,42,.62);
+}
+.admin-upload-status.is-error{color:#9b1c1c}
+.admin-product__remove{margin-left:auto}
 .admin-toggle{
   display:inline-flex;
   border:1px solid rgba(15,23,42,.14);
@@ -4034,6 +4094,13 @@ body.cart-open{overflow:hidden}
   }
   .admin-toggle{width:100%}
   .admin-toggle__btn{flex:1}
+  .admin-panel__top{
+    flex-direction:column;
+  }
+  .admin-product{
+    grid-template-columns:1fr;
+  }
+  .admin-product__remove{margin-left:0}
 }
 
 /* Site password gate + 18+ caution */
