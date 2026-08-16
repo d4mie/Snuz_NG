@@ -565,7 +565,7 @@
       "search.button": "Search",
       "page.contact.title": "Get in touch",
       "page.contact.lede":
-        "Talk to the snuz.ng team anytime — email, call, or visit our Lagos headquarters.",
+        "Talk to the snuz.ng team anytime — E-mail or Call.",
       "page.contact.general_enquiry": "General enquiry",
       "page.careers.title": "For health. With humanity.",
       "page.careers.lede":
@@ -586,7 +586,7 @@
         "Through our strategy, we aim to reach one billion more consumers by 2030 and deliver industry‑leading shareholder returns.",
       "page.brands.title": "Superior brands, trusted science",
       "page.brands.lede":
-        "A portfolio of category‑leading brands across oral health, pain relief, VMS and more — trusted and used by more than one billion consumers.",
+        "Explore our portfolio of category leading brands from across the world. TRUSTED & USED BY MILLIONS",
       "page.brands.available_title": "Available brands",
       "page.brands.available_lede":
         "Explore a selection of nicotine pouch brands and popular flavours. For adults 18+ only.",
@@ -691,7 +691,7 @@
       "search.button": "Pesquisar",
       "page.contact.title": "Entre em contacto",
       "page.contact.lede":
-        "Fale com a equipa snuz.ng a qualquer momento — email, telefone ou visite a nossa sede em Lagos.",
+        "Fale com a equipa snuz.ng a qualquer momento — E-mail ou Telefone.",
       "page.contact.general_enquiry": "Pedido geral",
       "page.careers.title": "Pela saúde. Com humanidade.",
       "page.careers.lede":
@@ -712,7 +712,7 @@
         "Através da nossa estratégia, pretendemos alcançar mais mil milhões de consumidores até 2030 e oferecer retornos líderes do setor aos acionistas.",
       "page.brands.title": "Marcas superiores, ciência de confiança",
       "page.brands.lede":
-        "Um portefólio de marcas líderes de categoria em saúde oral, alívio da dor, VMS e muito mais — confiadas e usadas por mais de mil milhões de consumidores.",
+        "Explore o nosso portefólio de marcas líderes de categoria de todo o mundo. CONFIADAS E USADAS POR MILHÕES",
       "page.brands.available_title": "Marcas disponíveis",
       "page.brands.available_lede":
         "Explore uma seleção de marcas de bolsas de nicotina e sabores populares. Apenas para adultos 18+.",
@@ -817,7 +817,7 @@
       "search.button": "Buscar",
       "page.contact.title": "Ponte en contacto",
       "page.contact.lede":
-        "Habla con el equipo de snuz.ng en cualquier momento: email, llamada o visita nuestra sede en Lagos.",
+        "Habla con el equipo de snuz.ng en cualquier momento — E-mail o Llamada.",
       "page.contact.general_enquiry": "Consulta general",
       "page.careers.title": "Por la salud. Con humanidad.",
       "page.careers.lede":
@@ -838,7 +838,7 @@
         "A través de nuestra estrategia, buscamos llegar a mil millones más de consumidores para 2030 y ofrecer retornos para los accionistas líderes en la industria.",
       "page.brands.title": "Marcas superiores, ciencia confiable",
       "page.brands.lede":
-        "Un portafolio de marcas líderes en su categoría en salud oral, alivio del dolor, VMS y más — confiadas y utilizadas por más de mil millones de consumidores.",
+        "Explora nuestro portafolio de marcas líderes en su categoría de todo el mundo. CONFIADAS Y USADAS POR MILLONES",
       "page.brands.available_title": "Marcas disponibles",
       "page.brands.available_lede":
         "Explora una selección de marcas de bolsas de nicotina y sabores populares. Solo para adultos 18+.",
