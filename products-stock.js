@@ -140,6 +140,45 @@
       .sort((a, b) => a.sortOrder - b.sortOrder || a.title.localeCompare(b.title));
   };
 
+  /** Keep slug stable when unique; append -2, -3… if the batch would collide. */
+  const ensureUniqueSlugs = (list) => {
+    const seen = new Set();
+    return (Array.isArray(list) ? list : []).map((row, index) => {
+      const product = normalizeProduct(row, index);
+      let base =
+        slugify(product.slug) ||
+        slugify(`${product.brand}-${product.title}`) ||
+        slugify(product.title) ||
+        slugify(product.brand) ||
+        `product-${index + 1}`;
+      let slug = base;
+      let n = 2;
+      while (seen.has(slug)) {
+        slug = `${base}-${n}`;
+        n += 1;
+      }
+      seen.add(slug);
+      return { ...product, slug };
+    });
+  };
+
+  const parseSupabaseError = (text, fallback) => {
+    const raw = String(text || "").trim();
+    if (!raw) return fallback;
+    try {
+      const parsed = JSON.parse(raw);
+      const code = parsed?.code;
+      const message = String(parsed?.message || parsed?.error || "").trim();
+      if (code === "21000" || /affect row a second time/i.test(message)) {
+        return "Two products share the same id. Give each flavour a unique name (or remove the duplicate), then save again.";
+      }
+      if (message) return message;
+    } catch {
+      // not JSON
+    }
+    return raw || fallback;
+  };
+
   const toStockMap = (list) => {
     const map = {};
     list.forEach((p) => {
@@ -180,7 +219,8 @@
   };
 
   const saveRemoteProducts = async (list) => {
-    const rows = list.map((p, i) => ({
+    const unique = ensureUniqueSlugs(list);
+    const rows = unique.map((p, i) => ({
       slug: p.slug,
       brand: p.brand,
       title: p.title,
@@ -200,7 +240,7 @@
     });
     if (!res.ok) {
       const text = await res.text().catch(() => "");
-      throw new Error(text || `Product save failed (${res.status})`);
+      throw new Error(parseSupabaseError(text, `Product save failed (${res.status})`));
     }
     return res.json();
   };
@@ -240,7 +280,7 @@
   };
 
   const saveProducts = async (list) => {
-    const next = normalizeList(list);
+    const next = ensureUniqueSlugs(normalizeList(list));
     writeLocal(next);
     if (hasSupabase()) {
       const remote = await fetchRemoteProducts().catch(() => []);
@@ -460,6 +500,7 @@
     saveStock,
     loadProducts,
     saveProducts,
+    ensureUniqueSlugs,
     uploadImage,
     renderShopGrid,
     applyToPage,
