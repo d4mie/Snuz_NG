@@ -366,8 +366,9 @@
               var looksTemp = /^product-\d+$/.test(p.slug);
               if (looksTemp) {
                 var nextSlug =
-                  window.SnuzStock.slugify(p.brand) ||
+                  window.SnuzStock.slugify(p.brand + "-" + p.title) ||
                   window.SnuzStock.slugify(p.title) ||
+                  window.SnuzStock.slugify(p.brand) ||
                   p.slug;
                 return window.SnuzStock.normalizeProduct(
                   Object.assign({}, p, { slug: nextSlug }),
@@ -376,6 +377,7 @@
               }
               return p;
             });
+            draft = window.SnuzStock.ensureUniqueSlugs(draft);
             var result = await window.SnuzStock.saveProducts(draft);
             renderList(result.list);
             sourceEl.textContent = sourceLabel(result.source);
