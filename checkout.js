@@ -268,7 +268,7 @@
             <div class="checkout-summary__line">
               <img src="${item.image}" alt="" width="56" height="56" />
               <div>
-                <p>${item.title}</p>
+                <p>${item.brand ? `${item.brand} · ${item.title}` : item.title}</p>
                 <span>× ${item.quantity}</span>
               </div>
               <strong>${fmt(item.priceNaira * item.quantity)}</strong>

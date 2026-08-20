@@ -114,20 +114,131 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
 
+  const flavourFromTitle = (brand, title) => {
+    const name = String(title || "").trim();
+    const label = String(brand || "").trim();
+    if (!name) return "Classic";
+    if (!label) return name;
+    const stripped = name.replace(new RegExp(`^${label}\\s+`, "i"), "").trim();
+    return stripped || name;
+  };
+
+  const normalizeVariant = (row, fallback = {}) => {
+    const flavour = String(row?.flavour || fallback.flavour || "").trim();
+    const mg = Math.max(0, Math.round(Number(row?.mg ?? fallback.mg) || 0));
+    const priceNaira = Math.max(
+      0,
+      Math.round(Number(row?.priceNaira ?? row?.price_naira ?? fallback.priceNaira) || 0)
+    );
+    return {
+      flavour,
+      mg,
+      priceNaira,
+      available: row?.available !== false,
+      imageUrl: String(row?.imageUrl || row?.image_url || fallback.imageUrl || "").trim(),
+    };
+  };
+
+  const variantImage = (product, variant) =>
+    String(variant?.imageUrl || product?.imageUrl || "./assets/snuz-logo.jpg").trim();
+
+  const parseVariantsField = (raw) => {
+    if (Array.isArray(raw)) return raw;
+    if (typeof raw === "string" && raw.trim()) {
+      try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    }
+    return [];
+  };
+
+  const normalizeVariants = (row) => {
+    const fallback = {
+      flavour: flavourFromTitle(row?.brand, row?.title),
+      mg: 0,
+      priceNaira: row?.priceNaira ?? row?.price_naira,
+      available: true,
+    };
+    const list = parseVariantsField(row?.variants)
+      .map((item) => normalizeVariant(item, fallback))
+      .filter((item) => item.flavour);
+    if (list.length) return list;
+    return [normalizeVariant(fallback, fallback)];
+  };
+
+  const uniqueFlavours = (product) => {
+    const names = [];
+    (product?.variants || []).forEach((item) => {
+      if (item.flavour && !names.includes(item.flavour)) names.push(item.flavour);
+    });
+    return names;
+  };
+
+  const mgsForFlavour = (product, flavour) =>
+    (product?.variants || [])
+      .filter((item) => item.flavour === flavour)
+      .map((item) => Number(item.mg) || 0)
+      .filter((mg, i, arr) => arr.indexOf(mg) === i)
+      .sort((a, b) => a - b);
+
+  const findVariant = (product, flavour, mg) => {
+    const variants = product?.variants || [];
+    const strength = Number(mg) || 0;
+    return (
+      variants.find((item) => item.flavour === flavour && Number(item.mg) === strength) ||
+      variants.find((item) => item.flavour === flavour) ||
+      variants[0] ||
+      null
+    );
+  };
+
+  const variantSlug = (brand, flavour, mg) => {
+    const base = slugify(`${brand}-${flavour}`) || slugify(brand) || "product";
+    const strength = Number(mg) || 0;
+    return strength > 0 ? `${base}-${strength}` : base;
+  };
+
+  const sellableFrom = (product, variant) => {
+    const flavour = variant?.flavour || "";
+    const mg = Number(variant?.mg) || 0;
+    const priceNaira = Math.max(0, Number(variant?.priceNaira ?? product?.priceNaira) || 0);
+    const title = mg > 0 ? `${flavour} ${mg}mg` : flavour;
+    return {
+      slug: variantSlug(product?.brand, flavour, mg),
+      brand: product?.brand || "",
+      title,
+      flavour,
+      mg,
+      priceNaira,
+      price: formatNaira(priceNaira),
+      image: variantImage(product, variant),
+    };
+  };
+
   const normalizeProduct = (row, index = 0) => {
     const slug =
       slugify(row?.slug) ||
       slugify(row?.brand) ||
       slugify(row?.title) ||
       `product-${index + 1}`;
+    const brand = String(row?.brand || "").trim() || "BRAND";
+    const title = String(row?.title || "").trim() || "Untitled product";
+    const priceNaira = Math.max(0, Math.round(Number(row?.priceNaira ?? row?.price_naira) || 0));
+    const available = row?.available !== false;
+    const variants = normalizeVariants({ ...row, brand, title, priceNaira });
+    const first = variants[0];
     return {
       slug,
-      brand: String(row?.brand || "").trim() || "BRAND",
-      title: String(row?.title || "").trim() || "Untitled product",
-      priceNaira: Math.max(0, Math.round(Number(row?.priceNaira ?? row?.price_naira) || 0)),
+      brand,
+      title,
+      priceNaira: first?.priceNaira ?? priceNaira,
       imageUrl: String(row?.imageUrl || row?.image_url || "").trim(),
-      available: row?.available !== false,
+      available,
       sortOrder: Number(row?.sortOrder ?? row?.sort_order ?? (index + 1) * 10) || (index + 1) * 10,
+      variants,
     };
   };
 
@@ -206,21 +317,16 @@
     }
   };
 
-  const fetchRemoteProducts = async () => {
-    const res = await fetch(
-      `${restUrl()}?select=slug,brand,title,price_naira,image_url,available,sort_order&order=sort_order.asc`,
-      { headers: supabaseHeaders() }
-    );
-    if (!res.ok) {
-      const text = await res.text().catch(() => "");
-      throw new Error(text || `Product load failed (${res.status})`);
-    }
-    return res.json();
-  };
+  const SELECT_BASIC = "slug,brand,title,price_naira,image_url,available,sort_order";
+  const SELECT_WITH_VARIANTS = `${SELECT_BASIC},variants`;
+  let variantsColumnReady = true;
 
-  const saveRemoteProducts = async (list) => {
-    const unique = ensureUniqueSlugs(list);
-    const rows = unique.map((p, i) => ({
+  const missingVariantsColumn = (text) =>
+    /variants/i.test(String(text || "")) &&
+    (/does not exist|PGRST204|schema cache|42703/i.test(String(text || "")));
+
+  const toRemoteRow = (p, i, includeVariants) => {
+    const row = {
       slug: p.slug,
       brand: p.brand,
       title: p.title,
@@ -229,20 +335,55 @@
       available: p.available !== false,
       sort_order: p.sortOrder || (i + 1) * 10,
       updated_at: new Date().toISOString(),
-    }));
-    const res = await fetch(`${restUrl()}?on_conflict=slug`, {
-      method: "POST",
-      headers: {
-        ...supabaseHeaders(),
-        Prefer: "resolution=merge-duplicates,return=representation",
-      },
-      body: JSON.stringify(rows),
+    };
+    if (includeVariants) row.variants = Array.isArray(p.variants) ? p.variants : [];
+    return row;
+  };
+
+  const fetchRemoteProducts = async () => {
+    const select = variantsColumnReady ? SELECT_WITH_VARIANTS : SELECT_BASIC;
+    const res = await fetch(`${restUrl()}?select=${select}&order=sort_order.asc`, {
+      headers: supabaseHeaders(),
     });
     if (!res.ok) {
       const text = await res.text().catch(() => "");
-      throw new Error(parseSupabaseError(text, `Product save failed (${res.status})`));
+      if (variantsColumnReady && missingVariantsColumn(text)) {
+        variantsColumnReady = false;
+        return fetchRemoteProducts();
+      }
+      throw new Error(parseSupabaseError(text, `Product load failed (${res.status})`));
     }
     return res.json();
+  };
+
+  const saveRemoteProducts = async (list) => {
+    const unique = ensureUniqueSlugs(list);
+    const postRows = async (includeVariants) => {
+      const res = await fetch(`${restUrl()}?on_conflict=slug`, {
+        method: "POST",
+        headers: {
+          ...supabaseHeaders(),
+          Prefer: "resolution=merge-duplicates,return=representation",
+        },
+        body: JSON.stringify(unique.map((p, i) => toRemoteRow(p, i, includeVariants))),
+      });
+      const text = await res.text().catch(() => "");
+      return { res, text };
+    };
+
+    let { res, text } = await postRows(variantsColumnReady);
+    if (!res.ok && variantsColumnReady && missingVariantsColumn(text)) {
+      variantsColumnReady = false;
+      ({ res, text } = await postRows(false));
+    }
+    if (!res.ok) {
+      throw new Error(parseSupabaseError(text, `Product save failed (${res.status})`));
+    }
+    try {
+      return text ? JSON.parse(text) : [];
+    } catch {
+      return [];
+    }
   };
 
   const deleteRemoteProduct = async (slug) => {
@@ -393,6 +534,14 @@
     }
   };
 
+  const strengthLabel = (product) => {
+    const mgs = [
+      ...new Set((product.variants || []).map((item) => Number(item.mg) || 0).filter((n) => n > 0)),
+    ];
+    if (mgs.length === 1) return `${mgs[0]}mg`;
+    return variesLabel();
+  };
+
   const cardHtml = (product, index) => {
     const altBadge = index % 2 === 1 ? " product__badge--alt" : "";
     const img = escapeHtml(product.imageUrl || "./assets/snuz-logo.jpg");
@@ -413,7 +562,7 @@
       `<h3 class="product__name">${title}</h3>` +
       `<div class="product__meta">` +
       `<span class="product__price" data-money="${product.priceNaira}" data-money-currency="NGN">${price}</span>` +
-      `<span class="product__strength" data-i18n="products.varies">${escapeHtml(variesLabel())}</span>` +
+      `<span class="product__strength">${escapeHtml(strengthLabel(product))}</span>` +
       `</div>` +
       `<button class="btn btn-small btn-solid product__btn" type="button" data-i18n="${sold ? "products.sold_out" : "products.add_to_cart"}"${sold ? ' disabled aria-disabled="true"' : ""}>` +
       `${escapeHtml(sold ? soldOutLabel() : addToCartLabel())}` +
@@ -421,6 +570,177 @@
       `</div>` +
       `</article>`
     );
+  };
+
+  const optionHtml = (value, label, selected) =>
+    `<option value="${escapeHtml(String(value))}"${selected ? " selected" : ""}>${escapeHtml(label)}</option>`;
+
+  const mgLabel = (mg) => (Number(mg) > 0 ? `${Number(mg)}mg` : "—");
+
+  const shopCardHtml = (product, index) => {
+    const altBadge = index % 2 === 1 ? " product__badge--alt" : "";
+    const brand = escapeHtml(product.brand);
+    const flavours = uniqueFlavours(product);
+    const firstFlavour = flavours[0] || "";
+    const mgs = mgsForFlavour(product, firstFlavour);
+    const firstMg = mgs[0] ?? 0;
+    const variant = findVariant(product, firstFlavour, firstMg);
+    const img = escapeHtml(variantImage(product, variant));
+    const sold = product.available === false || variant?.available === false;
+    const price = formatNaira(variant?.priceNaira ?? product.priceNaira);
+    const flavourChips = flavours
+      .map(
+        (name) =>
+          `<button class="shop-card__chip${name === firstFlavour ? " is-on" : ""}" type="button" data-shop-flavour-opt="${escapeHtml(name)}"${product.available === false ? " disabled" : ""}>${escapeHtml(name)}</button>`
+      )
+      .join("");
+    const mgChips = mgs
+      .map(
+        (mg) =>
+          `<button class="shop-card__chip${mg === firstMg ? " is-on" : ""}" type="button" data-shop-mg-opt="${escapeHtml(String(mg))}"${product.available === false ? " disabled" : ""}>${escapeHtml(mgLabel(mg))}</button>`
+      )
+      .join("");
+    return (
+      `<article class="shop-card featured__card${sold ? " is-sold-out" : ""}" data-shop-card data-brand-slug="${escapeHtml(product.slug)}"${sold ? ' data-sold-out="true"' : ""}>` +
+      `<div class="featured__media">` +
+      `<div class="product__badge${altBadge}">${brand}</div>` +
+      (sold
+        ? `<div class="product__soldout" aria-label="Sold out">${escapeHtml(soldOutLabel())}</div>`
+        : "") +
+      `<img class="product__img" src="${img}" alt="${brand}" width="320" height="320" loading="lazy" decoding="async" />` +
+      `</div>` +
+      `<div class="featured__body">` +
+      `<h3 class="product__name">${brand}</h3>` +
+      `<div class="shop-card__picks">` +
+      `<span class="shop-card__label">Flavour</span>` +
+      `<div class="shop-card__chips" data-shop-flavour role="group" aria-label="Flavour">${flavourChips}</div>` +
+      `</div>` +
+      `<div class="shop-card__picks">` +
+      `<span class="shop-card__label">Strength</span>` +
+      `<div class="shop-card__chips" data-shop-mg role="group" aria-label="Strength">${mgChips}</div>` +
+      `</div>` +
+      `<div class="product__meta">` +
+      `<span class="product__price" data-shop-price data-money="${variant?.priceNaira ?? product.priceNaira}" data-money-currency="NGN">${price}</span>` +
+      `</div>` +
+      `<button class="btn btn-small product__btn shop-card__buy" type="button" data-shop-add${sold ? " disabled aria-disabled=\"true\"" : ""}>` +
+      `${escapeHtml(sold ? soldOutLabel() : addToCartLabel())}` +
+      `</button>` +
+      `</div>` +
+      `</article>`
+    );
+  };
+
+  const selectedChipValue = (root, attr) =>
+    root?.querySelector(`.shop-card__chip.is-on[${attr}]`)?.getAttribute(attr) ||
+    root?.querySelector(`[${attr}]`)?.getAttribute(attr) ||
+    "";
+
+  const selectedVariantFromCard = (card, product) => {
+    const flavour =
+      selectedChipValue(card, "data-shop-flavour-opt") || uniqueFlavours(product)[0] || "";
+    const mg = Number(selectedChipValue(card, "data-shop-mg-opt") || 0);
+    return findVariant(product, flavour, mg);
+  };
+
+  const renderMgChips = (card, product, flavour, keepMg) => {
+    const wrap = card.querySelector("[data-shop-mg]");
+    if (!wrap) return;
+    const mgs = mgsForFlavour(product, flavour);
+    const nextMg = mgs.includes(Number(keepMg)) ? Number(keepMg) : (mgs[0] ?? 0);
+    const locked = product.available === false;
+    wrap.innerHTML = mgs
+      .map(
+        (mg) =>
+          `<button class="shop-card__chip${mg === nextMg ? " is-on" : ""}" type="button" data-shop-mg-opt="${escapeHtml(String(mg))}"${locked ? " disabled" : ""}>${escapeHtml(mgLabel(mg))}</button>`
+      )
+      .join("");
+  };
+
+  const syncShopCard = (card, product, nextFlavour) => {
+    if (!card || !product) return;
+    const priceEl = card.querySelector("[data-shop-price]");
+    const imgEl = card.querySelector(".product__img");
+    const btn = card.querySelector("[data-shop-add]");
+    const badge = card.querySelector(".product__soldout");
+    const flavour =
+      nextFlavour ||
+      selectedChipValue(card, "data-shop-flavour-opt") ||
+      uniqueFlavours(product)[0] ||
+      "";
+    const currentMg = selectedChipValue(card, "data-shop-mg-opt");
+    renderMgChips(card, product, flavour, currentMg);
+    const variant = selectedVariantFromCard(card, product);
+    const sold = product.available === false || variant?.available === false;
+    const priceNaira = variant?.priceNaira ?? product.priceNaira;
+    if (priceEl) {
+      priceEl.textContent = formatNaira(priceNaira);
+      priceEl.setAttribute("data-money", String(priceNaira));
+    }
+    if (imgEl) {
+      imgEl.src = variantImage(product, variant);
+      imgEl.alt = `${product.brand || ""} ${variant?.flavour || ""}`.trim();
+    }
+    card.classList.toggle("is-sold-out", sold);
+    if (sold) card.setAttribute("data-sold-out", "true");
+    else card.removeAttribute("data-sold-out");
+    if (btn) {
+      btn.disabled = sold;
+      if (sold) btn.setAttribute("aria-disabled", "true");
+      else btn.removeAttribute("aria-disabled");
+      btn.textContent = sold ? soldOutLabel() : addToCartLabel();
+    }
+    if (sold && !badge) {
+      const media = card.querySelector(".featured__media");
+      if (media) {
+        const el = document.createElement("div");
+        el.className = "product__soldout";
+        el.setAttribute("aria-label", "Sold out");
+        el.textContent = soldOutLabel();
+        media.appendChild(el);
+      }
+    } else if (!sold && badge) {
+      badge.remove();
+    }
+  };
+
+  const bindShopCards = (root, list) => {
+    root.querySelectorAll("[data-shop-card]").forEach((card) => {
+      const product = list.find((p) => p.slug === card.getAttribute("data-brand-slug"));
+      if (!product) return;
+      card.addEventListener("click", (event) => {
+        const flavourBtn = event.target.closest("[data-shop-flavour-opt]");
+        if (flavourBtn && !flavourBtn.disabled) {
+          card.querySelectorAll("[data-shop-flavour-opt]").forEach((btn) => {
+            btn.classList.toggle("is-on", btn === flavourBtn);
+          });
+          syncShopCard(card, product, flavourBtn.getAttribute("data-shop-flavour-opt"));
+          return;
+        }
+        const mgBtn = event.target.closest("[data-shop-mg-opt]");
+        if (mgBtn && !mgBtn.disabled) {
+          card.querySelectorAll("[data-shop-mg-opt]").forEach((btn) => {
+            btn.classList.toggle("is-on", btn === mgBtn);
+          });
+          syncShopCard(card, product);
+        }
+      });
+      const btn = card.querySelector("[data-shop-add]");
+      btn?.addEventListener("click", () => {
+        const variant = selectedVariantFromCard(card, product);
+        if (!variant || product.available === false || variant.available === false) return;
+        const item = sellableFrom(product, variant);
+        if (!item.title || !item.priceNaira) return;
+        window.SnuzCart?.addItem(item, 1);
+      });
+    });
+  };
+
+  const renderFullShop = (list) => {
+    const grid = document.querySelector("[data-shop-grid]");
+    if (!grid) return;
+    const products = normalizeList(list);
+    grid.innerHTML = products.map((p, i) => shopCardHtml(p, i)).join("");
+    bindShopCards(grid, products);
   };
 
   const renderShopGrid = (list) => {
@@ -503,26 +823,40 @@
     ensureUniqueSlugs,
     uploadImage,
     renderShopGrid,
+    renderFullShop,
     applyToPage,
     defaultStockMap: () => toStockMap(DEFAULT_PRODUCTS),
     defaultProducts: () => DEFAULT_PRODUCTS.map((p) => normalizeProduct(p)),
     normalizeProduct,
     normalizeList,
+    normalizeVariant,
+    uniqueFlavours,
+    findVariant,
+    sellableFrom,
+    hasVariantsColumn: () => variantsColumnReady,
     slugify,
     formatNaira,
     checkAdminPassword,
   };
 
   const bootShop = async () => {
+    const shopGrid = document.querySelector("[data-shop-grid]");
     const grid = document.querySelector("[data-products-grid], .featured__grid");
-    if (!grid && !document.querySelector(".product[data-category], .brand-card[data-category]")) {
+    if (
+      !shopGrid &&
+      !grid &&
+      !document.querySelector(".product[data-category], .brand-card[data-category]")
+    ) {
       return;
     }
     const { list, source } = await loadProducts();
+    if (shopGrid) {
+      renderFullShop(list);
+      return;
+    }
     if (grid && (source === "supabase" || source === "local" || source === "local-fallback")) {
       renderShopGrid(list);
     } else if (grid && source === "default") {
-      // Keep HTML cards, but sync sold-out state from defaults
       applyToPage(list);
     } else {
       applyToPage(list);
