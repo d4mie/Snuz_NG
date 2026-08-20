@@ -4146,6 +4146,25 @@ body.cart-open{overflow:hidden}
   max-width:1120px;
   gap:18px;
 }
+@media (max-width: 720px){
+  .shop-catalog.featured .container{
+    width:min(100% - 24px, var(--max));
+    padding:0;
+    margin-inline:auto;
+  }
+  .shop-catalog .shop-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    overflow:visible;
+    scroll-snap-type:none;
+    padding:0;
+    gap:14px;
+  }
+  .shop-catalog .shop-card.featured__card{
+    flex:none;
+    width:100%;
+  }
+}
 .shop-card.featured__card{
   background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
   border:1px solid rgba(255,255,255,.08);
