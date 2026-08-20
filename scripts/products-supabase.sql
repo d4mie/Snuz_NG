@@ -20,6 +20,7 @@ create table if not exists public.products (
   image_url text not null default '',
   available boolean not null default true,
   sort_order integer not null default 0,
+  variants jsonb not null default '[]'::jsonb,
   updated_at timestamptz not null default now()
 );
 

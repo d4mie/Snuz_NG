@@ -25,7 +25,7 @@
             <span class="brand__name">snuz.ng</span>
           </a>
           <div class="nav__cta">
-            <a class="btn btn--ghost" href="./index.html#featured">View shop</a>
+            <a class="btn btn--ghost" href="./shop.html">View shop</a>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@
           <p class="admin__eyebrow">Private</p>
           <h1 class="admin__title">Product admin</h1>
           <p class="admin__lede">
-            Change name, price, photo, and stock. Add new products. Shoppers see updates on the next page load.
+            Add each brand, then list its flavours, mg, and price. Shoppers pick those on the shop page.
           </p>
         </div>
 
@@ -61,7 +61,7 @@
               <p class="admin-card__hint" data-admin-source>Loading products…</p>
             </div>
             <div class="admin-panel__top-actions">
-              <button class="btn btn--primary" type="button" data-admin-add>Add product</button>
+              <button class="btn btn--primary" type="button" data-admin-add>Add brand</button>
               <button class="btn btn--ghost" type="button" data-admin-logout>Lock</button>
             </div>
           </div>
@@ -123,24 +123,101 @@
             .replace(/"/g, "&quot;");
         }
 
+        function flavourRowHtml(variant) {
+          var item = window.SnuzStock.normalizeVariant(variant || {}, {
+            flavour: "",
+            mg: 0,
+            priceNaira: 9500,
+            available: true,
+            imageUrl: "",
+          });
+          var on = item.available !== false;
+          var mgValue = item.mg > 0 ? String(item.mg) : "";
+          var flavourImg = escapeHtml(item.imageUrl || "");
+          return (
+            '<div class="admin-flavour" data-variant-row>' +
+            '<div class="admin-flavour__preview" data-flavour-preview>' +
+            (flavourImg
+              ? '<img src="' + flavourImg + '" alt="" width="56" height="56" />'
+              : '<div class="admin-product__placeholder">No photo</div>') +
+            "</div>" +
+            '<label class="admin-field"><span>Flavour</span>' +
+            '<input name="flavour" type="text" value="' +
+            escapeHtml(item.flavour) +
+            '" placeholder="Blue Mint" /></label>' +
+            '<label class="admin-field"><span>mg</span>' +
+            '<input name="mg" type="number" min="0" step="1" value="' +
+            escapeHtml(mgValue) +
+            '" placeholder="15" /></label>' +
+            '<label class="admin-field"><span>Price (₦)</span>' +
+            '<input name="price" type="number" min="0" step="1" value="' +
+            escapeHtml(String(item.priceNaira)) +
+            '" /></label>' +
+            '<label class="admin-field admin-flavour__url"><span>Flavour photo URL</span>' +
+            '<input name="flavourImage" type="text" value="' +
+            flavourImg +
+            '" placeholder="Upload or paste a link" /></label>' +
+            '<div class="admin-flavour__photo">' +
+            '<label class="btn btn--ghost admin-upload-btn">' +
+            "Upload flavour photo" +
+            '<input type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden data-flavour-upload />' +
+            "</label>" +
+            '<span class="admin-upload-status" data-flavour-upload-status hidden></span>' +
+            "</div>" +
+            '<div class="admin-flavour__stock">' +
+            '<div class="admin-toggle" role="group" aria-label="Flavour stock">' +
+            '<button type="button" class="admin-toggle__btn' +
+            (on ? " is-on" : "") +
+            '" data-variant-set="1">In stock</button>' +
+            '<button type="button" class="admin-toggle__btn' +
+            (!on ? " is-on is-sold" : "") +
+            '" data-variant-set="0">Sold out</button>' +
+            "</div>" +
+            '<button type="button" class="btn btn--ghost admin-flavour__remove" data-remove-flavour>Remove</button>' +
+            "</div>" +
+            "</div>"
+          );
+        }
+
+        function collectVariants(row) {
+          return Array.from(row.querySelectorAll("[data-variant-row]"))
+            .map(function (line) {
+              return window.SnuzStock.normalizeVariant(
+                {
+                  flavour: (line.querySelector('[name="flavour"]') || {}).value || "",
+                  mg: (line.querySelector('[name="mg"]') || {}).value || "0",
+                  priceNaira: (line.querySelector('[name="price"]') || {}).value || "0",
+                  available: line.querySelector('[data-variant-set].is-on[data-variant-set="1"]') != null,
+                  imageUrl: (line.querySelector('[name="flavourImage"]') || {}).value || "",
+                },
+                { flavour: "", mg: 0, priceNaira: 0, available: true, imageUrl: "" }
+              );
+            })
+            .filter(function (item) {
+              return item.flavour;
+            });
+        }
+
         function collectFromDom() {
           var rows = Array.from(listEl.querySelectorAll("[data-admin-row]"));
           return rows.map(function (row, index) {
             var slug = row.getAttribute("data-slug") || "";
             var brand = (row.querySelector('[name="brand"]') || {}).value || "";
             var title = (row.querySelector('[name="title"]') || {}).value || "";
-            var priceRaw = (row.querySelector('[name="price"]') || {}).value || "0";
             var imageUrl = (row.querySelector('[name="imageUrl"]') || {}).value || "";
             var available = row.querySelector('[data-set].is-on[data-set="1"]') != null;
+            var variants = collectVariants(row);
+            var first = variants[0];
             return window.SnuzStock.normalizeProduct(
               {
                 slug: slug,
                 brand: brand,
-                title: title,
-                priceNaira: priceRaw,
+                title: title || (first && first.flavour) || brand,
+                priceNaira: first ? first.priceNaira : 0,
                 imageUrl: imageUrl,
                 available: available,
                 sortOrder: (index + 1) * 10,
+                variants: variants,
               },
               index
             );
@@ -153,6 +230,7 @@
             .map(function (product) {
               var available = product.available !== false;
               var img = escapeHtml(product.imageUrl || "");
+              var variants = product.variants && product.variants.length ? product.variants : [{ flavour: "", mg: 0, priceNaira: product.priceNaira, available: true }];
               return (
                 '<article class="admin-product" data-admin-row data-slug="' +
                 escapeHtml(product.slug) +
@@ -167,13 +245,9 @@
                 '<input name="brand" type="text" value="' +
                 escapeHtml(product.brand) +
                 '" required /></label>' +
-                '<label class="admin-field"><span>Product name</span>' +
+                '<label class="admin-field"><span>Display name</span>' +
                 '<input name="title" type="text" value="' +
                 escapeHtml(product.title) +
-                '" required /></label>' +
-                '<label class="admin-field"><span>Price (₦)</span>' +
-                '<input name="price" type="number" min="0" step="1" value="' +
-                escapeHtml(String(product.priceNaira)) +
                 '" required /></label>' +
                 '<label class="admin-field"><span>Photo URL</span>' +
                 '<input name="imageUrl" type="text" value="' +
@@ -187,17 +261,26 @@
                 '<span class="admin-upload-status" data-upload-status hidden></span>' +
                 "</div>" +
                 '<div class="admin-product__stock">' +
-                '<div class="admin-toggle" role="group" aria-label="Stock for ' +
-                escapeHtml(product.title) +
+                '<div class="admin-toggle" role="group" aria-label="Brand stock for ' +
+                escapeHtml(product.brand) +
                 '">' +
                 '<button type="button" class="admin-toggle__btn' +
                 (available ? " is-on" : "") +
-                '" data-set="1">Available</button>' +
+                '" data-set="1">Brand in stock</button>' +
                 '<button type="button" class="admin-toggle__btn' +
                 (!available ? " is-on is-sold" : "") +
-                '" data-set="0">Sold out</button>' +
+                '" data-set="0">Brand sold out</button>' +
                 "</div>" +
-                '<button type="button" class="btn btn--ghost admin-product__remove" data-remove>Remove</button>' +
+                '<button type="button" class="btn btn--ghost admin-product__remove" data-remove>Remove brand</button>' +
+                "</div>" +
+                '<div class="admin-flavours">' +
+                '<div class="admin-flavours__head">' +
+                "<p>Flavours</p>" +
+                '<button class="btn btn--ghost" type="button" data-add-flavour>Add flavour</button>' +
+                "</div>" +
+                '<div class="admin-flavours__list" data-flavour-list>' +
+                variants.map(flavourRowHtml).join("") +
+                "</div>" +
                 "</div>" +
                 "</div>" +
                 "</article>"
@@ -270,11 +353,12 @@
               {
                 slug: "product-" + Date.now(),
                 brand: "NEW",
-                title: "New product",
-                priceNaira: 0,
+                title: "New brand",
+                priceNaira: 9500,
                 imageUrl: "",
                 available: true,
                 sortOrder: n * 10,
+                variants: [{ flavour: "New flavour", mg: 15, priceNaira: 9500, available: true }],
               },
               n - 1
             )
@@ -285,12 +369,50 @@
         });
 
         listEl.addEventListener("click", function (e) {
+          var addFlavour = e.target.closest("[data-add-flavour]");
+          if (addFlavour) {
+            var flavourList = addFlavour.closest("[data-admin-row]");
+            var list = flavourList && flavourList.querySelector("[data-flavour-list]");
+            if (!list) return;
+            list.insertAdjacentHTML(
+              "beforeend",
+              flavourRowHtml({ flavour: "", mg: 15, priceNaira: 9500, available: true })
+            );
+            return;
+          }
+
+          var removeFlavour = e.target.closest("[data-remove-flavour]");
+          if (removeFlavour) {
+            var flavourRow = removeFlavour.closest("[data-variant-row]");
+            var parentList = removeFlavour.closest("[data-flavour-list]");
+            if (!flavourRow || !parentList) return;
+            if (parentList.querySelectorAll("[data-variant-row]").length < 2) {
+              alert("Keep at least one flavour row.");
+              return;
+            }
+            flavourRow.remove();
+            return;
+          }
+
           var removeBtn = e.target.closest("[data-remove]");
           if (removeBtn) {
             var removeRow = removeBtn.closest("[data-admin-row]");
             if (!removeRow) return;
-            if (!confirm("Remove this product from the shop?")) return;
+            if (!confirm("Remove this brand from the shop?")) return;
             removeRow.remove();
+            return;
+          }
+
+          var variantBtn = e.target.closest("[data-variant-set]");
+          if (variantBtn) {
+            var variantRow = variantBtn.closest("[data-variant-row]");
+            if (!variantRow) return;
+            var variantOn = variantBtn.getAttribute("data-variant-set") === "1";
+            variantRow.querySelectorAll("[data-variant-set]").forEach(function (b) {
+              var on = b.getAttribute("data-variant-set") === (variantOn ? "1" : "0");
+              b.classList.toggle("is-on", on);
+              b.classList.toggle("is-sold", on && !variantOn);
+            });
             return;
           }
 
@@ -307,18 +429,32 @@
         });
 
         listEl.addEventListener("change", async function (e) {
-          var input = e.target.closest("[data-upload]");
+          var flavourInput = e.target.closest("[data-flavour-upload]");
+          var input = flavourInput || e.target.closest("[data-upload]");
           if (!input || !input.files || !input.files[0]) return;
+          var flavourRow = input.closest("[data-variant-row]");
           var row = input.closest("[data-admin-row]");
           if (!row) return;
-          var status = row.querySelector("[data-upload-status]");
-          var urlInput = row.querySelector('[name="imageUrl"]');
-          var preview = row.querySelector(".admin-product__preview");
+          var status = flavourRow
+            ? flavourRow.querySelector("[data-flavour-upload-status]")
+            : row.querySelector("[data-upload-status]");
+          var urlInput = flavourRow
+            ? flavourRow.querySelector('[name="flavourImage"]')
+            : row.querySelector('[name="imageUrl"]');
+          var preview = flavourRow
+            ? flavourRow.querySelector("[data-flavour-preview]")
+            : row.querySelector(".admin-product__preview");
           var file = input.files[0];
           var slugHint =
             (row.querySelector('[name="brand"]') || {}).value ||
             row.getAttribute("data-slug") ||
             "product";
+          if (flavourRow) {
+            slugHint =
+              slugHint +
+              "-" +
+              ((flavourRow.querySelector('[name="flavour"]') || {}).value || "flavour");
+          }
           showStatus(status, "Uploading…", false);
           try {
             var url = await window.SnuzStock.uploadImage(file, slugHint);
@@ -336,6 +472,17 @@
         });
 
         listEl.addEventListener("input", function (e) {
+          var flavourUrl = e.target.closest('[name="flavourImage"]');
+          if (flavourUrl) {
+            var flavourRow = flavourUrl.closest("[data-variant-row]");
+            var flavourPreview = flavourRow && flavourRow.querySelector("[data-flavour-preview]");
+            if (!flavourPreview) return;
+            var flavourSrc = flavourUrl.value.trim();
+            flavourPreview.innerHTML = flavourSrc
+              ? '<img src="' + escapeHtml(flavourSrc) + '" alt="" width="56" height="56" />'
+              : '<div class="admin-product__placeholder">No photo</div>';
+            return;
+          }
           var urlInput = e.target.closest('[name="imageUrl"]');
           if (!urlInput) return;
           var row = urlInput.closest("[data-admin-row]");
@@ -358,9 +505,27 @@
               throw new Error("Add at least one product before saving.");
             }
             var bad = draft.find(function (p) {
-              return !p.title.trim() || !p.brand.trim();
+              return !p.brand.trim();
             });
-            if (bad) throw new Error("Every product needs a brand and name.");
+            if (bad) throw new Error("Every collection needs a brand name.");
+            var noFlavour = draft.find(function (p) {
+              return !p.variants || !p.variants.length;
+            });
+            if (noFlavour) throw new Error("Every brand needs at least one flavour with a name.");
+            var clash = draft.find(function (p) {
+              var seen = {};
+              return (p.variants || []).some(function (v) {
+                var key = String(v.flavour).toLowerCase() + "|" + String(v.mg);
+                if (seen[key]) return true;
+                seen[key] = true;
+                return false;
+              });
+            });
+            if (clash) {
+              throw new Error(
+                "A brand has the same flavour and mg twice. Change one, or remove the extra row."
+              );
+            }
             // Stable slugs: keep existing; for new rows derive from brand+title once
             draft = draft.map(function (p, i) {
               var looksTemp = /^product-\d+$/.test(p.slug);
@@ -384,7 +549,9 @@
             showStatus(
               saveStatus,
               result.source === "supabase"
-                ? "Saved. Shoppers will see this on the next page load."
+                ? window.SnuzStock.hasVariantsColumn()
+                  ? "Saved. Shoppers will see this on the next page load."
+                  : "Saved brands, but flavour rows need a one-time Supabase update. Run scripts/products-variants.sql, then save again."
                 : "Saved in this browser only. Add Supabase for live site-wide products.",
               false
             );

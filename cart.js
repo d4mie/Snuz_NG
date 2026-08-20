@@ -221,6 +221,27 @@
     });
   };
 
+  const itemOptionText = (item) => {
+    const flavour = String(item.flavour || "").trim();
+    const mg = Number(item.mg) || 0;
+    if (flavour && mg) return `${flavour} · ${mg}mg`;
+    if (flavour) return flavour;
+    if (mg) return `${mg}mg`;
+    return "";
+  };
+
+  const cartLineCopy = (item) => {
+    const heading = item.brand || item.title;
+    const option = itemOptionText(item);
+    const sub = option || (item.brand ? item.title : "");
+    return `
+            <div>
+              <p class="cart-line__title">${heading}</p>
+              ${sub ? `<p class="cart-line__opt">${sub}</p>` : ""}
+              <p class="cart-line__price">${item.price}</p>
+            </div>`;
+  };
+
   const renderDrawer = (state) => {
     const root = document.querySelector("[data-cart-drawer]");
     if (!root) return;
@@ -248,7 +269,7 @@
       body.innerHTML = `
         <div class="cart-empty">
           <p>Your cart is empty.</p>
-          <a class="link" href="./index.html#products">Return to shop</a>
+          <a class="link" href="./shop.html">Return to shop</a>
         </div>
       `;
       return;
@@ -261,10 +282,7 @@
         <img class="cart-line__img" src="${item.image}" alt="${item.title}" width="96" height="96" loading="lazy" />
         <div class="cart-line__meta">
           <div class="cart-line__top">
-            <div>
-              <p class="cart-line__title">${item.title}</p>
-              <p class="cart-line__price">${item.price}</p>
-            </div>
+            ${cartLineCopy(item)}
             <button class="cart-line__remove" type="button" data-cart-remove="${item.slug}">Remove</button>
           </div>
           <div class="cart-qty" role="group" aria-label="Quantity">
@@ -318,10 +336,7 @@
         <img class="cart-line__img" src="${item.image}" alt="${item.title}" width="112" height="112" loading="lazy" />
         <div class="cart-line__meta">
           <div class="cart-line__top">
-            <div>
-              <p class="cart-line__title">${item.title}</p>
-              <p class="cart-line__price">${item.price}</p>
-            </div>
+            ${cartLineCopy(item)}
             <button class="cart-line__remove" type="button" data-cart-remove="${item.slug}">Remove</button>
           </div>
           <div class="cart-line__bottom">
