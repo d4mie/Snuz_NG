@@ -424,10 +424,12 @@
           loginView.hidden = true;
           panelView.hidden = false;
           showStatus(saveStatus, "");
+          allowSave = false;
+          if (saveBtn) saveBtn.disabled = true;
           sourceEl.textContent = "Loading products…";
           var result = await window.SnuzStock.loadProducts();
           allowSave = result.source !== "error";
-          saveBtn.disabled = !allowSave;
+          if (saveBtn) saveBtn.disabled = !allowSave;
           renderList(result.list);
           sourceEl.textContent = sourceLabel(result.source, result.error);
           loadSettingsForm();
