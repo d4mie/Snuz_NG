@@ -3697,7 +3697,7 @@ body.cart-open{overflow:hidden}
 }
 .form-wrap .field label .req,
 .form-wrap .field__legend .req,
-.form-wrap .req{color:var(--df-green);margin-left:2px}
+.form-wrap .req{color:#ff0000;margin-left:2px}
 .form-wrap .field input,
 .form-wrap .field select,
 .form-wrap .field textarea{
