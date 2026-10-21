@@ -517,6 +517,32 @@
 
   const mgLabel = (mg) => (Number(mg) > 0 ? `${Number(mg)}mg` : "—");
 
+  const flavourSlideHtml = (product, name) => {
+    const variant = findVariant(product, name, mgsForFlavour(product, name)[0]);
+    const src = escapeHtml(variantImage(product, variant));
+    const brand = escapeHtml(product.brand || "");
+    const flavour = escapeHtml(name);
+    return (
+      `<div class="can-swipe__slide" data-flavour="${flavour}">` +
+      `<img class="product__img" src="${src}" alt="${brand} ${flavour}" width="320" height="320" loading="lazy" decoding="async" />` +
+      `</div>`
+    );
+  };
+
+  const flavourDotsHtml = (flavours) => {
+    if (flavours.length < 2) return "";
+    return (
+      `<div class="can-swipe__dots">` +
+      flavours
+        .map(
+          (name, index) =>
+            `<button class="can-swipe__dot${index === 0 ? " is-on" : ""}" type="button" aria-label="${escapeHtml(name)}"${index === 0 ? ' aria-current="true"' : ""}></button>`
+        )
+        .join("") +
+      `</div>`
+    );
+  };
+
   const shopCardHtml = (product, index) => {
     const altBadge = index % 2 === 1 ? " product__badge--alt" : "";
     const brand = escapeHtml(product.brand);
@@ -525,8 +551,10 @@
     const mgs = mgsForFlavour(product, firstFlavour);
     const firstMg = mgs[0] ?? 0;
     const variant = findVariant(product, firstFlavour, firstMg);
-    const img = escapeHtml(variantImage(product, variant));
     const sold = product.available === false || variant?.available === false;
+    const slides = (flavours.length ? flavours : [firstFlavour || product.brand || "Flavour"])
+      .map((name) => flavourSlideHtml(product, name))
+      .join("");
     const price = formatNaira(variant?.priceNaira ?? product.priceNaira);
     const flavourChips = flavours
       .map(
@@ -547,7 +575,10 @@
       (sold
         ? `<div class="product__soldout" aria-label="Sold out">${escapeHtml(soldOutLabel())}</div>`
         : "") +
-      `<img class="product__img" src="${img}" alt="${brand}" width="320" height="320" loading="lazy" decoding="async" />` +
+      `<div class="can-swipe" data-can-swipe>` +
+      `<div class="can-swipe__track" tabindex="0" aria-label="${brand} flavours. Swipe sideways.">${slides}</div>` +
+      flavourDotsHtml(flavours) +
+      `</div>` +
       `</div>` +
       `<div class="featured__body">` +
       `<h3 class="product__name">${brand}</h3>` +
@@ -596,7 +627,7 @@
       .join("");
   };
 
-  const syncShopCard = (card, product, nextFlavour) => {
+  const syncShopCard = (card, product, nextFlavour, opts = {}) => {
     if (!card || !product) return;
     const priceEl = card.querySelector("[data-shop-price]");
     const imgEl = card.querySelector(".product__img");
@@ -616,7 +647,10 @@
       priceEl.textContent = formatNaira(priceNaira);
       priceEl.setAttribute("data-money", String(priceNaira));
     }
-    if (imgEl) {
+    const track = card.querySelector(".can-swipe__track");
+    if (track) {
+      if (!opts.skipScroll) scrollCanToFlavour(card, flavour);
+    } else if (imgEl) {
       imgEl.src = variantImage(product, variant);
       imgEl.alt = `${product.brand || ""} ${variant?.flavour || ""}`.trim();
     }
@@ -643,10 +677,140 @@
     }
   };
 
+  const canSwipeLock = new WeakMap();
+
+  const setCanDots = (swipe, index) => {
+    swipe.querySelectorAll(".can-swipe__dot").forEach((dot, i) => {
+      const on = i === index;
+      dot.classList.toggle("is-on", on);
+      if (on) dot.setAttribute("aria-current", "true");
+      else dot.removeAttribute("aria-current");
+    });
+  };
+
+  const scrollCanToFlavour = (card, flavour) => {
+    const swipe = card.querySelector("[data-can-swipe]");
+    const track = swipe?.querySelector(".can-swipe__track");
+    if (!swipe || !track || !flavour) return;
+    const slides = [...track.querySelectorAll(".can-swipe__slide")];
+    const index = slides.findIndex((slide) => slide.getAttribute("data-flavour") === flavour);
+    if (index < 0) return;
+    canSwipeLock.set(swipe, Date.now() + 700);
+    setCanDots(swipe, index);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    track.scrollTo({
+      left: index * (track.clientWidth || 1),
+      behavior: reduce ? "auto" : "smooth",
+    });
+  };
+
+  const flavourOnScreen = (card) => {
+    const track = card.querySelector(".can-swipe__track");
+    const slides = [...(track?.querySelectorAll(".can-swipe__slide") || [])];
+    if (!track || !slides.length) return "";
+    const index = Math.max(
+      0,
+      Math.min(slides.length - 1, Math.round(track.scrollLeft / (track.clientWidth || 1)))
+    );
+    return slides[index]?.getAttribute("data-flavour") || "";
+  };
+
+  const bindCanSwipe = (swipe, onIndex) => {
+    if (!swipe || swipe.dataset.swipeBound === "1") return;
+    const track = swipe.querySelector(".can-swipe__track");
+    const slides = [...(track?.querySelectorAll(".can-swipe__slide") || [])];
+    if (!track || slides.length < 2) return;
+    swipe.dataset.swipeBound = "1";
+
+    const count = slides.length;
+    const motion = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+    const widthNow = () => track.clientWidth || 1;
+    const indexNow = () =>
+      Math.max(0, Math.min(count - 1, Math.round(track.scrollLeft / widthNow())));
+
+    let last = 0;
+
+    const show = (index, notify) => {
+      const next = Math.max(0, Math.min(count - 1, index));
+      setCanDots(swipe, next);
+      if (next === last) return;
+      last = next;
+      if (notify && onIndex) onIndex(slides[next].getAttribute("data-flavour"));
+    };
+
+    const goTo = (index, notify) => {
+      const next = Math.max(0, Math.min(count - 1, index));
+      const changed = next !== last;
+      const hops = Math.abs(next - last);
+      last = next;
+      if (hops > 1) canSwipeLock.set(swipe, Date.now() + 700);
+      setCanDots(swipe, next);
+      track.scrollTo({ left: next * widthNow(), behavior: motion() });
+      if (notify && changed && onIndex) onIndex(slides[next].getAttribute("data-flavour"));
+    };
+
+    track.addEventListener(
+      "scroll",
+      () => {
+        if (Date.now() < (canSwipeLock.get(swipe) || 0)) return;
+        show(indexNow(), true);
+      },
+      { passive: true }
+    );
+
+    swipe.querySelectorAll(".can-swipe__dot").forEach((dot, index) => {
+      dot.addEventListener("click", () => goTo(index, true));
+    });
+
+    track.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+      event.preventDefault();
+      const step = event.key === "ArrowRight" ? 1 : -1;
+      goTo(indexNow() + step, true);
+    });
+
+    let drag = null;
+    track.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "touch") return;
+      drag = { x: event.clientX, left: track.scrollLeft, moved: false, id: event.pointerId };
+      track.classList.add("is-dragging");
+      track.setPointerCapture(event.pointerId);
+    });
+    track.addEventListener("pointermove", (event) => {
+      if (!drag || drag.id !== event.pointerId) return;
+      const dx = event.clientX - drag.x;
+      if (Math.abs(dx) > 4) drag.moved = true;
+      const max = (count - 1) * widthNow();
+      track.scrollLeft = Math.max(0, Math.min(max, drag.left - dx));
+    });
+    const endDrag = (event) => {
+      if (!drag || (event && drag.id !== event.pointerId)) return;
+      const moved = drag.moved;
+      drag = null;
+      track.classList.remove("is-dragging");
+      if (!moved) return;
+      goTo(indexNow(), true);
+    };
+    track.addEventListener("pointerup", endDrag);
+    track.addEventListener("pointercancel", endDrag);
+  };
+
+  const bindCanSwipes = (root) => {
+    (root || document).querySelectorAll("[data-can-swipe]").forEach((swipe) => bindCanSwipe(swipe));
+  };
+
   const bindShopCards = (root, list) => {
     root.querySelectorAll("[data-shop-card]").forEach((card) => {
       const product = list.find((p) => p.slug === card.getAttribute("data-brand-slug"));
       if (!product) return;
+      bindCanSwipe(card.querySelector("[data-can-swipe]"), (flavour) => {
+        if (!flavour) return;
+        card.querySelectorAll("[data-shop-flavour-opt]").forEach((btn) => {
+          btn.classList.toggle("is-on", btn.getAttribute("data-shop-flavour-opt") === flavour);
+        });
+        syncShopCard(card, product, flavour, { skipScroll: true });
+      });
       card.addEventListener("click", (event) => {
         const flavourBtn = event.target.closest("[data-shop-flavour-opt]");
         if (flavourBtn && !flavourBtn.disabled) {
@@ -666,6 +830,13 @@
       });
       const btn = card.querySelector("[data-shop-add]");
       btn?.addEventListener("click", () => {
+        const shown = flavourOnScreen(card);
+        if (shown) {
+          card.querySelectorAll("[data-shop-flavour-opt]").forEach((chip) => {
+            chip.classList.toggle("is-on", chip.getAttribute("data-shop-flavour-opt") === shown);
+          });
+          syncShopCard(card, product, shown, { skipScroll: true });
+        }
         const variant = selectedVariantFromCard(card, product);
         if (!variant || product.available === false || variant.available === false) return;
         const item = sellableFrom(product, variant);
@@ -680,8 +851,8 @@
 
   const brandCardHtml = (product) => {
     const flavours = uniqueFlavours(product);
-    const variant = findVariant(product, flavours[0], mgsForFlavour(product, flavours[0])[0]);
-    const src = escapeHtml(variantImage(product, variant));
+    const names = flavours.length ? flavours : [product.brand || "Flavour"];
+    const slides = names.map((name) => flavourSlideHtml(product, name)).join("");
     const sold = product.available === false;
     const flavourText = flavours.filter(Boolean).join(", ");
     return (
@@ -690,7 +861,10 @@
       (sold
         ? `<div class="product__soldout" aria-label="Sold out">${escapeHtml(soldOutLabel())}</div>`
         : "") +
-      `<img src="${src}" alt="${escapeHtml(product.brand || "")}" loading="lazy" />` +
+      `<div class="can-swipe" data-can-swipe>` +
+      `<div class="can-swipe__track" tabindex="0" aria-label="${escapeHtml(product.brand || "Brand")} flavours. Swipe sideways.">${slides}</div>` +
+      flavourDotsHtml(flavours) +
+      `</div>` +
       `</div>` +
       `<div class="brands-avail__copy">` +
       `<h3 class="brands-avail__name">${escapeHtml(product.brand || "")}</h3>` +
@@ -835,6 +1009,7 @@
     if (brandsGrid) renderBrandsGrid(list, note);
     if (!shopGrid && !brandsGrid && grid) renderShopGrid(list, note);
     else if (!shopGrid && !brandsGrid) applyToPage(list);
+    bindCanSwipes(document);
   };
 
   if (document.readyState === "loading") {
