@@ -658,8 +658,15 @@
     if (sold) card.setAttribute("data-sold-out", "true");
     else card.removeAttribute("data-sold-out");
     if (btn) {
-      btn.disabled = sold;
-      if (sold) btn.setAttribute("aria-disabled", "true");
+      const width = track?.clientWidth || 1;
+      const slides = track ? track.querySelectorAll(".can-swipe__slide").length : 0;
+      const aligned =
+        !track ||
+        slides < 2 ||
+        (Math.abs(track.scrollLeft - Math.round(track.scrollLeft / width) * width) <= 2 &&
+          !track.classList.contains("is-dragging"));
+      btn.disabled = sold || !aligned;
+      if (btn.disabled) btn.setAttribute("aria-disabled", "true");
       else btn.removeAttribute("aria-disabled");
       btn.textContent = sold ? soldOutLabel() : addToCartLabel();
     }
@@ -697,6 +704,11 @@
     if (index < 0) return;
     canSwipeLock.set(swipe, Date.now() + 700);
     setCanDots(swipe, index);
+    const buy = card.querySelector("[data-shop-add]");
+    if (buy) {
+      buy.disabled = true;
+      buy.setAttribute("aria-disabled", "true");
+    }
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     track.scrollTo({
       left: index * (track.clientWidth || 1),
@@ -745,6 +757,11 @@
       last = next;
       canSwipeLock.set(swipe, Date.now() + 700);
       setCanDots(swipe, next);
+      const buy = swipe.closest("[data-shop-card]")?.querySelector("[data-shop-add]");
+      if (buy) {
+        buy.disabled = true;
+        buy.setAttribute("aria-disabled", "true");
+      }
       track.scrollTo({ left: next * widthNow(), behavior: motion() });
       if (notify && changed && onIndex) onIndex(slides[next].getAttribute("data-flavour"));
     };
@@ -846,6 +863,42 @@
         if (!item.title || !item.priceNaira) return;
         window.SnuzCart?.addItem(item, 1);
       });
+      const track = card.querySelector(".can-swipe__track");
+      const refreshBuy = () => {
+        if (!btn) return;
+        const sold = card.classList.contains("is-sold-out");
+        const slides = track ? track.querySelectorAll(".can-swipe__slide").length : 0;
+        const width = track?.clientWidth || 1;
+        const aligned =
+          !track ||
+          slides < 2 ||
+          (Math.abs(track.scrollLeft - Math.round(track.scrollLeft / width) * width) <= 2 &&
+            !track.classList.contains("is-dragging"));
+        btn.disabled = sold || !aligned;
+        if (btn.disabled) btn.setAttribute("aria-disabled", "true");
+        else btn.removeAttribute("aria-disabled");
+      };
+      if (btn && track && track.querySelectorAll(".can-swipe__slide").length > 1) {
+        let settleTimer = 0;
+        const holdBuy = () => {
+          btn.disabled = true;
+          btn.setAttribute("aria-disabled", "true");
+          window.clearTimeout(settleTimer);
+          settleTimer = window.setTimeout(refreshBuy, 80);
+        };
+        track.addEventListener("scroll", holdBuy, { passive: true });
+        track.addEventListener("scrollend", () => {
+          window.clearTimeout(settleTimer);
+          refreshBuy();
+        });
+        track.addEventListener("pointerdown", holdBuy);
+        const releaseBuy = () => {
+          window.clearTimeout(settleTimer);
+          settleTimer = window.setTimeout(refreshBuy, 80);
+        };
+        track.addEventListener("pointerup", releaseBuy);
+        track.addEventListener("pointercancel", releaseBuy);
+      }
     });
   };
 
