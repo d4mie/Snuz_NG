@@ -742,9 +742,8 @@
     const goTo = (index, notify) => {
       const next = Math.max(0, Math.min(count - 1, index));
       const changed = next !== last;
-      const hops = Math.abs(next - last);
       last = next;
-      if (hops > 1) canSwipeLock.set(swipe, Date.now() + 700);
+      canSwipeLock.set(swipe, Date.now() + 700);
       setCanDots(swipe, next);
       track.scrollTo({ left: next * widthNow(), behavior: motion() });
       if (notify && changed && onIndex) onIndex(slides[next].getAttribute("data-flavour"));
@@ -830,12 +829,16 @@
       });
       const btn = card.querySelector("[data-shop-add]");
       btn?.addEventListener("click", () => {
-        const shown = flavourOnScreen(card);
-        if (shown) {
-          card.querySelectorAll("[data-shop-flavour-opt]").forEach((chip) => {
-            chip.classList.toggle("is-on", chip.getAttribute("data-shop-flavour-opt") === shown);
-          });
-          syncShopCard(card, product, shown, { skipScroll: true });
+        const swipe = card.querySelector("[data-can-swipe]");
+        const sliding = swipe && Date.now() < (canSwipeLock.get(swipe) || 0);
+        if (!sliding) {
+          const shown = flavourOnScreen(card);
+          if (shown) {
+            card.querySelectorAll("[data-shop-flavour-opt]").forEach((chip) => {
+              chip.classList.toggle("is-on", chip.getAttribute("data-shop-flavour-opt") === shown);
+            });
+            syncShopCard(card, product, shown, { skipScroll: true });
+          }
         }
         const variant = selectedVariantFromCard(card, product);
         if (!variant || product.available === false || variant.available === false) return;
