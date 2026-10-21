@@ -21,9 +21,9 @@
     const min = Number(cfg.shippingMinNaira) || 0;
     const max = Number(cfg.shippingMaxNaira);
     let fee = base + perKm * km;
-    if (Number.isFinite(min)) fee = Math.max(min, fee);
-    if (Number.isFinite(max)) fee = Math.min(max, fee);
-    return roundFee(fee, cfg.shippingRoundToNaira || 100);
+    if (Number.isFinite(min) && min > 0) fee = Math.max(min, fee);
+    if (Number.isFinite(max) && max > 0) fee = Math.min(max, fee);
+    return roundFee(fee, cfg.shippingRoundToNaira || 1);
   };
 
   const countryToCode = (country) => {

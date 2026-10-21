@@ -9,14 +9,7 @@ create table if not exists public.product_stock (
   updated_at timestamptz not null default now()
 );
 
-insert into public.product_stock (slug, title, available) values
-  ('pablo', 'Pablo Blue Mint', false),
-  ('zafari', 'Zafari Cool Mint', true),
-  ('zyn', 'Zyn Fresh Mint', false),
-  ('iceberg', 'Iceberg Watermelon', false),
-  ('velo', 'Velo Bright Spearmint', false),
-  ('maggie', 'Maggie Cherry Tonic', false)
-on conflict (slug) do nothing;
+-- Rows are written from /admin.html. Do not seed a catalog here.
 
 alter table public.product_stock enable row level security;
 

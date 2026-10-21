@@ -603,6 +603,11 @@ a.brand--footer{color:inherit}
   max-width:980px;
   margin-inline:auto;
 }
+.catalog-empty{
+  grid-column:1 / -1;
+  margin:0;
+  opacity:.72;
+}
 .featured__card{
   display:flex;
   flex-direction:column;
@@ -3974,7 +3979,8 @@ body.cart-open{overflow:hidden}
   font-size:.9rem;
   font-weight:700;
 }
-.admin-field input{
+.admin-field input,
+.admin-field select{
   border:1px solid rgba(15,23,42,.16);
   border-radius:var(--radius-sm);
   padding:11px 12px;
@@ -3983,7 +3989,29 @@ body.cart-open{overflow:hidden}
   width:100%;
   box-sizing:border-box;
 }
-.admin-field input:focus{
+.admin-settings{
+  display:grid;
+  gap:14px;
+  margin:0 0 22px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+.admin-settings__grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.admin-settings__actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+}
+@media (max-width: 720px){
+  .admin-settings__grid{grid-template-columns:1fr}
+}
+.admin-field input:focus,
+.admin-field select:focus{
   outline:2px solid rgba(48,234,3,.35);
   border-color:rgba(48,234,3,.55);
 }
