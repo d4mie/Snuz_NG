@@ -660,11 +660,13 @@
     if (btn) {
       const width = track?.clientWidth || 1;
       const slides = track ? track.querySelectorAll(".can-swipe__slide").length : 0;
+      const sliding = card.getAttribute("data-can-sliding") === "1";
       const aligned =
-        !track ||
-        slides < 2 ||
-        (Math.abs(track.scrollLeft - Math.round(track.scrollLeft / width) * width) <= 2 &&
-          !track.classList.contains("is-dragging"));
+        !sliding &&
+        (!track ||
+          slides < 2 ||
+          (Math.abs(track.scrollLeft - Math.round(track.scrollLeft / width) * width) <= 2 &&
+            !track.classList.contains("is-dragging")));
       btn.disabled = sold || !aligned;
       if (btn.disabled) btn.setAttribute("aria-disabled", "true");
       else btn.removeAttribute("aria-disabled");
@@ -684,8 +686,6 @@
     }
   };
 
-  const canSwipeLock = new WeakMap();
-
   const setCanDots = (swipe, index) => {
     swipe.querySelectorAll(".can-swipe__dot").forEach((dot, i) => {
       const on = i === index;
@@ -702,16 +702,21 @@
     const slides = [...track.querySelectorAll(".can-swipe__slide")];
     const index = slides.findIndex((slide) => slide.getAttribute("data-flavour") === flavour);
     if (index < 0) return;
-    canSwipeLock.set(swipe, Date.now() + 700);
+    const left = index * (track.clientWidth || 1);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setCanDots(swipe, index);
+    if (Math.abs(track.scrollLeft - left) <= 2) {
+      card.removeAttribute("data-can-sliding");
+      return;
+    }
+    card.setAttribute("data-can-sliding", "1");
     const buy = card.querySelector("[data-shop-add]");
     if (buy) {
       buy.disabled = true;
       buy.setAttribute("aria-disabled", "true");
     }
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     track.scrollTo({
-      left: index * (track.clientWidth || 1),
+      left,
       behavior: reduce ? "auto" : "smooth",
     });
   };
@@ -754,26 +759,37 @@
     const goTo = (index, notify) => {
       const next = Math.max(0, Math.min(count - 1, index));
       const changed = next !== last;
+      const left = next * widthNow();
       last = next;
-      canSwipeLock.set(swipe, Date.now() + 700);
       setCanDots(swipe, next);
-      const buy = swipe.closest("[data-shop-card]")?.querySelector("[data-shop-add]");
-      if (buy) {
-        buy.disabled = true;
-        buy.setAttribute("aria-disabled", "true");
+      const card = swipe.closest("[data-shop-card]");
+      if (Math.abs(track.scrollLeft - left) > 2) {
+        card?.setAttribute("data-can-sliding", "1");
+        const buy = card?.querySelector("[data-shop-add]");
+        if (buy) {
+          buy.disabled = true;
+          buy.setAttribute("aria-disabled", "true");
+        }
       }
-      track.scrollTo({ left: next * widthNow(), behavior: motion() });
+      track.scrollTo({ left, behavior: motion() });
       if (notify && changed && onIndex) onIndex(slides[next].getAttribute("data-flavour"));
+    };
+
+    const finishSlide = () => {
+      const card = swipe.closest("[data-shop-card]");
+      card?.removeAttribute("data-can-sliding");
+      show(indexNow(), true);
     };
 
     track.addEventListener(
       "scroll",
       () => {
-        if (Date.now() < (canSwipeLock.get(swipe) || 0)) return;
+        if (swipe.closest("[data-shop-card]")?.getAttribute("data-can-sliding") === "1") return;
         show(indexNow(), true);
       },
       { passive: true }
     );
+    track.addEventListener("scrollend", finishSlide);
 
     swipe.querySelectorAll(".can-swipe__dot").forEach((dot, index) => {
       dot.addEventListener("click", () => goTo(index, true));
@@ -846,16 +862,13 @@
       });
       const btn = card.querySelector("[data-shop-add]");
       btn?.addEventListener("click", () => {
-        const swipe = card.querySelector("[data-can-swipe]");
-        const sliding = swipe && Date.now() < (canSwipeLock.get(swipe) || 0);
-        if (!sliding) {
-          const shown = flavourOnScreen(card);
-          if (shown) {
-            card.querySelectorAll("[data-shop-flavour-opt]").forEach((chip) => {
-              chip.classList.toggle("is-on", chip.getAttribute("data-shop-flavour-opt") === shown);
-            });
-            syncShopCard(card, product, shown, { skipScroll: true });
-          }
+        if (btn.disabled || card.getAttribute("data-can-sliding") === "1") return;
+        const shown = flavourOnScreen(card);
+        if (shown) {
+          card.querySelectorAll("[data-shop-flavour-opt]").forEach((chip) => {
+            chip.classList.toggle("is-on", chip.getAttribute("data-shop-flavour-opt") === shown);
+          });
+          syncShopCard(card, product, shown, { skipScroll: true });
         }
         const variant = selectedVariantFromCard(card, product);
         if (!variant || product.available === false || variant.available === false) return;
@@ -869,11 +882,15 @@
         const sold = card.classList.contains("is-sold-out");
         const slides = track ? track.querySelectorAll(".can-swipe__slide").length : 0;
         const width = track?.clientWidth || 1;
-        const aligned =
+        const dragging = track?.classList.contains("is-dragging");
+        const near =
           !track ||
           slides < 2 ||
-          (Math.abs(track.scrollLeft - Math.round(track.scrollLeft / width) * width) <= 2 &&
-            !track.classList.contains("is-dragging"));
+          Math.abs(track.scrollLeft - Math.round(track.scrollLeft / width) * width) <= 2;
+        if (card.getAttribute("data-can-sliding") === "1" && near && !dragging) {
+          card.removeAttribute("data-can-sliding");
+        }
+        const aligned = near && !dragging && card.getAttribute("data-can-sliding") !== "1";
         btn.disabled = sold || !aligned;
         if (btn.disabled) btn.setAttribute("aria-disabled", "true");
         else btn.removeAttribute("aria-disabled");
