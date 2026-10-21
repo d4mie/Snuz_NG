@@ -3687,6 +3687,7 @@ body.cart-open{overflow:hidden}
   background:var(--border);
 }
 .form-wrap .field{margin-bottom:1rem}
+.form-wrap .field[hidden]{display:none}
 .form-wrap .field label,
 .form-wrap .field__legend{
   display:block;

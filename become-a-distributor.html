@@ -232,6 +232,11 @@
                 </div>
               </div>
 
+              <div class="field" id="biz-other-field" hidden>
+                <label for="f-biz-other">Tell us more about your business <span class="req">*</span></label>
+                <textarea id="f-biz-other" placeholder="What kind of outlet or business is this?"></textarea>
+              </div>
+
               <div class="sec-label">Capacity and reach</div>
 
               <div class="field">
@@ -428,6 +433,20 @@
         var btn = document.getElementById("distributor-submit");
         if (!btn) return;
 
+        var otherField = document.getElementById("biz-other-field");
+        var otherNote = document.getElementById("f-biz-other");
+
+        function syncOtherField() {
+          var picked = document.querySelector('input[name="biz-type"]:checked');
+          var show = !!(picked && picked.value === "other");
+          if (otherField) otherField.hidden = !show;
+          if (show && otherNote) otherNote.focus();
+        }
+
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="biz-type"]'), function (input) {
+          input.addEventListener("change", syncOtherField);
+        });
+
         var bizTypeLabels = {
           supermarket: "Supermarket / convenience store",
           pharmacy: "Pharmacy or health & wellness store",
@@ -481,6 +500,7 @@
           var bizType = document.querySelector('input[name="biz-type"]:checked');
           var stock = document.querySelectorAll('input[name="stock"]:checked');
           var ageConf = document.getElementById("f-age").checked;
+          var otherDetail = otherNote ? otherNote.value.trim() : "";
 
           if (
             !name ||
@@ -492,7 +512,8 @@
             !timeline ||
             !bizType ||
             !stock.length ||
-            !ageConf
+            !ageConf ||
+            (bizType && bizType.value === "other" && !otherDetail)
           ) {
             alert(
               "Please fill in all required fields and confirm the age compliance checkbox before submitting."
@@ -511,7 +532,10 @@
             City: city,
             "Area / neighbourhood": area || "—",
             "Full business address": address || "—",
-            "Outlet type": bizTypeLabels[bizType.value] || bizType.value,
+            "Outlet type":
+              bizType.value === "other"
+                ? "Other — " + otherDetail
+                : bizTypeLabels[bizType.value] || bizType.value,
             "Outlets operated or supplied": outlets,
             "Estimated monthly footfall": footfall || "—",
             "Products currently stocked": selectedStock(),
