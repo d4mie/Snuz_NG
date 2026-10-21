@@ -13,12 +13,19 @@ window.SNUZ_SHOP = {
   // Leave empty in git. Local: shop-config.local.js. Live: GitHub Actions secrets.
   googleMapsApiKey: "",
 
-  // Unused while shippingMode is "on_delivery".
-  shippingBaseNaira: 1500,
-  shippingPerKmNaira: 200,
-  shippingMinNaira: 2000,
-  shippingMaxNaira: 25000,
-  shippingRoundToNaira: 100,
+  // Shipping amounts and the bank account are saved on /admin.html.
+  // SQL: scripts/shop-settings.sql
+  shippingBaseNaira: 0,
+  shippingPerKmNaira: 0,
+  shippingMinNaira: 0,
+  shippingMaxNaira: 0,
+  shippingRoundToNaira: 1,
+
+  bankTransfer: {
+    bank: "",
+    accountName: "",
+    accountNumber: "",
+  },
 
   // Paystack PUBLIC key (pk_test_... or pk_live_...). Leave empty in git.
   paystackPublicKey: "",

@@ -3,63 +3,6 @@
   const TABLE = "products";
   const BUCKET = "product-images";
 
-  const DEFAULT_PRODUCTS = [
-    {
-      slug: "pablo",
-      brand: "PABLO",
-      title: "Pablo Blue Mint",
-      priceNaira: 9500,
-      imageUrl: "./assets/pablo-bluemint.jpg",
-      available: false,
-      sortOrder: 10,
-    },
-    {
-      slug: "zafari",
-      brand: "ZAFARI",
-      title: "Zafari Cool Mint",
-      priceNaira: 9500,
-      imageUrl: "./assets/zafari-coolmint.jpg",
-      available: true,
-      sortOrder: 20,
-    },
-    {
-      slug: "zyn",
-      brand: "ZYN",
-      title: "Zyn Fresh Mint",
-      priceNaira: 9500,
-      imageUrl: "./assets/zyn-freshmint.jpg",
-      available: false,
-      sortOrder: 30,
-    },
-    {
-      slug: "iceberg",
-      brand: "ICEBERG",
-      title: "Iceberg Watermelon",
-      priceNaira: 9500,
-      imageUrl: "./assets/iceberg-watermelon.jpg",
-      available: false,
-      sortOrder: 40,
-    },
-    {
-      slug: "velo",
-      brand: "VELO",
-      title: "Velo Bright Spearmint",
-      priceNaira: 9500,
-      imageUrl: "./assets/velo-brightspearmint.jpg",
-      available: false,
-      sortOrder: 50,
-    },
-    {
-      slug: "maggie",
-      brand: "MAGGIE",
-      title: "Maggie Cherry Tonic",
-      priceNaira: 100,
-      imageUrl: "./assets/maggie-cherrytonic.jpg",
-      available: false,
-      sortOrder: 60,
-    },
-  ];
-
   const shop = () => window.SNUZ_SHOP || {};
 
   const hasSupabase = () => {
@@ -243,9 +186,7 @@
   };
 
   const normalizeList = (rows) => {
-    if (!Array.isArray(rows) || !rows.length) {
-      return DEFAULT_PRODUCTS.map((p, i) => normalizeProduct(p, i));
-    }
+    if (!Array.isArray(rows) || !rows.length) return [];
     return rows
       .map((row, i) => normalizeProduct(row, i))
       .sort((a, b) => a.sortOrder - b.sortOrder || a.title.localeCompare(b.title));
@@ -405,18 +346,17 @@
         writeLocal(list);
         return { list, source: "supabase" };
       } catch (err) {
-        const local = readLocal();
         return {
-          list: normalizeList(local),
-          source: "local-fallback",
+          list: [],
+          source: "error",
           error: err?.message || String(err),
         };
       }
     }
     const local = readLocal();
     return {
-      list: normalizeList(local),
-      source: local ? "local" : "default",
+      list: normalizeList(local || []),
+      source: "local",
     };
   };
 
@@ -735,18 +675,62 @@
     });
   };
 
-  const renderFullShop = (list) => {
+  const emptyCatalogHtml = (note) =>
+    `<p class="catalog-empty">${escapeHtml(note || "Nothing in the shop right now.")}</p>`;
+
+  const brandCardHtml = (product) => {
+    const flavours = uniqueFlavours(product);
+    const variant = findVariant(product, flavours[0], mgsForFlavour(product, flavours[0])[0]);
+    const src = escapeHtml(variantImage(product, variant));
+    const sold = product.available === false;
+    const flavourText = flavours.filter(Boolean).join(", ");
+    return (
+      `<article class="brand-card${sold ? " is-sold-out" : ""}" data-category="${escapeHtml(product.slug)}">` +
+      `<div class="brands-avail__media card__media">` +
+      (sold
+        ? `<div class="product__soldout" aria-label="Sold out">${escapeHtml(soldOutLabel())}</div>`
+        : "") +
+      `<img src="${src}" alt="${escapeHtml(product.brand || "")}" loading="lazy" />` +
+      `</div>` +
+      `<div class="brands-avail__copy">` +
+      `<h3 class="brands-avail__name">${escapeHtml(product.brand || "")}</h3>` +
+      (flavourText ? `<p class="brands-avail__flavours">${escapeHtml(flavourText)}.</p>` : "") +
+      `</div>` +
+      `</article>`
+    );
+  };
+
+  const renderFullShop = (list, note) => {
     const grid = document.querySelector("[data-shop-grid]");
     if (!grid) return;
     const products = normalizeList(list);
+    if (!products.length) {
+      grid.innerHTML = emptyCatalogHtml(note);
+      return;
+    }
     grid.innerHTML = products.map((p, i) => shopCardHtml(p, i)).join("");
     bindShopCards(grid, products);
   };
 
-  const renderShopGrid = (list) => {
+  const renderBrandsGrid = (list, note) => {
+    const grid = document.querySelector("[data-brands-grid]");
+    if (!grid) return;
+    const products = normalizeList(list);
+    if (!products.length) {
+      grid.innerHTML = emptyCatalogHtml(note || "Nothing in the range right now.");
+      return;
+    }
+    grid.innerHTML = products.map((product) => brandCardHtml(product)).join("");
+  };
+
+  const renderShopGrid = (list, note) => {
     const grid = document.querySelector("[data-products-grid], .featured__grid");
     if (!grid) return;
     const products = normalizeList(list);
+    if (!products.length) {
+      grid.innerHTML = emptyCatalogHtml(note);
+      return;
+    }
     grid.innerHTML = products.map((p, i) => cardHtml(p, i)).join("");
     if (window.SnuzCart?.rewireProducts) {
       window.SnuzCart.rewireProducts();
@@ -810,11 +794,6 @@
   };
 
   window.SnuzStock = {
-    CATALOG: DEFAULT_PRODUCTS.map((p) => ({
-      slug: p.slug,
-      title: p.title,
-      brand: p.brand,
-    })),
     hasSupabase,
     loadStock,
     saveStock,
@@ -824,9 +803,8 @@
     uploadImage,
     renderShopGrid,
     renderFullShop,
+    renderBrandsGrid,
     applyToPage,
-    defaultStockMap: () => toStockMap(DEFAULT_PRODUCTS),
-    defaultProducts: () => DEFAULT_PRODUCTS.map((p) => normalizeProduct(p)),
     normalizeProduct,
     normalizeList,
     normalizeVariant,
@@ -841,26 +819,22 @@
 
   const bootShop = async () => {
     const shopGrid = document.querySelector("[data-shop-grid]");
+    const brandsGrid = document.querySelector("[data-brands-grid]");
     const grid = document.querySelector("[data-products-grid], .featured__grid");
     if (
       !shopGrid &&
+      !brandsGrid &&
       !grid &&
       !document.querySelector(".product[data-category], .brand-card[data-category]")
     ) {
       return;
     }
-    const { list, source } = await loadProducts();
-    if (shopGrid) {
-      renderFullShop(list);
-      return;
-    }
-    if (grid && (source === "supabase" || source === "local" || source === "local-fallback")) {
-      renderShopGrid(list);
-    } else if (grid && source === "default") {
-      applyToPage(list);
-    } else {
-      applyToPage(list);
-    }
+    const { list, error } = await loadProducts();
+    const note = error ? "The product list could not be loaded." : "";
+    if (shopGrid) renderFullShop(list, note);
+    if (brandsGrid) renderBrandsGrid(list, note);
+    if (!shopGrid && !brandsGrid && grid) renderShopGrid(list, note);
+    else if (!shopGrid && !brandsGrid) applyToPage(list);
   };
 
   if (document.readyState === "loading") {

@@ -26,15 +26,8 @@ create table if not exists public.products (
 
 create index if not exists products_sort_order_idx on public.products (sort_order);
 
--- Seed current collections (safe to re-run)
-insert into public.products (slug, brand, title, price_naira, image_url, available, sort_order) values
-  ('pablo',   'PABLO',   'Pablo Blue Mint',         9500, './assets/pablo-bluemint.jpg',         false, 10),
-  ('zafari',  'ZAFARI',  'Zafari Cool Mint',        9500, './assets/zafari-coolmint.jpg',        true,  20),
-  ('zyn',     'ZYN',     'Zyn Fresh Mint',          9500, './assets/zyn-freshmint.jpg',          false, 30),
-  ('iceberg', 'ICEBERG', 'Iceberg Watermelon',      9500, './assets/iceberg-watermelon.jpg',     false, 40),
-  ('velo',    'VELO',    'Velo Bright Spearmint',   9500, './assets/velo-brightspearmint.jpg',   false, 50),
-  ('maggie',  'MAGGIE',  'Maggie Cherry Tonic',      100, './assets/maggie-cherrytonic.jpg',     false, 60)
-on conflict (slug) do nothing;
+-- Products, prices, stock, and flavours are added in /admin.html.
+-- Do not insert a starter catalog here.
 
 -- If an older product_stock table exists, copy availability into products
 do $$

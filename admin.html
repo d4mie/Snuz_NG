@@ -37,13 +37,13 @@
           <p class="admin__eyebrow">Private</p>
           <h1 class="admin__title">Product admin</h1>
           <p class="admin__lede">
-            Add each brand, then list its flavours, mg, and price. Shoppers pick those on the shop page.
+            Set the bank account and shipping amounts, then add each brand with its flavours, mg, and price.
           </p>
         </div>
 
         <section class="admin-card" id="admin-login" data-admin-login>
           <h2 class="admin-card__title">Sign in</h2>
-          <p class="admin-card__hint">Enter the admin password to manage products.</p>
+          <p class="admin-card__hint">Enter the admin password to manage the shop.</p>
           <form class="admin-login" data-admin-login-form>
             <label class="admin-field">
               <span>Password</span>
@@ -55,6 +55,62 @@
         </section>
 
         <section class="admin-card" id="admin-panel" data-admin-panel hidden>
+          <form class="admin-settings" data-admin-settings>
+            <div>
+              <h2 class="admin-card__title">Payment and shipping</h2>
+              <p class="admin-card__hint" data-admin-settings-source>Loading shop settings…</p>
+            </div>
+            <div class="admin-settings__grid">
+              <label class="admin-field">
+                <span>Bank</span>
+                <input name="bank" type="text" autocomplete="off" />
+              </label>
+              <label class="admin-field">
+                <span>Account name</span>
+                <input name="accountName" type="text" autocomplete="off" />
+              </label>
+              <label class="admin-field">
+                <span>Account number</span>
+                <input name="accountNumber" type="text" inputmode="numeric" autocomplete="off" />
+              </label>
+              <label class="admin-field">
+                <span>Shipping</span>
+                <select name="shippingMode">
+                  <option value="on_delivery">Paid to the dispatcher on delivery</option>
+                  <option value="distance">Calculate a fee from distance</option>
+                  <option value="varies">Show “Varies” and charge products only</option>
+                </select>
+              </label>
+              <label class="admin-field">
+                <span>Base fee (₦)</span>
+                <input name="shippingBaseNaira" type="number" min="0" step="1" />
+              </label>
+              <label class="admin-field">
+                <span>Per kilometre (₦)</span>
+                <input name="shippingPerKmNaira" type="number" min="0" step="1" />
+              </label>
+              <label class="admin-field">
+                <span>Minimum fee (₦)</span>
+                <input name="shippingMinNaira" type="number" min="0" step="1" />
+              </label>
+              <label class="admin-field">
+                <span>Maximum fee (₦)</span>
+                <input name="shippingMaxNaira" type="number" min="0" step="1" />
+              </label>
+              <label class="admin-field">
+                <span>Round fee to (₦)</span>
+                <input name="shippingRoundToNaira" type="number" min="1" step="1" />
+              </label>
+            </div>
+            <p class="admin-card__hint">
+              The distance amounts are used only when shipping is calculated from distance.
+            </p>
+            <div class="admin-settings__actions">
+              <button class="btn btn--primary" type="submit" data-admin-settings-save>Save payment and shipping</button>
+              <p class="admin-status" data-admin-settings-status hidden></p>
+            </div>
+          </form>
+
           <div class="admin-panel__top">
             <div>
               <h2 class="admin-card__title">Our Collections</h2>
@@ -77,6 +133,7 @@
     </main>
 
     <script src="./shop-config.js"></script>
+    <script src="./shop-settings.js"></script>
     <script src="./products-stock.js"></script>
     <script>
       (function () {
@@ -91,7 +148,62 @@
         var saveStatus = document.querySelector("[data-admin-save-status]");
         var logoutBtn = document.querySelector("[data-admin-logout]");
         var addBtn = document.querySelector("[data-admin-add]");
+        var settingsForm = document.querySelector("[data-admin-settings]");
+        var settingsSource = document.querySelector("[data-admin-settings-source]");
+        var settingsStatus = document.querySelector("[data-admin-settings-status]");
         var draft = [];
+
+        function settingsValue(name) {
+          var input = settingsForm && settingsForm.elements[name];
+          return input ? input.value : "";
+        }
+
+        function fillSettings(settings) {
+          if (!settingsForm || !settings) return;
+          settingsForm.elements.bank.value = settings.bank || "";
+          settingsForm.elements.accountName.value = settings.accountName || "";
+          settingsForm.elements.accountNumber.value = settings.accountNumber || "";
+          settingsForm.elements.shippingMode.value = settings.shippingMode || "on_delivery";
+          settingsForm.elements.shippingBaseNaira.value =
+            settings.shippingBaseNaira ? String(settings.shippingBaseNaira) : "";
+          settingsForm.elements.shippingPerKmNaira.value =
+            settings.shippingPerKmNaira ? String(settings.shippingPerKmNaira) : "";
+          settingsForm.elements.shippingMinNaira.value =
+            settings.shippingMinNaira ? String(settings.shippingMinNaira) : "";
+          settingsForm.elements.shippingMaxNaira.value =
+            settings.shippingMaxNaira ? String(settings.shippingMaxNaira) : "";
+          settingsForm.elements.shippingRoundToNaira.value =
+            settings.shippingRoundToNaira > 1 ? String(settings.shippingRoundToNaira) : "";
+        }
+
+        function collectSettings() {
+          return {
+            bank: settingsValue("bank"),
+            accountName: settingsValue("accountName"),
+            accountNumber: settingsValue("accountNumber"),
+            shippingMode: settingsValue("shippingMode") || "on_delivery",
+            shippingBaseNaira: settingsValue("shippingBaseNaira"),
+            shippingPerKmNaira: settingsValue("shippingPerKmNaira"),
+            shippingMinNaira: settingsValue("shippingMinNaira"),
+            shippingMaxNaira: settingsValue("shippingMaxNaira"),
+            shippingRoundToNaira: settingsValue("shippingRoundToNaira"),
+          };
+        }
+
+        function settingsSourceLabel(source, error) {
+          if (source === "supabase") return "Live settings — checkout uses these.";
+          if (source === "error") return error || "Could not load payment and shipping.";
+          if (source === "local") return "Saved in this browser only. Add Supabase keys for the live site.";
+          return "Nothing saved yet. Fill this in, then save.";
+        }
+
+        async function loadSettingsForm() {
+          if (!window.SnuzShopSettings) return;
+          if (settingsSource) settingsSource.textContent = "Loading shop settings…";
+          var result = await window.SnuzShopSettings.load();
+          fillSettings(result.settings);
+          if (settingsSource) settingsSource.textContent = settingsSourceLabel(result.source, result.error);
+        }
 
         function showStatus(el, message, isError) {
           if (!el) return;
@@ -124,15 +236,19 @@
         }
 
         function flavourRowHtml(variant) {
-          var item = window.SnuzStock.normalizeVariant(variant || {}, {
+          var raw = variant || {};
+          var item = window.SnuzStock.normalizeVariant(raw, {
             flavour: "",
             mg: 0,
-            priceNaira: 9500,
+            priceNaira: 0,
             available: true,
             imageUrl: "",
           });
           var on = item.available !== false;
-          var mgValue = item.mg > 0 ? String(item.mg) : "";
+          var mgValue =
+            raw.mg === "" || raw.mg == null ? "" : item.mg > 0 ? String(item.mg) : "";
+          var priceValue =
+            raw.priceNaira === "" || raw.priceNaira == null ? "" : String(item.priceNaira);
           var flavourImg = escapeHtml(item.imageUrl || "");
           return (
             '<div class="admin-flavour" data-variant-row>' +
@@ -148,11 +264,11 @@
             '<label class="admin-field"><span>mg</span>' +
             '<input name="mg" type="number" min="0" step="1" value="' +
             escapeHtml(mgValue) +
-            '" placeholder="15" /></label>' +
+            '" /></label>' +
             '<label class="admin-field"><span>Price (₦)</span>' +
             '<input name="price" type="number" min="0" step="1" value="' +
-            escapeHtml(String(item.priceNaira)) +
-            '" /></label>' +
+            escapeHtml(priceValue) +
+            '" placeholder="Price" /></label>' +
             '<label class="admin-field admin-flavour__url"><span>Flavour photo URL</span>' +
             '<input name="flavourImage" type="text" value="' +
             flavourImg +
@@ -225,12 +341,12 @@
         }
 
         function renderList(list) {
-          draft = window.SnuzStock.normalizeList(list);
+          draft = Array.isArray(list) ? list.slice() : [];
           listEl.innerHTML = draft
             .map(function (product) {
               var available = product.available !== false;
               var img = escapeHtml(product.imageUrl || "");
-              var variants = product.variants && product.variants.length ? product.variants : [{ flavour: "", mg: 0, priceNaira: product.priceNaira, available: true }];
+              var variants = product.variants && product.variants.length ? product.variants : [{ flavour: "", mg: "", priceNaira: "", available: true }];
               return (
                 '<article class="admin-product" data-admin-row data-slug="' +
                 escapeHtml(product.slug) +
@@ -291,13 +407,18 @@
 
         function sourceLabel(source, error) {
           if (source === "supabase") return "Live catalog (Supabase) — changes sync for all shoppers.";
-          if (source === "local" || source === "local-fallback") {
+          if (source === "error") {
             return error
-              ? "Browser-only catalog (live save unavailable). " + error
-              : "Browser-only catalog — add Supabase keys for live site-wide updates.";
+              ? "Could not load the live catalog. Nothing will be saved until it loads. " + error
+              : "Could not load the live catalog. Nothing will be saved until it loads.";
           }
-          return "Default catalog. Change and save to store.";
+          if (source === "local") {
+            return "Browser-only catalog — add Supabase keys for live site-wide updates.";
+          }
+          return "No products saved yet. Add them here, then save.";
         }
+
+        var allowSave = false;
 
         async function openPanel() {
           loginView.hidden = true;
@@ -305,8 +426,36 @@
           showStatus(saveStatus, "");
           sourceEl.textContent = "Loading products…";
           var result = await window.SnuzStock.loadProducts();
+          allowSave = result.source !== "error";
+          saveBtn.disabled = !allowSave;
           renderList(result.list);
           sourceEl.textContent = sourceLabel(result.source, result.error);
+          loadSettingsForm();
+        }
+
+        if (settingsForm) {
+          settingsForm.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            var saveSettingsBtn = settingsForm.querySelector("[data-admin-settings-save]");
+            if (saveSettingsBtn) saveSettingsBtn.disabled = true;
+            showStatus(settingsStatus, "");
+            try {
+              var result = await window.SnuzShopSettings.save(collectSettings());
+              fillSettings(result.settings);
+              if (settingsSource) settingsSource.textContent = settingsSourceLabel(result.source);
+              showStatus(
+                settingsStatus,
+                result.source === "supabase"
+                  ? "Saved. Checkout will use this on the next page load."
+                  : "Saved in this browser only.",
+                false
+              );
+            } catch (err) {
+              showStatus(settingsStatus, err.message || "Could not save payment and shipping.", true);
+            } finally {
+              if (saveSettingsBtn) saveSettingsBtn.disabled = false;
+            }
+          });
         }
 
         function showLogin() {
@@ -349,19 +498,16 @@
           draft = collectFromDom();
           var n = draft.length + 1;
           draft.push(
-            window.SnuzStock.normalizeProduct(
-              {
+            {
                 slug: "product-" + Date.now(),
-                brand: "NEW",
-                title: "New brand",
-                priceNaira: 9500,
+                brand: "",
+                title: "",
+                priceNaira: "",
                 imageUrl: "",
                 available: true,
                 sortOrder: n * 10,
-                variants: [{ flavour: "New flavour", mg: 15, priceNaira: 9500, available: true }],
-              },
-              n - 1
-            )
+                variants: [{ flavour: "", mg: "", priceNaira: "", available: true, imageUrl: "" }],
+              }
           );
           renderList(draft);
           var last = listEl.querySelector("[data-admin-row]:last-child");
@@ -376,7 +522,7 @@
             if (!list) return;
             list.insertAdjacentHTML(
               "beforeend",
-              flavourRowHtml({ flavour: "", mg: 15, priceNaira: 9500, available: true })
+              flavourRowHtml({ flavour: "", mg: "", priceNaira: "", available: true, imageUrl: "" })
             );
             return;
           }
@@ -500,10 +646,27 @@
           saveBtn.textContent = "Saving…";
           showStatus(saveStatus, "");
           try {
+            if (!allowSave) {
+              throw new Error("The live catalog did not load, so nothing was saved.");
+            }
             draft = collectFromDom();
             if (!draft.length) {
               throw new Error("Add at least one product before saving.");
             }
+            var blankBrand = Array.from(listEl.querySelectorAll('[name="brand"]')).some(function (input) {
+              return !String(input.value).trim();
+            });
+            if (blankBrand) throw new Error("Every collection needs a brand name.");
+            var blankFlavour = Array.from(listEl.querySelectorAll("[data-admin-row]")).some(function (row) {
+              return !Array.from(row.querySelectorAll('[name="flavour"]')).some(function (input) {
+                return String(input.value).trim();
+              });
+            });
+            if (blankFlavour) throw new Error("Every brand needs at least one flavour with a name.");
+            var blankPrice = Array.from(listEl.querySelectorAll('[name="price"]')).some(function (input) {
+              return String(input.value).trim() === "";
+            });
+            if (blankPrice) throw new Error("Every flavour needs a price.");
             var bad = draft.find(function (p) {
               return !p.brand.trim();
             });

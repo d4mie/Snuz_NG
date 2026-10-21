@@ -714,7 +714,16 @@
 
     window.SnuzCart.subscribe(renderSummary);
     renderSummary();
-    scheduleShippingQuote();
+    const refreshSettings = () => {
+      renderSummary();
+      scheduleShippingQuote();
+    };
+    document.addEventListener("snuz:shop-settings", refreshSettings);
+    if (window.SnuzShopSettings?.load) {
+      window.SnuzShopSettings.load().then(refreshSettings);
+    } else {
+      scheduleShippingQuote();
+    }
     initAddressAutocomplete();
   };
 
