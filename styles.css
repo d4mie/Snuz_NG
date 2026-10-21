@@ -973,6 +973,88 @@ a.brand--footer{color:inherit}
   .brands-avail__media{height:170px}
 }
 
+/* Flavour photos — swipe sideways, dots show which one is on screen */
+.can-swipe{
+  position:absolute;
+  inset:0;
+  z-index:1;
+}
+.can-swipe__track{
+  display:flex;
+  height:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;
+  cursor:grab;
+}
+.can-swipe__track::-webkit-scrollbar{display:none}
+.can-swipe__track.is-dragging{
+  cursor:grabbing;
+  scroll-snap-type:none;
+}
+.can-swipe__slide{
+  flex:0 0 100%;
+  width:100%;
+  height:100%;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  overflow:hidden;
+}
+.can-swipe__slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  user-select:none;
+  -webkit-user-drag:none;
+  pointer-events:none;
+}
+.can-swipe__dots{
+  position:absolute;
+  left:50%;
+  bottom:10px;
+  transform:translateX(-50%);
+  z-index:3;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:0;
+  padding:6px 8px;
+  border-radius:999px;
+  background:rgba(11,15,20,.42);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.can-swipe__dot{
+  position:relative;
+  width:16px;
+  height:16px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  cursor:pointer;
+}
+.can-swipe__dot::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:7px;
+  height:7px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:rgba(255,255,255,.5);
+  box-shadow:0 0 0 1px rgba(0,0,0,.2);
+}
+.can-swipe__dot.is-on::before{
+  background:#fff;
+  box-shadow:0 0 0 1px rgba(255,255,255,.4);
+}
+
 .article-snip{
   max-width:780px;
   padding:22px 0 4px;
@@ -4281,6 +4363,14 @@ body.cart-open{overflow:hidden}
 .shop-card__buy:hover,
 .shop-card .product__btn.shop-card__buy:hover{
   filter:brightness(1.05);
+}
+.shop-card .shop-card__buy:disabled,
+.shop-card .product__btn.shop-card__buy:disabled{
+  background:rgba(255,255,255,.08);
+  border-color:transparent;
+  color:rgba(255,255,255,.5);
+  cursor:not-allowed;
+  filter:none;
 }
 .shop-card.featured__card.is-sold-out{
   opacity:.78;
