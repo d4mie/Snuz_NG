@@ -4601,9 +4601,10 @@ html.site-locked body > *:not(.site-gate){
   height:64px;
   display:grid;
   place-items:center;
-  border:1px solid rgba(48,234,3,.55);
-  background:rgba(48,234,3,.12);
-  color:var(--accent);
+  border-radius:50%;
+  border:2px solid #ff3b30;
+  background:rgba(255,59,48,.12);
+  color:#ff3b30;
   font-weight:900;
   letter-spacing:.04em;
   font-size:1.15rem;
