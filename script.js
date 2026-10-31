@@ -607,6 +607,8 @@
       "home.locations_title": "Snus Shop Locator",
       "home.locations_lede": "Find a physical SNUZ store near you. Tap a pin to open directions.",
       "home.locations_video_label": "Physical SNUZ shop locations",
+      "home.locations_store_one": "1 store",
+      "home.locations_store_many": "{n} stores",
       "home.stats.markets": "Markets we operate in",
       "home.stats.innovations": "Product innovations in 2024",
       "home.stats.power_brands": "Power brands",
@@ -733,6 +735,8 @@
       "home.locations_title": "Snus Shop Locator",
       "home.locations_lede": "Encontre uma loja SNUZ perto de si. Toque num pin para abrir direções.",
       "home.locations_video_label": "Locais físicos para comprar SNUZ",
+      "home.locations_store_one": "1 loja",
+      "home.locations_store_many": "{n} lojas",
       "home.stats.markets": "Mercados em que operamos",
       "home.stats.innovations": "Inovações de produto em 2024",
       "home.stats.power_brands": "Marcas principais",
@@ -859,6 +863,8 @@
       "home.locations_title": "Snus Shop Locator",
       "home.locations_lede": "Encuentra una tienda SNUZ cerca de ti. Toca un pin para abrir direcciones.",
       "home.locations_video_label": "Ubicaciones físicas para comprar SNUZ",
+      "home.locations_store_one": "1 tienda",
+      "home.locations_store_many": "{n} tiendas",
       "home.stats.markets": "Mercados en los que operamos",
       "home.stats.innovations": "Innovaciones de producto en 2024",
       "home.stats.power_brands": "Marcas principales",
@@ -960,6 +966,15 @@
       const key = el.getAttribute("data-i18n-aria-label") || "";
       const value = t(key);
       if (typeof value === "string") el.setAttribute("aria-label", value);
+    });
+
+    document.querySelectorAll("[data-locations-count]").forEach((el) => {
+      const group = el.closest(".locations__group");
+      const count = group ? group.querySelectorAll(".locations__card").length : 0;
+      const template =
+        (count === 1 ? t("home.locations_store_one") : t("home.locations_store_many")) ||
+        (count === 1 ? "1 store" : "{n} stores");
+      el.textContent = String(template).split("{n}").join(String(count));
     });
   };
 
