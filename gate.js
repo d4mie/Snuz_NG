@@ -92,8 +92,7 @@
             <p class="site-gate__kicker">Caution</p>
             <h2 class="site-gate__title site-gate__title--card" id="site-gate-age-title">Adults only</h2>
             <p class="site-gate__lede">
-              snuz.ng sells nicotine products. You must be 18 or older to enter.
-              Nicotine is addictive and is not for children.
+              You must be 18 or older to enter.
             </p>
             <div class="site-gate__actions">
               <button class="btn btn--primary btn--arrow" type="button" data-gate-age-yes>
