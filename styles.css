@@ -2625,6 +2625,30 @@ a.brand--footer{color:inherit}
   flex:0 0 auto;
 }
 .footer__note{color:rgba(255,255,255,.38)}
+.footer__credit{
+  flex:1 0 100%;
+  margin:4px 0 0;
+  text-align:center;
+  font-size:.84rem;
+  color:rgba(255,255,255,.72);
+}
+.footer__credit a{
+  color:#fff;
+  font-weight:600;
+  text-decoration:none;
+}
+.footer__credit a:hover{text-decoration:underline}
+.page-credit{
+  margin-top:28px;
+  padding:14px 16px;
+  text-align:center;
+  font-size:.84rem;
+  color:rgba(255,255,255,.72);
+  background:#0b0b0b;
+}
+.page-credit p{margin:0}
+.page-credit a{color:#fff;font-weight:600;text-decoration:none}
+.page-credit a:hover{text-decoration:underline}
 .footer__bottom .social{margin:0}
 
 .social{
